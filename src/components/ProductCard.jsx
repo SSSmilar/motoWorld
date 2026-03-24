@@ -1,53 +1,81 @@
-import { ShoppingCart } from 'lucide-react';
+import React, { useState } from 'react';
+import { ShoppingCart, Check, X } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 
-const ProductCard = ({ moto, onAddToCart, onClick }) => {
+const ProductCard = ({ product, isHighlighted }) => {
+  const { addToCart } = useCart();
+  const [isAdded, setIsAdded] = useState(false);
+
+  const handleAdd = (e) => {
+    e.stopPropagation();
+    addToCart(product);
+    setIsAdded(true);
+    setTimeout(() => setIsAdded(false), 2000);
+  };
+
   return (
     <div 
-      className="glass-card group cursor-pointer overflow-hidden flex flex-col"
-      onClick={() => onClick(moto)}
+      className={`glass-card group flex flex-col h-full transition-all duration-500 ${
+        isHighlighted
+          ? 'ring-2 ring-accent shadow-[0_0_20px_rgba(255,62,0,0.3)]' 
+          : ''
+      }`}
     >
-      {/* Image Container */}
-      <div className="relative h-64 overflow-hidden">
+      <div className="relative overflow-hidden aspect-[16/9]">
         <img 
-          src={moto.image} 
-          alt={moto.name} 
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          src={product.imageUrl} 
+          alt={product.title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
-        <div className="absolute top-4 left-4 bg-accent px-3 py-1 text-xs font-black uppercase skew-x-[-10deg]">
-          {moto.class}
+        {!product.inStock && (
+          <div className="absolute inset-0 bg-black/60 flex items-center justify-center backdrop-blur-[2px]">
+            <span className="border-2 border-white/30 px-4 py-2 text-white font-bold uppercase tracking-widest -rotate-12">
+              Нет в наличии
+            </span>
+          </div>
+        )}
+        <div className="absolute top-4 left-4 bg-accent text-white text-[10px] font-bold px-2 py-1 uppercase tracking-tighter">
+          {product.category}
         </div>
       </div>
 
-      {/* Info */}
-      <div className="p-6 flex-grow flex flex-col">
-        <h3 className="text-xl font-bold uppercase mb-2 group-hover:text-accent transition-colors">
-          {moto.name}
-        </h3>
-        <p className="text-gray-400 text-sm mb-4 line-clamp-2">
-          {moto.description}
-        </p>
-        
-        <div className="mt-auto flex justify-between items-center">
-          <div>
-            <div className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Кубатура</div>
-            <div className="text-lg font-black italic">{moto.engine}</div>
-          </div>
-          <div className="text-right">
-            <div className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Цена</div>
-            <div className="text-2xl font-black text-accent">₽{moto.price.toLocaleString()}</div>
+      <div className="p-6 flex flex-col flex-grow">
+        <div className="flex justify-between items-start mb-2">
+          <h3 className="text-xl font-bold uppercase tracking-tight">{product.title}</h3>
+          <div className="flex items-center gap-1 text-[10px] uppercase font-bold text-gray-500">
+            {product.inStock ? (
+              <><Check size={12} className="text-green-500" /> В наличии</>
+            ) : (
+              <><X size={12} className="text-red-500" /> Под заказ</>
+            )}
           </div>
         </div>
+        
+        <p className="text-gray-400 text-sm mb-6 flex-grow">
+          {product.description}
+        </p>
 
-        <button 
-          onClick={(e) => {
-            e.stopPropagation();
-            onAddToCart(moto);
-          }}
-          className="mt-6 w-full bg-white/5 hover:bg-accent text-white py-3 transition-all duration-300 flex items-center justify-center gap-2 font-bold uppercase text-xs tracking-widest border border-white/10 hover:border-accent"
-        >
-          <ShoppingCart className="w-4 h-4" />
-          В корзину
-        </button>
+        <div className="flex items-center justify-between mt-auto">
+          <div className="text-2xl font-black text-white italic">
+            ${product.price.toLocaleString()}
+          </div>
+          <button
+            onClick={handleAdd}
+            disabled={!product.inStock}
+            className={`px-4 py-3 rounded-none transition-all duration-300 flex items-center gap-2 font-bold uppercase text-[10px] tracking-widest ${
+              product.inStock 
+                ? 'bg-accent text-white hover:scale-105 hover:shadow-[0_0_15px_rgba(255,62,0,0.4)]' 
+                : 'bg-white/5 text-gray-600 cursor-not-allowed'
+            }`}
+            title="Добавить в корзину"
+          >
+            {isAdded ? (
+              <><Check size={16} /> Добавлено</>
+            ) : (
+              <><ShoppingCart size={16} /> В корзину</>
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );

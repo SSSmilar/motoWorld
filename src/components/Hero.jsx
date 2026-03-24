@@ -1,9 +1,11 @@
 import { ChevronDown } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
-  const scrollToCatalog = () => {
-    const catalog = document.getElementById('catalog');
-    catalog?.scrollIntoView({ behavior: 'smooth' });
+  const navigate = useNavigate();
+  
+  const goToCatalog = () => {
+    navigate('/catalog');
   };
 
   return (
@@ -26,7 +28,7 @@ const Hero = () => {
           Премиальные мотоциклы для тех, кто не признает компромиссов. Твой путь начинается здесь.
         </p>
         <button 
-          onClick={scrollToCatalog}
+          onClick={goToCatalog}
           className="btn-primary flex items-center gap-2 mx-auto hover:scale-105 active:scale-95"
         >
           Смотреть модели
@@ -34,7 +36,7 @@ const Hero = () => {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer" onClick={scrollToCatalog}>
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer" onClick={goToCatalog}>
         <ChevronDown className="w-8 h-8 text-accent" />
       </div>
     </section>
