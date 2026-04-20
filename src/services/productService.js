@@ -27,12 +27,18 @@ export function initProducts() {
 }
 
 const get_products = () => {
-    const products = localStorage.getItem(PRODUCTS_KEY);
-    return products ? JSON.parse(products) : [];
+    try {
+        const products = localStorage.getItem(PRODUCTS_KEY);
+        return products ? JSON.parse(products) : [];
+    } catch {
+        return [];
+    }
 };
 
 const save_products = (products) => {
-    localStorage.setItem(PRODUCTS_KEY, JSON.stringify(products));
+    try {
+        localStorage.setItem(PRODUCTS_KEY, JSON.stringify(products));
+    } catch { /* storage full or unavailable */ }
 };
 
 /** Получить все товары */

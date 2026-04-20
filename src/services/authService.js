@@ -12,21 +12,33 @@ const USERS_KEY = 'users';
 const SESSIONS_KEY = 'sessions';
 
 const get_users = () => {
-    const users = localStorage.getItem(USERS_KEY);
-    return users ? JSON.parse(users) : [];
+    try {
+        const users = localStorage.getItem(USERS_KEY);
+        return users ? JSON.parse(users) : [];
+    } catch {
+        return [];
+    }
 };
 
 const save_users = (users) => {
-    localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    try {
+        localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    } catch { /* storage full or unavailable */ }
 };
 
 const get_sessions = () => {
-    const sessions = localStorage.getItem(SESSIONS_KEY);
-    return sessions ? JSON.parse(sessions) : {};
+    try {
+        const sessions = localStorage.getItem(SESSIONS_KEY);
+        return sessions ? JSON.parse(sessions) : {};
+    } catch {
+        return {};
+    }
 };
 
 const save_sessions = (sessions) => {
-    localStorage.setItem(SESSIONS_KEY, JSON.stringify(sessions));
+    try {
+        localStorage.setItem(SESSIONS_KEY, JSON.stringify(sessions));
+    } catch { /* storage full or unavailable */ }
 };
 
 /** Инициализация: добавляет тестового админа, если его ещё нет */

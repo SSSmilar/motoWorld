@@ -4,6 +4,7 @@ import { getOrders } from '../../services/orderService';
 
 const OrdersPage = () => {
   const { user } = useAuth();
+  if (!user) return null;
   const orders = getOrders(user.userId);
 
   return (

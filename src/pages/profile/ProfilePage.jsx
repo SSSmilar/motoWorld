@@ -1,9 +1,9 @@
 import React from 'react';
-import { get_current_user, logout } from '../../services/authService';
+import { useAuth } from '../../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 
 const ProfilePage = () => {
-    const user = get_current_user();
+    const { user, logout } = useAuth();
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -11,11 +11,7 @@ const ProfilePage = () => {
         navigate('/');
     };
 
-    if (!user) {
-        // This should be handled by a protected route, but as a fallback:
-        navigate('/login');
-        return null;
-    }
+    if (!user) return null;
 
     return (
         <div className="min-h-screen pt-28 px-6 max-w-2xl mx-auto">

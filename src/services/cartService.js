@@ -7,14 +7,20 @@
 const get_cart_key = (user_id) => `cart_${user_id}`;
 
 export const get_cart = (user_id) => {
-    const cart_key = get_cart_key(user_id);
-    const cart = localStorage.getItem(cart_key);
-    return cart ? JSON.parse(cart) : [];
+    try {
+        const cart_key = get_cart_key(user_id);
+        const cart = localStorage.getItem(cart_key);
+        return cart ? JSON.parse(cart) : [];
+    } catch {
+        return [];
+    }
 };
 
 const save_cart = (user_id, cart) => {
-    const cart_key = get_cart_key(user_id);
-    localStorage.setItem(cart_key, JSON.stringify(cart));
+    try {
+        const cart_key = get_cart_key(user_id);
+        localStorage.setItem(cart_key, JSON.stringify(cart));
+    } catch { /* storage full or unavailable */ }
 };
 
 export const add_to_cart = (user_id, product, quantity) => {

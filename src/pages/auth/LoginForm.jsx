@@ -1,9 +1,9 @@
-// src/pages/auth/LoginForm.jsx
 import React, { useState } from 'react';
-import { login } from '../../services/authService';
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { useNavigate, Link } from 'react-router-dom';
 
 const LoginForm = () => {
+    const { login } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -12,37 +12,51 @@ const LoginForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setError('');
-
-        try {
-            const { user } = login(email, password);
-            if (user.role === 'admin') {
-                navigate('/admin');
-            } else {
-                navigate('/profile');
-            }
-        } catch (err) {
-            setError(err.message);
+        const res = login(email, password);
+        if (!res.ok) {
+            setError(res.error || 'Ошибка входа');
+            return;
         }
+        navigate('/profile');
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-                <button type="submit">Login</button>
-            </form>
+        <div className="min-h-screen pt-28 px-6 flex justify-center">
+            <div className="w-full max-w-md">
+                <h2 className="text-3xl font-bold mb-8">Вход</h2>
+                <form onSubmit={handleSubmit} className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
+                    <div>
+                        <label className="block text-sm text-gray-400 mb-1">Email</label>
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2 outline-none focus:border-red-500"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm text-gray-400 mb-1">Пароль</label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2 outline-none focus:border-red-500"
+                        />
+                    </div>
+                    {error && <p className="text-red-400 text-sm">{error}</p>}
+                    <button type="submit" className="w-full bg-red-600 hover:bg-red-700 transition rounded-lg px-6 py-2 font-semibold">
+                        Войти
+                    </button>
+                    <p className="text-sm text-center text-gray-400">
+                        Нет аккаунта?{' '}
+                        <Link to="/register" className="text-white hover:underline">Зарегистрироваться</Link>
+                    </p>
+                </form>
+            </div>
         </div>
     );
 };
 
 export default LoginForm;
-

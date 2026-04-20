@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import { init_admin } from './services/authService';
 import ProtectedRoute from './components/ProtectedRoute';
+import { AuthProvider } from './context/AuthContext';
+import { CartProvider } from './context/CartContext';
 
 import HomePage from './pages/home/HomePage';
 import CatalogPage from './pages/catalog/CatalogPage';
@@ -19,12 +20,10 @@ import OrderManagement from './pages/admin/OrderManagement';
 import ForbiddenPage from './pages/ForbiddenPage';
 
 const App = () => {
-  useEffect(() => {
-    init_admin();
-  }, []);
-
   return (
     <Router>
+      <AuthProvider>
+        <CartProvider>
       <div className="min-h-screen bg-dark-bg text-white">
         <Header />
         <Routes>
@@ -54,6 +53,8 @@ const App = () => {
           </Route>
         </Routes>
       </div>
+        </CartProvider>
+      </AuthProvider>
     </Router>
   );
 };

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { get_current_user } from '../services/authService';
+import { useAuth } from '../context/AuthContext';
 
 const ProtectedRoute = ({ allowed_roles }) => {
-    const user = get_current_user();
+    const { user } = useAuth();
 
     if (!user) {
         return <Navigate to="/login" replace />;

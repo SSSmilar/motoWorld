@@ -30,8 +30,8 @@ const OrderHistory = () => {
                             <p>Date: {new Date(order.created_at).toLocaleDateString()}</p>
                             <p>Total: ${order.total}</p>
                             <ul>
-                                {order.items.map(item => (
-                                    <li key={item.id}>{item.name} - {item.quantity} x ${item.price}</li>
+                                {order.items.map((item, idx) => (
+                                    <li key={item.id ?? idx}>{item.title} - {item.quantity} x ${item.price}</li>
                                 ))}
                             </ul>
                         </li>
