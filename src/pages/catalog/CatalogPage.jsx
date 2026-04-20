@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { fetchCatalogData } from '../../catalog-feature/catalogService';
+import { getProducts } from '../../services/productService';
 import { Search } from 'lucide-react';
 import ProductCard from '../../components/ProductCard';
 
@@ -28,18 +28,9 @@ const CatalogPage = () => {
   const searchRef = useRef(null);
 
   useEffect(() => {
-    const loadData = async () => {
-      setLoading(true);
-      try {
-        const data = await fetchCatalogData();
-        setProducts(data);
-      } catch (error) {
-        console.error("Failed to fetch catalog:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadData();
+    // Загружаем товары из LocalStorage (mock-api)
+    setProducts(getProducts());
+    setLoading(false);
   }, []);
 
   useEffect(() => {

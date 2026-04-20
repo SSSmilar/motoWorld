@@ -1,72 +1,109 @@
-import React, { createContext, useContext, useState, useMemo, useEffect } from 'react';
+import React, { createContext, useContext, useState, useMemo, useEffect, useCallback } from 'react';
+import { useAuth } from './AuthContext';
+import * as cartSvc from '../services/cartService';
+import { getProducts } from '../services/productService';
 
 const CartContext = createContext();
 
 export const useCart = () => {
-  const context = useContext(CartContext);
-  if (!context) {
-    throw new Error('useCart must be used within a CartProvider');
-  }
-  return context;
+  const ctx = useContext(CartContext);
+  if (!ctx) throw new Error('useCart must be used within CartProvider');
+  return ctx;
 };
 
+/**
+ * CartProvider — корзина привязана к текущему пользователю.
+ * Данные хранятся в LocalStorage через cartService.
+ */
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const { user } = useAuth();
+  const [cartItems, setCartItems] = useState([]); // [{ productId, quantity }]
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const addToCart = (product) => {
-    setCartItems((prev) => {
-      const existingItem = prev.find((item) => item.id === product.id);
-      if (existingItem) {
-        return prev.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      }
-      return [...prev, { ...product, quantity: 1 }];
-    });
+  // Загружаем корзину при смене пользователя
+  useEffect(() => {
+    if (user) {
+      setCartItems(cartSvc.getCart(user.userId));
+    } else {
+      setCartItems([]);
+    }
+  }, [user]);
+
+  const products = useMemo(() => getProducts(), [cartItems]);
+
+  /** Получить количество данного товара уже в корзине */
+  const getCartQuantity = useCallback(
+    (productId) => {
+      const item = cartItems.find((i) => i.productId === productId);
+      return item ? item.quantity : 0;
+    },
+    [cartItems]
+  );
+
+  const addToCart = (productId) => {
+    if (!user) return;
+    const product = products.find((p) => p.id === productId);
+    if (!product) return;
+    const updated = cartSvc.addToCart(user.userId, productId, product.stock);
+    setCartItems([...updated]);
   };
 
-  const removeFromCart = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  const updateQuantity = (productId, quantity) => {
+    if (!user) return;
+    const product = products.find((p) => p.id === productId);
+    const maxQty = product ? product.stock : quantity;
+    const clamped = Math.min(quantity, maxQty);
+    const updated = cartSvc.updateCartItem(user.userId, productId, clamped);
+    setCartItems([...updated]);
+  };
+
+  const removeFromCart = (productId) => {
+    if (!user) return;
+    const updated = cartSvc.removeFromCart(user.userId, productId);
+    setCartItems([...updated]);
   };
 
   const clearCart = () => {
+    if (!user) return;
+    cartSvc.clearCart(user.userId);
     setCartItems([]);
   };
 
-  const cartTotal = useMemo(() => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-  }, [cartItems]);
+  // Обогащённые элементы корзины (с данными товара)
+  const enrichedItems = useMemo(() => {
+    return cartItems.map((ci) => {
+      const p = products.find((pr) => pr.id === ci.productId) || {};
+      return { ...ci, title: p.title, price: p.price, imageUrl: p.imageUrl, stock: p.stock };
+    });
+  }, [cartItems, products]);
 
-  const cartCount = useMemo(() => {
-    return cartItems.reduce((total, item) => total + item.quantity, 0);
-  }, [cartItems]);
+  const cartTotal = useMemo(
+    () => enrichedItems.reduce((s, i) => s + (i.price || 0) * i.quantity, 0),
+    [enrichedItems]
+  );
 
-  const toggleCart = () => {
-    setIsCartOpen(!isCartOpen);
-  };
+  const cartCount = useMemo(
+    () => cartItems.reduce((s, i) => s + i.quantity, 0),
+    [cartItems]
+  );
 
-  // Lock body scroll when cart is open
+  // Блокировка скролла при открытой корзине
   useEffect(() => {
-    if (isCartOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
+    document.body.style.overflow = isCartOpen ? 'hidden' : 'unset';
+    return () => { document.body.style.overflow = 'unset'; };
   }, [isCartOpen]);
 
   const value = {
-    cartItems,
+    cartItems: enrichedItems,
     addToCart,
     removeFromCart,
+    updateQuantity,
     clearCart,
     cartTotal,
     cartCount,
+    getCartQuantity,
     isCartOpen,
-    toggleCart,
+    toggleCart: () => setIsCartOpen((v) => !v),
     openCart: () => setIsCartOpen(true),
     closeCart: () => setIsCartOpen(false),
   };
