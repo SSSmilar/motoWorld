@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { initAuth, getSession, login as svcLogin, register as svcRegister, logout as svcLogout } from '../services/authService';
+import { init_admin, get_current_user, login as svcLogin, register as svcRegister, logout as svcLogout } from '../services/authService';
 import { initProducts } from '../services/productService';
 
 const AuthContext = createContext();
@@ -16,22 +16,29 @@ export const AuthProvider = ({ children }) => {
 
   // Инициализация при монтировании: создаём тестового админа и загружаем каталог
   useEffect(() => {
-    initAuth();
+    init_admin();
     initProducts();
-    setUser(getSession());
+    setUser(get_current_user());
     setReady(true);
   }, []);
 
   const login = (email, password) => {
-    const res = svcLogin(email, password);
-    if (res.ok) setUser(res.session);
-    return res;
+    try {
+      svcLogin(email, password);
+      setUser(get_current_user());
+      return { ok: true };
+    } catch (e) {
+      return { ok: false, error: e.message };
+    }
   };
 
   const register = (email, password) => {
-    const res = svcRegister(email, password);
-    if (res.ok) setUser(res.session);
-    return res;
+    try {
+      svcRegister(email, password);
+      return { ok: true };
+    } catch (e) {
+      return { ok: false, error: e.message };
+    }
   };
 
   const logout = () => {

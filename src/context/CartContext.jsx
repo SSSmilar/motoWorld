@@ -23,7 +23,7 @@ export const CartProvider = ({ children }) => {
   // Загружаем корзину при смене пользователя
   useEffect(() => {
     if (user) {
-      setCartItems(cartSvc.getCart(user.userId));
+      setCartItems(cartSvc.get_cart(user.userId));
     } else {
       setCartItems([]);
     }
@@ -34,7 +34,7 @@ export const CartProvider = ({ children }) => {
   /** Получить количество данного товара уже в корзине */
   const getCartQuantity = useCallback(
     (productId) => {
-      const item = cartItems.find((i) => i.productId === productId);
+      const item = cartItems.find((i) => i.id === productId);
       return item ? item.quantity : 0;
     },
     [cartItems]
@@ -44,8 +44,8 @@ export const CartProvider = ({ children }) => {
     if (!user) return;
     const product = products.find((p) => p.id === productId);
     if (!product) return;
-    const updated = cartSvc.addToCart(user.userId, productId, product.stock);
-    setCartItems([...updated]);
+    cartSvc.add_to_cart(user.userId, product, 1);
+    setCartItems([...cartSvc.get_cart(user.userId)]);
   };
 
   const updateQuantity = (productId, quantity) => {
@@ -53,27 +53,27 @@ export const CartProvider = ({ children }) => {
     const product = products.find((p) => p.id === productId);
     const maxQty = product ? product.stock : quantity;
     const clamped = Math.min(quantity, maxQty);
-    const updated = cartSvc.updateCartItem(user.userId, productId, clamped);
-    setCartItems([...updated]);
+    cartSvc.update_cart_item_quantity(user.userId, productId, clamped);
+    setCartItems([...cartSvc.get_cart(user.userId)]);
   };
 
   const removeFromCart = (productId) => {
     if (!user) return;
-    const updated = cartSvc.removeFromCart(user.userId, productId);
-    setCartItems([...updated]);
+    cartSvc.remove_from_cart(user.userId, productId);
+    setCartItems([...cartSvc.get_cart(user.userId)]);
   };
 
   const clearCart = () => {
     if (!user) return;
-    cartSvc.clearCart(user.userId);
+    cartSvc.clear_cart(user.userId);
     setCartItems([]);
   };
 
   // Обогащённые элементы корзины (с данными товара)
   const enrichedItems = useMemo(() => {
     return cartItems.map((ci) => {
-      const p = products.find((pr) => pr.id === ci.productId) || {};
-      return { ...ci, title: p.title, price: p.price, imageUrl: p.imageUrl, stock: p.stock };
+      const p = products.find((pr) => pr.id === ci.id) || {};
+      return { ...ci, title: p.title ?? ci.title, price: p.price ?? ci.price, imageUrl: p.imageUrl ?? ci.imageUrl, stock: p.stock ?? ci.stock };
     });
   }, [cartItems, products]);
 

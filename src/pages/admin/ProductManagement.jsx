@@ -1,6 +1,6 @@
 // src/pages/admin/ProductManagement.jsx
 import React, { useState, useEffect } from 'react';
-import { get_all_products, add_product, update_product, delete_product } from '../../services/productService';
+import { getProducts as get_all_products, addProduct as add_product, updateProduct as update_product, deleteProduct as delete_product } from '../../services/productService';
 
 const ProductManagement = () => {
     const [products, setProducts] = useState([]);

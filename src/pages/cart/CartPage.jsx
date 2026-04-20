@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { get_cart, update_cart_item_quantity, remove_from_cart, clear_cart } from '../../services/cartService';
 import { create_order } from '../../services/orderService';
 import { get_current_user } from '../../services/authService';
-import { get_product_by_id } from '../../services/productService';
+import { getProductById as get_product_by_id } from '../../services/productService';
 import { Trash2, Plus, Minus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
