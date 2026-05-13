@@ -19,8 +19,14 @@ const OrdersPage = () => {
       setLoading(false);
       return;
     }
-    setOrders(getOrders(user.userId));
-    setLoading(false);
+    setLoading(true);
+    try {
+      setOrders(getOrders(user.userId));
+    } catch (e) {
+      console.error('Failed to fetch orders:', e);
+    } finally {
+      setLoading(false);
+    }
   }, [user?.userId]);
 
   if (!user) return null;

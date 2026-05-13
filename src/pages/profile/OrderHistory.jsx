@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getOrders } from '../../services/orderService';
 import { get_current_user } from '../../services/authService';
 
@@ -13,14 +13,13 @@ const OrderHistory = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const user = get_current_user();
-  const hasFetched = useRef(false);
 
   useEffect(() => {
-    if (!user || hasFetched.current) {
+    if (!user) {
       setLoading(false);
       return;
     }
-    hasFetched.current = true;
+    setLoading(true);
     try {
       const data = getOrders(user.userId);
       setOrders(data);
