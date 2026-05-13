@@ -27,7 +27,7 @@ export const CartProvider = ({ children }) => {
     } else {
       setCartItems([]);
     }
-  }, [user]);
+  }, [user?.userId]);
 
   const products = useMemo(() => getProducts(), [cartItems]);
 
