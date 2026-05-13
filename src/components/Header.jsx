@@ -1,11 +1,23 @@
 import { ShoppingCart, Bike, User, LogIn } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 
 const Header = () => {
   const { cartCount, openCart } = useCart();
   const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const isEmpty = cartCount === 0;
+
+  const handleCartClick = () => {
+    console.log('Cart button clicked!');
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+    openCart();
+  };
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-lg border-b border-white/10">
@@ -42,14 +54,23 @@ const Header = () => {
             </Link>
           )}
 
-          <div className="relative cursor-pointer group p-2" onClick={openCart}>
-            <ShoppingCart className="w-6 h-6 group-hover:text-accent transition-colors" />
+          <button
+            type="button"
+            onClick={handleCartClick}
+            className={`relative p-3 rounded-xl backdrop-blur-md border transition-all duration-300 
+              ${isEmpty
+                ? 'bg-white/5 border-white/10 opacity-50 hover:opacity-80'
+                : 'bg-white/10 border-white/15 shadow-[0_4px_16px_rgba(0,0,0,0.3)] hover:bg-white/15 hover:scale-110 hover:shadow-[0_6px_24px_rgba(255,62,0,0.2)] active:scale-95 active:shadow-[0_2px_8px_rgba(0,0,0,0.4)]'
+              }`}
+            title={isEmpty ? 'Корзина пуста' : `В корзине: ${cartCount}`}
+          >
+            <ShoppingCart className={`w-5 h-5 transition-colors ${isEmpty ? 'text-gray-500' : 'text-white group-hover:text-accent'}`} />
             {cartCount > 0 && (
               <span className="absolute top-0 right-0 bg-accent text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full animate-pulse shadow-[0_0_10px_rgba(255,62,0,0.5)]">
                 {cartCount}
               </span>
             )}
-          </div>
+          </button>
         </div>
       </div>
     </header>
