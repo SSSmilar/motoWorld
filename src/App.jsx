@@ -12,12 +12,13 @@ import ContactsPage from './pages/contacts/ContactsPage';
 import LoginForm from './pages/auth/LoginForm';
 import RegistrationForm from './pages/auth/RegistrationForm';
 import ProfilePage from './pages/profile/ProfilePage';
-import OrderHistory from './pages/profile/OrderHistory';
+import OrdersPage from './pages/profile/OrdersPage';
 import CartPage from './pages/cart/CartPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import ProductManagement from './pages/admin/ProductManagement';
 import OrderManagement from './pages/admin/OrderManagement';
 import ForbiddenPage from './pages/ForbiddenPage';
+import CartDrawer from './components/CartDrawer';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <CartProvider>
       <div className="min-h-screen bg-dark-bg text-white">
         <Header />
+        <CartDrawer />
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<HomePage />} />
@@ -39,7 +41,7 @@ const App = () => {
           {/* Protected Routes */}
           <Route element={<ProtectedRoute allowed_roles={['user', 'admin']} />}>
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/orders" element={<OrderHistory />} />
+            <Route path="/orders" element={<OrdersPage />} />
             <Route path="/cart" element={<CartPage />} />
           </Route>
 
