@@ -5,11 +5,13 @@ import { get_current_user } from '../../services/authService';
 import { getProductById as get_product_by_id } from '../../services/productService';
 import { Trash2, Plus, Minus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '../../context/CartContext';
 
 const CartPage = () => {
     const [cart, setCart] = useState([]);
     const user = get_current_user();
     const navigate = useNavigate();
+    const { clearCart: clearCartCtx } = useCart();
 
     useEffect(() => {
         if (user) {
@@ -17,7 +19,7 @@ const CartPage = () => {
         } else {
             navigate('/login');
         }
-    }, [user, navigate]);
+    }, [user?.userId]);
 
     const handleQuantityChange = (productId, quantity) => {
         const product = get_product_by_id(productId);
@@ -40,7 +42,8 @@ const CartPage = () => {
     const handleCheckout = () => {
         try {
             create_order(user.userId, cart);
-            clear_cart(user.userId);
+            // очистка контекста корзины после успешного заказа
+            clearCartCtx();
             setCart([]);
             alert('Order placed successfully!');
             navigate('/orders');
