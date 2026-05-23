@@ -121,7 +121,7 @@ const Catalog = () => {
 
                   <div className="flex items-center justify-between mt-auto">
                     <div className="text-2xl font-black text-white italic">
-                      ${product.price.toLocaleString()}
+                      {product.price.toLocaleString()} ₽
                     </div>
                     <button
                       onClick={() => handleAddToCart(product)}

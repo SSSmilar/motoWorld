@@ -95,14 +95,14 @@ const OrdersPage = () => {
                 {order.items.map((item, idx) => (
                   <li key={idx} className="text-sm text-gray-300 flex justify-between">
                     <span>{item.title} × {item.quantity}</span>
-                    <span className="text-white font-semibold">${(item.price * item.quantity).toLocaleString()}</span>
+                    <span className="text-white font-semibold">{(item.price * item.quantity).toLocaleString()} ₽</span>
                   </li>
                 ))}
               </ul>
 
               {/* Total */}
               <div className="border-t border-white/10 pt-3 flex justify-end">
-                <p className="text-lg font-black">Итого: ${order.total.toLocaleString()}</p>
+                <p className="text-lg font-black">Итого: {order.total.toLocaleString()} ₽</p>
               </div>
             </div>
           ))}

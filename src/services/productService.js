@@ -7,7 +7,7 @@
 import { mockCatalogData } from '../catalog-feature/mockCatalogData';
 import { v4 as uuidv4 } from 'uuid';
 
-const PRODUCTS_KEY = 'mw_products';
+const PRODUCTS_KEY = 'mw_products_v2';
 
 /** Инициализация каталога: переносит начальные данные в LocalStorage (один раз) */
 export function initProducts() {

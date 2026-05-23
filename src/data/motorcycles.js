@@ -4,7 +4,7 @@ export const MOTORCYCLES = [
     name: "Ducati Panigale V4",
     class: "Sport",
     engine: "1103cc",
-    price: 245000,
+    price: 2278500,
     image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&q=80&w=800",
     description: "Вершина спортивных технологий. Итальянская страсть и невероятная мощность в каждом повороте."
   },
@@ -13,7 +13,7 @@ export const MOTORCYCLES = [
     name: "Harley-Davidson Fat Boy",
     class: "Cruiser",
     engine: "1868cc",
-    price: 198000,
+    price: 1841400,
     image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&q=80&w=800",
     description: "Икона американского стиля. Массивный, мощный и неповторимый круизер для дальних дорог."
   },
@@ -22,7 +22,7 @@ export const MOTORCYCLES = [
     name: "BMW R 1250 GS",
     class: "Enduro",
     engine: "1254cc",
-    price: 212000,
+    price: 1971600,
     image: "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?auto=format&fit=crop&q=80&w=800",
     description: "Король бездорожья и путешествий. Надежность и комфорт в любых условиях эксплуатации."
   },
@@ -31,7 +31,7 @@ export const MOTORCYCLES = [
     name: "Yamaha MT-09",
     class: "Naked",
     engine: "890cc",
-    price: 105000,
+    price: 976500,
     image: "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e?auto=format&fit=crop&q=80&w=800",
     description: "Мастер крутящего момента. Агрессивный дизайн и взрывной характер городского хулигана."
   },
@@ -40,7 +40,7 @@ export const MOTORCYCLES = [
     name: "Kawasaki Ninja ZX-10R",
     class: "Sport",
     engine: "998cc",
-    price: 176000,
+    price: 1636800,
     image: "https://images.unsplash.com/photo-1444491741275-3747c53c99b4?auto=format&fit=crop&q=80&w=800",
     description: "Создан для трека, адаптирован для дорог. Технологии WorldSBK в ваших руках."
   },
@@ -49,7 +49,7 @@ export const MOTORCYCLES = [
     name: "Triumph Rocket 3",
     class: "Cruiser",
     engine: "2458cc",
-    price: 230000,
+    price: 2139000,
     image: "https://images.unsplash.com/photo-1609630875171-b132112ee1ab?auto=format&fit=crop&q=80&w=800",
     description: "Самый большой серийный двигатель в мире. Чистая мощь и неоспоримое превосходство."
   },
@@ -58,7 +58,7 @@ export const MOTORCYCLES = [
     name: "KTM 1290 Super Adventure",
     class: "Enduro",
     engine: "1301cc",
-    price: 189000,
+    price: 1757700,
     image: "https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?auto=format&fit=crop&q=80&w=800",
     description: "Готов к гонке. Самый технологичный адвенчер для тех, кто не знает границ."
   },
@@ -67,7 +67,7 @@ export const MOTORCYCLES = [
     name: "Honda CB1000R",
     class: "Naked",
     engine: "998cc",
-    price: 129000,
+    price: 1199700,
     image: "https://images.unsplash.com/photo-1622185135505-2d795003994a?auto=format&fit=crop&q=80&w=800",
     description: "Neo Sports Café. Идеальное сочетание ретро-стиля и современных технологий."
   }

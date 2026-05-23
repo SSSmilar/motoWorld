@@ -63,7 +63,7 @@ const AdminPage = () => {
             <input name="category" value={form.category} onChange={handleChange} className={inputCls} />
           </div>
           <div>
-            <label className="block text-sm mb-1">Цена ($)</label>
+            <label className="block text-sm mb-1">Цена (₽)</label>
             <input name="price" type="number" min="0" value={form.price} onChange={handleChange} required className={inputCls} />
           </div>
           <div>
@@ -109,7 +109,7 @@ const AdminPage = () => {
                   <img src={p.imageUrl} alt={p.title} className="w-14 h-14 object-cover rounded" />
                 </td>
                 <td className="py-2 pr-4 font-medium">{p.title}</td>
-                <td className="py-2 pr-4">${p.price.toLocaleString()}</td>
+                <td className="py-2 pr-4">{p.price.toLocaleString()} ₽</td>
                 <td className="py-2 pr-4">{p.stock}</td>
                 <td className="py-2 flex gap-2">
                   <button onClick={() => handleEdit(p)} className="p-2 hover:text-yellow-400 transition"><Pencil size={16} /></button>

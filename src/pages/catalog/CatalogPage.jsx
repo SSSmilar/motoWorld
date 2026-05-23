@@ -147,7 +147,7 @@ const CatalogPage = () => {
                       <div>
                         <h4 className="font-bold uppercase text-sm">{highlightText(p.title, searchQuery)}</h4>
                         <p className="text-[10px] text-gray-500 line-clamp-1">{highlightText(p.description, searchQuery)}</p>
-                        <p className="text-accent font-black text-xs mt-1">${p.price.toLocaleString()}</p>
+                        <p className="text-accent font-black text-xs mt-1">{p.price.toLocaleString()} ₽</p>
                       </div>
                     </div>
                   ))

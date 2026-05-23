@@ -51,7 +51,7 @@ const ProductManagement = () => {
             <ul>
                 {products.map(p => (
                     <li key={p.id}>
-                        {p.name} - ${p.price} - Stock: {p.stock}
+                        {p.name} - {p.price.toLocaleString()} ₽ - Stock: {p.stock}
                         <button onClick={() => handleEdit(p)}>Edit</button>
                         <button onClick={() => handleDelete(p.id)}>Delete</button>
                     </li>

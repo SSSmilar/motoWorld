@@ -54,7 +54,7 @@ const CartDrawer = () => {
                       </h3>
                       <div className="flex items-center justify-between">
                         <p className="text-accent font-black text-sm italic">
-                          ${item.price?.toLocaleString()}
+                          {item.price?.toLocaleString()} ₽
                         </p>
                         <p className="text-gray-500 text-[10px] font-bold uppercase tracking-tighter">
                           Кол-во: {item.quantity}
@@ -79,7 +79,7 @@ const CartDrawer = () => {
           <div className="p-6 border-t border-white/10 bg-black/40">
             <div className="flex items-center justify-between mb-6">
               <span className="text-gray-400 uppercase tracking-widest text-xs font-bold">Итого:</span>
-              <span className="text-2xl font-black text-white italic">${cartTotal.toLocaleString()}</span>
+              <span className="text-2xl font-black text-white italic">{cartTotal.toLocaleString()} ₽</span>
             </div>
             <div className="space-y-3">
               <Link to="/cart" onClick={closeCart}
