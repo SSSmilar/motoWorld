@@ -19,7 +19,7 @@ const AboutPage = () => {
           <h2 className="text-accent font-black uppercase tracking-[0.3em] text-sm mb-3">О компании</h2>
           <h1 className="text-5xl md:text-6xl font-black uppercase italic mb-6">Мы продаем эмоции</h1>
           <p className="text-gray-400 max-w-3xl text-lg leading-relaxed">
-            MotoWorld Premium — это команда энтузиастов, которая верит в силу скорости и свободы. 
+            МотоМир Premium — это команда энтузиастов, которая верит в силу скорости и свободы. 
             Мы отбираем только премиальные мотоциклы, предоставляя клиентам лучший сервис и уверенность на дороге.
           </p>
         </div>

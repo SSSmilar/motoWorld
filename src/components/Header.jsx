@@ -26,7 +26,7 @@ const Header = () => {
         <Link to="/" className="flex items-center gap-2 group cursor-pointer">
           <Bike className="w-8 h-8 text-accent group-hover:rotate-12 transition-transform" />
           <span className="text-2xl font-black tracking-tighter uppercase italic">
-            Moto<span className="text-accent">World</span>
+            Мото<span className="text-accent">Мир</span>
           </span>
         </Link>
 

@@ -27,7 +27,7 @@ const HomePage = () => {
 
       <footer className="py-12 border-t border-white/5 bg-black/50">
         <div className="container mx-auto px-6 text-center text-gray-600 text-sm uppercase tracking-[0.2em]">
-          © 2026 MotoWorld Premium. Все права защищены.
+          © 2026 МотоМир Premium. Все права защищены.
         </div>
       </footer>
     </main>
