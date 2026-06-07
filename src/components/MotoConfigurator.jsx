@@ -29,6 +29,7 @@ const MotoConfigurator = () => {
 
   // При выборе мотоцикла загружаем его стоковые детали
   const handleVehicleSelect = (vehicle) => {
+    if (!vehicle) return;
     setSelectedVehicle(vehicle);
     setOrderSuccess(false);
     fetch(`${API_URL}/vehicles/${vehicle.id}/parts`)

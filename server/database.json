@@ -1,80 +1,206 @@
 {
   "products": [
     {
-      "id": "v1",
+      "id": 1,
+      "name": "Ducati Panigale V4",
+      "type": "vehicle",
+      "category": "sport",
+      "price": 2278500,
+      "image": "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&q=80&w=800",
+      "description": "Вершина спортивных технологий. Итальянская страсть и невероятная мощность в каждом повороте."
+    },
+    {
+      "id": 2,
+      "name": "Harley-Davidson Fat Boy",
+      "type": "vehicle",
+      "category": "cruiser",
+      "price": 1841400,
+      "image": "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&q=80&w=800",
+      "description": "Икона американского стиля. Массивный, мощный и неповторимый круизер для дальних дорог."
+    },
+    {
+      "id": 3,
+      "name": "BMW R 1250 GS",
+      "type": "vehicle",
+      "category": "enduro",
+      "price": 1971600,
+      "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?auto=format&fit=crop&q=80&w=800",
+      "description": "Король бездорожья и путешествий. Надежность и комфорт в любых условиях эксплуатации."
+    },
+    {
+      "id": 4,
+      "name": "Yamaha MT-09",
+      "type": "vehicle",
+      "category": "road",
+      "price": 976500,
+      "image": "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e?auto=format&fit=crop&q=80&w=800",
+      "description": "Мастер крутящего момента. Агрессивный дизайн и взрывной характер городского хулигана."
+    },
+    {
+      "id": 5,
       "name": "Питбайк Kayo Evolution",
       "type": "vehicle",
-      "category": "Pitbike",
-      "price": 120000,
+      "category": "pitbike",
+      "price": 130000,
       "image": "https://images.unsplash.com/photo-1558981403-c5f91cbba527?q=80&w=400&auto=format&fit=crop",
-      "vehicle_type_bit": 1
+      "description": "Отличный выбор для начинающих райдеров и тренировок на картодроме."
     },
     {
-      "id": "v2",
-      "name": "Эндуро Yamaha WR250F",
-      "type": "vehicle",
-      "category": "Enduro",
-      "price": 450000,
-      "image": "https://images.unsplash.com/photo-1444491741275-3747c53c99b4?q=80&w=400&auto=format&fit=crop",
-      "vehicle_type_bit": 2
-    },
-    {
-      "id": "p1",
-      "name": "Карбюратор Nibbi PE24",
+      "id": 101,
+      "name": "Карбюратор Nibbi PE19",
       "type": "part",
-      "price": 5000,
+      "category": "carburetor",
+      "price": 4500,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_mask": 1
+      "compatible_with": ["pitbike"]
     },
     {
-      "id": "p2",
-      "name": "Карбюратор PWK32",
+      "id": 102,
+      "name": "Цепь DID 520 Усиленная",
       "type": "part",
+      "category": "chain",
       "price": 7500,
+      "image": "https://images.unsplash.com/photo-1591452107412-df4c62c3e60a?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["enduro", "road", "sport"]
+    },
+    {
+      "id": 103,
+      "name": "Слики Pirelli Diablo Supercorsa",
+      "type": "part",
+      "category": "tires",
+      "price": 35000,
+      "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport"]
+    },
+    {
+      "id": 104,
+      "name": "Выхлоп Akrapovic Titanium",
+      "type": "part",
+      "category": "exhaust",
+      "price": 120000,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport", "road"]
+    },
+    {
+      "id": 105,
+      "name": "Кофры алюминиевые Touratech",
+      "type": "part",
+      "category": "luggage",
+      "price": 85000,
+      "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["enduro"]
+    },
+    {
+      "id": 106,
+      "name": "Руль Fatbar Renthal",
+      "type": "part",
+      "category": "handlebars",
+      "price": 9000,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["pitbike", "enduro", "road"]
+    },
+    {
+      "id": 107,
+      "name": "Защита рычагов Barkbusters",
+      "type": "part",
+      "category": "protection",
+      "price": 12000,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["enduro", "pitbike"]
+    },
+    {
+      "id": 108,
+      "name": "Тормозные колодки Brembo Z04",
+      "type": "part",
+      "category": "brakes",
+      "price": 15000,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_mask": 2
+      "compatible_with": ["sport", "road"]
     },
     {
-      "id": "p3",
-      "name": "Цепь 428H Gold",
+      "id": 109,
+      "name": "Ветровое стекло Puig High",
       "type": "part",
-      "price": 3000,
-      "image": "https://images.unsplash.com/photo-1591452107412-df4c62c3e60a?q=80&w=200&auto=format&fit=crop",
-      "compatible_mask": 1
-    },
-    {
-      "id": "p4",
-      "name": "Цепь 520 DID",
-      "type": "part",
-      "price": 8000,
-      "image": "https://images.unsplash.com/photo-1591452107412-df4c62c3e60a?q=80&w=200&auto=format&fit=crop",
-      "compatible_mask": 2
-    },
-    {
-      "id": "p5",
-      "name": "Руль Fatbar 28мм",
-      "type": "part",
-      "price": 4000,
+      "category": "body",
+      "price": 18000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_mask": 3
+      "compatible_with": ["enduro", "road"]
     },
     {
-      "id": "p6",
-      "name": "Зеркала складные",
+      "id": 110,
+      "name": "Сиденье Mustang Touring",
       "type": "part",
-      "price": 1500,
+      "category": "seat",
+      "price": 45000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_mask": 2
+      "compatible_with": ["cruiser"]
+    },
+    {
+      "id": 111,
+      "name": "Светодиодная фара Daymaker",
+      "type": "part",
+      "category": "lighting",
+      "price": 25000,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["cruiser", "road"]
+    },
+    {
+      "id": 112,
+      "name": "Резина внедорожная Continental TKC80",
+      "type": "part",
+      "category": "tires",
+      "price": 28000,
+      "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["enduro"]
+    },
+    {
+      "id": 113,
+      "name": "Звезды анодированные JT",
+      "type": "part",
+      "category": "sprockets",
+      "price": 6000,
+      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["pitbike", "enduro"]
+    },
+    {
+      "id": 114,
+      "name": "Подножки заниженные SW-Motech",
+      "type": "part",
+      "category": "footpegs",
+      "price": 14000,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["enduro", "road"]
+    },
+    {
+      "id": 115,
+      "name": "Quickshifter Dynojet",
+      "type": "part",
+      "category": "electronics",
+      "price": 32000,
+      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport", "road"]
     }
   ],
   "assembly_rules": [
     {
-      "vehicle_id": "v1",
-      "default_parts": ["p1", "p3", "p5"]
+      "vehicle_id": 1,
+      "default_parts": [103, 104, 108, 115]
     },
     {
-      "vehicle_id": "v2",
-      "default_parts": ["p2", "p4", "p5", "p6"]
+      "vehicle_id": 2,
+      "default_parts": [110, 111, 102]
+    },
+    {
+      "vehicle_id": 3,
+      "default_parts": [102, 105, 106, 107, 112, 109, 114]
+    },
+    {
+      "vehicle_id": 4,
+      "default_parts": [102, 104, 106, 108, 109, 111, 114, 115]
+    },
+    {
+      "vehicle_id": 5,
+      "default_parts": [101, 106, 107, 113]
     }
   ],
   "orders": []

@@ -50,7 +50,7 @@ app.get('/api/products', (req, res) => {
 // GET /api/vehicles/:id/parts — стоковые запчасти для мотоцикла
 app.get('/api/vehicles/:id/parts', (req, res) => {
   const { id } = req.params;
-  const rule = db.assembly_rules.find(r => r.vehicle_id === id);
+  const rule = db.assembly_rules.find(r => r.vehicle_id == id);
   
   if (!rule) {
     return res.status(404).json({ error: 'Vehicle not found or no assembly rules' });
@@ -60,33 +60,27 @@ app.get('/api/vehicles/:id/parts', (req, res) => {
   res.json(parts);
 });
 
-// POST /api/validate-config — проверка совместимости по битовой маске
+// POST /api/validate-config — проверка совместимости по списку типов
 app.post('/api/validate-config', (req, res) => {
   const { vehicle_id, selected_part_ids } = req.body;
   
-  const vehicle = db.products.find(p => p.id === vehicle_id && p.type === 'vehicle');
+  const vehicle = db.products.find(p => p.id == vehicle_id && p.type === 'vehicle');
   if (!vehicle) {
     return res.status(404).json({ error: 'Vehicle not found' });
   }
 
-  const vehicleBit = vehicle.vehicle_type_bit;
+  const vehicleCategory = vehicle.category.toLowerCase();
 
   for (const partId of selected_part_ids) {
-    const part = db.products.find(p => p.id === partId && p.type === 'part');
+    const part = db.products.find(p => p.id == partId && p.type === 'part');
     if (!part) continue;
 
     /* 
-       ЛОГИКА ПОБИТОВОЙ ПРОВЕРКИ:
-       compatible_mask — это число, где каждый бит отвечает за тип техники.
-       Например: 
-       1 (01 в двоичной) — Питбайк
-       2 (10 в двоичной) — Эндуро
-       3 (11 в двоичной) — Совместим и с тем, и с другим.
-       
-       Операция (part.compatible_mask & vehicleBit) вернет ненулевое значение,
-       если соответствующий бит установлен в маске детали.
+       ЛОГИКА ПРОВЕРКИ СОВМЕСТИМОСТИ:
+       Деталь содержит массив compatible_with (например, ["pitbike", "enduro"]).
+       Если категория мотоцикла (например, "pitbike") есть в этом массиве, деталь подходит.
     */
-    if (!(part.compatible_mask & vehicleBit)) {
+    if (!part.compatible_with || !part.compatible_with.includes(vehicleCategory)) {
       return res.json({ 
         valid: false, 
         error: `Ошибка: ${part.name} не совместим с типом техники ${vehicle.name}!` 
