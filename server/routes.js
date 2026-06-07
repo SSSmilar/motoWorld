@@ -76,10 +76,10 @@ router.post('/validate-config', (req, res) => {
  */
 router.post('/orders', async (req, res) => {
   try {
-    const { vehicle_id, selected_part_ids, customer_name, customer_email, total_price } = req.body ?? {};
+    const { vehicle_id, selected_part_ids, customer_name, phone, total_price } = req.body ?? {};
 
-    if (!vehicle_id || !Array.isArray(selected_part_ids)) {
-      return res.status(400).json({ error: 'Требуются vehicle_id и selected_part_ids' });
+    if (!vehicle_id || !Array.isArray(selected_part_ids) || !customer_name || !phone) {
+      return res.status(400).json({ error: 'Требуются customer_name, phone, vehicle_id и selected_part_ids' });
     }
 
     const vehicle = findProductById(vehicle_id);
@@ -91,30 +91,33 @@ router.post('/orders', async (req, res) => {
       .map((id) => findProductById(id))
       .filter(Boolean);
 
-    const validation = validateConfiguration(vehicle, selectedParts);
-    if (!validation.valid) {
-      return res.status(400).json(validation);
+    if (selectedParts.length !== selected_part_ids.length) {
+      return res.status(400).json({ error: 'Одна или несколько запчастей не найдены' });
     }
 
-    const partsTotal = selectedParts.reduce((sum, p) => sum + p.price, 0);
-    const computedTotal = vehicle.price + partsTotal;
+    // Валидация: все запчасти должны быть совместимы с категорией мотоцикла
+    for (const part of selectedParts) {
+      if (!part.compatible_with || !part.compatible_with.includes(vehicle.category)) {
+        return res.status(400).json({
+          error: `Запчасть ${part.name} не совместима с категорией ${vehicle.category}`
+        });
+      }
+    }
 
     const order = {
-      id: `ord-${Date.now()}`,
+      id: `ORD-${Math.random().toString(36).substr(2, 9).toUpperCase()}`,
+      customer_name,
+      phone,
       vehicle_id,
-      vehicle_name: vehicle.name,
       selected_part_ids,
-      selected_parts: selectedParts.map((p) => ({ id: p.id, name: p.name, price: p.price })),
-      customer_name: customer_name ?? 'Гость',
-      customer_email: customer_email ?? '',
-      total_price: total_price ?? computedTotal,
+      total_price,
       created_at: new Date().toISOString(),
     };
 
     addOrder(order);
     await saveToDisk();
 
-    res.status(201).json({ success: true, order });
+    res.status(201).json({ success: true, order_id: order.id });
   } catch (err) {
     console.error('[Orders]', err);
     res.status(500).json({ error: 'Не удалось сохранить заказ' });

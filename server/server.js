@@ -93,16 +93,55 @@ app.post('/api/validate-config', (req, res) => {
 
 // POST /api/orders — сохранение заказа
 app.post('/api/orders', async (req, res) => {
-  const order = {
-    id: Date.now().toString(),
-    ...req.body,
-    createdAt: new Date().toISOString()
-  };
+  try {
+    const { vehicle_id, selected_part_ids, customer_name, phone, total_price } = req.body ?? {};
 
-  db.orders.push(order);
-  await saveToDisk();
-  
-  res.status(201).json(order);
+    if (!vehicle_id || !Array.isArray(selected_part_ids) || !customer_name || !phone) {
+      return res.status(400).json({ error: 'Требуются customer_name, phone, vehicle_id и selected_part_ids' });
+    }
+
+    const vehicle = db.products.find(p => p.id == vehicle_id && p.type === 'vehicle');
+    if (!vehicle) {
+      return res.status(404).json({ error: 'Мотоцикл не найден' });
+    }
+
+    const vehicleCategory = vehicle.category.toLowerCase();
+
+    const selectedParts = selected_part_ids
+      .map((id) => db.products.find(p => p.id == id && p.type === 'part'))
+      .filter(Boolean);
+
+    if (selectedParts.length !== selected_part_ids.length) {
+      return res.status(400).json({ error: 'Одна или несколько запчастей не найдены' });
+    }
+
+    // Валидация: все запчасти должны быть совместимы с категорией мотоцикла
+    for (const part of selectedParts) {
+      if (!part.compatible_with || !part.compatible_with.includes(vehicleCategory)) {
+        return res.status(400).json({
+          error: `Запчасть ${part.name} не совместима с категорией ${vehicle.category}`
+        });
+      }
+    }
+
+    const order = {
+      id: `ORD-${Math.random().toString(36).substr(2, 9).toUpperCase()}`,
+      customer_name,
+      phone,
+      vehicle_id,
+      selected_part_ids,
+      total_price,
+      created_at: new Date().toISOString(),
+    };
+
+    db.orders.push(order);
+    await saveToDisk();
+
+    res.status(201).json({ success: true, order_id: order.id });
+  } catch (err) {
+    console.error('[Orders]', err);
+    res.status(500).json({ error: 'Не удалось сохранить заказ' });
+  }
 });
 
 const PORT = process.env.PORT || 3001;
