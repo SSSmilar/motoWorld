@@ -1,0 +1,95 @@
+{
+  "products": [
+    {
+      "id": "v1",
+      "name": "Kayo TS90",
+      "type": "vehicle",
+      "price": 189000,
+      "image": "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&q=80&w=800",
+      "description": "Лёгкий питбайк для трека и тренировок. Компактная рама, надёжный 4-тактный двигатель 90 см³.",
+      "vehicle_type_mask": 1,
+      "vehicle_type_name": "Питбайк"
+    },
+    {
+      "id": "v2",
+      "name": "Yamaha WR250F",
+      "type": "vehicle",
+      "price": 685000,
+      "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?auto=format&fit=crop&q=80&w=800",
+      "description": "Эндуро для бездорожья и соревнований. Мощный 250 см³, длинноходная подвеска и лёгкая рама.",
+      "vehicle_type_mask": 2,
+      "vehicle_type_name": "Эндуро"
+    },
+    {
+      "id": "p1",
+      "name": "Карбюратор Keihin PE22",
+      "type": "part",
+      "category": "carburetor",
+      "price": 8500,
+      "image": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&q=80&w=400",
+      "description": "Стоковый карбюратор для питбайков 90–125 см³.",
+      "compatible_mask": 1
+    },
+    {
+      "id": "p2",
+      "name": "Цепь DID 428 (стандарт)",
+      "type": "part",
+      "category": "chain",
+      "price": 3200,
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=400",
+      "description": "Универсальная приводная цепь для питбайков и лёгких эндуро.",
+      "compatible_mask": 3
+    },
+    {
+      "id": "p3",
+      "name": "Карбюратор Mikuni VM26",
+      "type": "part",
+      "category": "carburetor",
+      "price": 7200,
+      "image": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&q=80&w=400",
+      "description": "Тюнинг-карбюратор для питбайков. Улучшенный отклик на газ.",
+      "compatible_mask": 1
+    },
+    {
+      "id": "p4",
+      "name": "Карбюратор Keihin PWK32",
+      "type": "part",
+      "category": "carburetor",
+      "price": 14500,
+      "image": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&q=80&w=400",
+      "description": "Спортивный карбюратор для эндуро 250–450 см³. Не подходит для питбайков.",
+      "compatible_mask": 2
+    },
+    {
+      "id": "p5",
+      "name": "Цепь RK 520 XSO",
+      "type": "part",
+      "category": "chain",
+      "price": 9800,
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=400",
+      "description": "Усиленная цепь для эндуро и кросса. Высокая прочность на разрыв.",
+      "compatible_mask": 2
+    },
+    {
+      "id": "p6",
+      "name": "Карбюратор Mikuni TMX38",
+      "type": "part",
+      "category": "carburetor",
+      "price": 18200,
+      "image": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&q=80&w=400",
+      "description": "Крупный карбюратор для мощных эндуро. Только эндуро/кросс.",
+      "compatible_mask": 2
+    }
+  ],
+  "assembly_rules": [
+    {
+      "vehicle_id": "v1",
+      "default_parts": ["p1", "p2"]
+    },
+    {
+      "vehicle_id": "v2",
+      "default_parts": ["p4", "p2"]
+    }
+  ],
+  "orders": []
+}

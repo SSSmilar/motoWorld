@@ -33,6 +33,7 @@ const Header = () => {
         {/* Nav */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-bold uppercase tracking-widest">
           <Link to="/catalog" className="hover:text-accent transition-colors">Каталог</Link>
+          <Link to="/configurator" className="hover:text-accent transition-colors">Конфигуратор</Link>
           <Link to="/about" className="hover:text-accent transition-colors">О нас</Link>
           <Link to="/contacts" className="hover:text-accent transition-colors">Контакты</Link>
           {user?.role === 'admin' && (

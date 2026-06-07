@@ -18,6 +18,7 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import ProductManagement from './pages/admin/ProductManagement';
 import OrderManagement from './pages/admin/OrderManagement';
 import ForbiddenPage from './pages/ForbiddenPage';
+import ConfiguratorPage from './pages/configurator/ConfiguratorPage';
 import CartDrawer from './components/CartDrawer';
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
           {/* Public Routes */}
           <Route path="/" element={<HomePage />} />
           <Route path="/catalog" element={<CatalogPage />} />
+          <Route path="/configurator" element={<ConfiguratorPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contacts" element={<ContactsPage />} />
           <Route path="/login" element={<LoginForm />} />
