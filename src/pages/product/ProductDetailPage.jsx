@@ -3,7 +3,6 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ShoppingCart, Wrench, Loader2, CheckCircle } from 'lucide-react';
 import { getProductById } from '../../services/productService';
 import { formatPrice } from '../../services/configuratorService';
-import { VEHICLE_CATEGORY_LABELS, PART_CATEGORY_LABELS } from '../../utils/productUtils';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 
@@ -62,9 +61,7 @@ const ProductDetailPage = () => {
     );
   }
 
-  const categoryLabel = isVehicle
-    ? VEHICLE_CATEGORY_LABELS[product.category] ?? product.category
-    : PART_CATEGORY_LABELS[product.category] ?? product.category;
+  const categoryLabel = product.category;
 
   return (
     <div className="min-h-screen pt-28 pb-20 bg-dark-bg">
@@ -78,11 +75,21 @@ const ProductDetailPage = () => {
 
         <div className="glass-card grid lg:grid-cols-2 gap-0 overflow-hidden">
           <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[480px]">
-            <img
-              src={product.imageUrl}
-              alt={product.name}
-              className="w-full h-full object-cover"
-            />
+            {isVehicle ? (
+              <img
+                src={product.imageUrl}
+                alt={product.name}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className="w-full h-full min-h-[280px] flex flex-col items-center justify-center bg-black/40 border-b border-white/10">
+                <Wrench className="w-16 h-16 text-accent mb-4" />
+                <span className="text-accent text-xs uppercase tracking-widest font-bold">{categoryLabel}</span>
+                {product.brand && (
+                  <span className="text-gray-500 text-sm mt-2 uppercase">{product.brand}</span>
+                )}
+              </div>
+            )}
             <div className="absolute top-4 left-4 bg-accent text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider">
               {categoryLabel}
             </div>

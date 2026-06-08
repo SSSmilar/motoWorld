@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Ducati Panigale V4",
       "type": "vehicle",
-      "category": "sport",
+      "category": "Спорт",
       "price": 2278500,
       "image": "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&q=80&w=800",
       "description": "Вершина спортивных технологий. Итальянская страсть и невероятная мощность в каждом повороте.",
@@ -17,7 +17,7 @@
       "id": 2,
       "name": "Harley-Davidson Fat Boy",
       "type": "vehicle",
-      "category": "cruiser",
+      "category": "Круизер",
       "price": 1841400,
       "image": "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&q=80&w=800",
       "description": "Икона американского стиля. Массивный, мощный и неповторимый круизер для дальних дорог.",
@@ -30,7 +30,7 @@
       "id": 3,
       "name": "BMW R 1250 GS",
       "type": "vehicle",
-      "category": "enduro",
+      "category": "Эндуро",
       "price": 1971600,
       "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?auto=format&fit=crop&q=80&w=800",
       "description": "Король бездорожья и путешествий. Надежность и комфорт в любых условиях эксплуатации.",
@@ -43,7 +43,7 @@
       "id": 4,
       "name": "Yamaha MT-09",
       "type": "vehicle",
-      "category": "road",
+      "category": "Дорожный",
       "price": 976500,
       "image": "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e?auto=format&fit=crop&q=80&w=800",
       "description": "Мастер крутящего момента. Агрессивный дизайн и взрывной характер городского хулигана.",
@@ -56,7 +56,7 @@
       "id": 5,
       "name": "Питбайк Kayo Evolution",
       "type": "vehicle",
-      "category": "pitbike",
+      "category": "Питбайк",
       "price": 130000,
       "image": "https://images.unsplash.com/photo-1558981403-c5f91cbba527?q=80&w=400&auto=format&fit=crop",
       "description": "Отличный выбор для начинающих райдеров и тренировок на картодроме.",
@@ -69,11 +69,11 @@
       "id": 101,
       "name": "Карбюратор Nibbi PE19",
       "type": "part",
-      "category": "carburetor",
+      "category": "Карбюраторы",
       "price": 4500,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "pitbike"
+        "Питбайк"
       ],
       "brand": "Nibbi",
       "material": "Алюминий, латунь",
@@ -84,11 +84,11 @@
       "id": 116,
       "name": "Карбюратор Mikuni VM26",
       "type": "part",
-      "category": "carburetor",
+      "category": "Карбюраторы",
       "price": 5200,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "pitbike"
+        "Питбайк"
       ],
       "brand": "Nibbi",
       "material": "Алюминий, латунь",
@@ -99,12 +99,12 @@
       "id": 117,
       "name": "Карбюратор Keihin FCR 39",
       "type": "part",
-      "category": "carburetor",
+      "category": "Карбюраторы",
       "price": 28500,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "enduro",
-        "cross"
+        "Эндуро",
+        "Кросс"
       ],
       "brand": "Nibbi",
       "material": "Алюминий, латунь",
@@ -115,12 +115,12 @@
       "id": 118,
       "name": "Блок управления Power Commander V",
       "type": "part",
-      "category": "carburetor",
+      "category": "Карбюраторы",
       "price": 42000,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport",
-        "road"
+        "Спорт",
+        "Дорожный"
       ],
       "brand": "Nibbi",
       "material": "Алюминий, латунь",
@@ -131,12 +131,12 @@
       "id": 119,
       "name": "Карбюратор Polini 24",
       "type": "part",
-      "category": "carburetor",
+      "category": "Карбюраторы",
       "price": 6800,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "pitbike",
-        "cross"
+        "Питбайк",
+        "Кросс"
       ],
       "brand": "Nibbi",
       "material": "Алюминий, латунь",
@@ -147,13 +147,14 @@
       "id": 102,
       "name": "Цепь DID 520 Усиленная",
       "type": "part",
-      "category": "chain",
+      "category": "Цепи и звезды",
       "price": 7500,
       "image": "https://images.unsplash.com/photo-1591452107412-df4c62c3e60a?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "enduro",
-        "road",
-        "sport"
+        "Эндуро",
+        "Дорожный",
+        "Спорт",
+        "Круизер"
       ],
       "brand": "DID",
       "material": "Закалённая сталь",
@@ -164,12 +165,12 @@
       "id": 120,
       "name": "Цепь RK 520 XSO",
       "type": "part",
-      "category": "chain",
+      "category": "Цепи и звезды",
       "price": 8900,
       "image": "https://images.unsplash.com/photo-1591452107412-df4c62c3e60a?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport",
-        "road"
+        "Спорт",
+        "Дорожный"
       ],
       "brand": "DID",
       "material": "Закалённая сталь",
@@ -180,11 +181,11 @@
       "id": 121,
       "name": "Цепь EK 428 Heavy Duty",
       "type": "part",
-      "category": "chain",
+      "category": "Цепи и звезды",
       "price": 3200,
       "image": "https://images.unsplash.com/photo-1591452107412-df4c62c3e60a?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "pitbike"
+        "Питбайк"
       ],
       "brand": "DID",
       "material": "Закалённая сталь",
@@ -195,12 +196,12 @@
       "id": 113,
       "name": "Звёзды анодированные JT",
       "type": "part",
-      "category": "sprockets",
+      "category": "Цепи и звезды",
       "price": 6000,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "pitbike",
-        "enduro"
+        "Питбайк",
+        "Эндуро"
       ],
       "brand": "JT",
       "material": "Анодированный алюминий",
@@ -211,13 +212,13 @@
       "id": 122,
       "name": "Комплект звёзд и цепи AFAM",
       "type": "part",
-      "category": "sprockets",
+      "category": "Цепи и звезды",
       "price": 11500,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "pitbike",
-        "enduro",
-        "cross"
+        "Питбайк",
+        "Эндуро",
+        "Кросс"
       ],
       "brand": "JT",
       "material": "Анодированный алюминий",
@@ -228,12 +229,12 @@
       "id": 123,
       "name": "Звёзды Supersprox Stealth",
       "type": "part",
-      "category": "sprockets",
+      "category": "Цепи и звезды",
       "price": 9800,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport",
-        "road"
+        "Спорт",
+        "Дорожный"
       ],
       "brand": "JT",
       "material": "Анодированный алюминий",
@@ -244,13 +245,13 @@
       "id": 106,
       "name": "Руль Fatbar Renthal",
       "type": "part",
-      "category": "handlebars",
+      "category": "Рули",
       "price": 9000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "pitbike",
-        "enduro",
-        "road"
+        "Питбайк",
+        "Эндуро",
+        "Дорожный"
       ],
       "brand": "Renthal",
       "material": "Хром-молибденовая сталь",
@@ -261,13 +262,13 @@
       "id": 124,
       "name": "Руль Pro Taper Contour",
       "type": "part",
-      "category": "handlebars",
+      "category": "Рули",
       "price": 7800,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "pitbike",
-        "enduro",
-        "cross"
+        "Питбайк",
+        "Эндуро",
+        "Кросс"
       ],
       "brand": "Renthal",
       "material": "Хром-молибденовая сталь",
@@ -278,12 +279,12 @@
       "id": 125,
       "name": "Руль Rizoma Stealth",
       "type": "part",
-      "category": "handlebars",
+      "category": "Рули",
       "price": 22000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport",
-        "road"
+        "Спорт",
+        "Дорожный"
       ],
       "brand": "Renthal",
       "material": "Хром-молибденовая сталь",
@@ -294,11 +295,11 @@
       "id": 126,
       "name": "Рычаги ASV F3 Clutch & Brake",
       "type": "part",
-      "category": "handlebars",
+      "category": "Рули",
       "price": 16500,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport"
+        "Спорт"
       ],
       "brand": "Renthal",
       "material": "Хром-молибденовая сталь",
@@ -309,11 +310,11 @@
       "id": 127,
       "name": "Руль Drag Specialties Ape Hanger",
       "type": "part",
-      "category": "handlebars",
+      "category": "Рули",
       "price": 18500,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "cruiser"
+        "Круизер"
       ],
       "brand": "Renthal",
       "material": "Хром-молибденовая сталь",
@@ -324,12 +325,12 @@
       "id": 104,
       "name": "Выхлоп Akrapovic Titanium",
       "type": "part",
-      "category": "exhaust",
+      "category": "Выхлоп",
       "price": 120000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport",
-        "road"
+        "Спорт",
+        "Дорожный"
       ],
       "brand": "Akrapovic",
       "material": "Титан / нержавеющая сталь",
@@ -340,11 +341,11 @@
       "id": 128,
       "name": "Глушитель FMF Powercore 4",
       "type": "part",
-      "category": "exhaust",
+      "category": "Выхлоп",
       "price": 34500,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "enduro"
+        "Эндуро"
       ],
       "brand": "Akrapovic",
       "material": "Титан / нержавеющая сталь",
@@ -355,11 +356,11 @@
       "id": 129,
       "name": "Выхлоп Arrow Pro-Race",
       "type": "part",
-      "category": "exhaust",
+      "category": "Выхлоп",
       "price": 98000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport"
+        "Спорт"
       ],
       "brand": "Akrapovic",
       "material": "Титан / нержавеющая сталь",
@@ -370,11 +371,11 @@
       "id": 130,
       "name": "Выхлоп Vance & Hines Twin Slash",
       "type": "part",
-      "category": "exhaust",
+      "category": "Выхлоп",
       "price": 72000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "cruiser"
+        "Круизер"
       ],
       "brand": "Akrapovic",
       "material": "Титан / нержавеющая сталь",
@@ -385,12 +386,12 @@
       "id": 131,
       "name": "Глушитель Yoshimura RS-9",
       "type": "part",
-      "category": "exhaust",
+      "category": "Выхлоп",
       "price": 87000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport",
-        "road"
+        "Спорт",
+        "Дорожный"
       ],
       "brand": "Akrapovic",
       "material": "Титан / нержавеющая сталь",
@@ -401,12 +402,12 @@
       "id": 132,
       "name": "Выхлоп Pro Circuit T-4",
       "type": "part",
-      "category": "exhaust",
+      "category": "Выхлоп",
       "price": 12800,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "pitbike",
-        "cross"
+        "Питбайк",
+        "Кросс"
       ],
       "brand": "Akrapovic",
       "material": "Титан / нержавеющая сталь",
@@ -417,11 +418,11 @@
       "id": 103,
       "name": "Слики Pirelli Diablo Supercorsa",
       "type": "part",
-      "category": "tires",
+      "category": "Покрышки",
       "price": 35000,
       "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport"
+        "Спорт"
       ],
       "brand": "Pirelli",
       "material": "Композитная резина",
@@ -432,11 +433,11 @@
       "id": 112,
       "name": "Резина внедорожная Continental TKC80",
       "type": "part",
-      "category": "tires",
+      "category": "Покрышки",
       "price": 28000,
       "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "enduro"
+        "Эндуро"
       ],
       "brand": "Pirelli",
       "material": "Композитная резина",
@@ -447,12 +448,12 @@
       "id": 133,
       "name": "Шина Mitas C-19 Super Soft",
       "type": "part",
-      "category": "tires",
+      "category": "Покрышки",
       "price": 19500,
       "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "enduro",
-        "cross"
+        "Эндуро",
+        "Кросс"
       ],
       "brand": "Pirelli",
       "material": "Композитная резина",
@@ -463,11 +464,11 @@
       "id": 134,
       "name": "Шина Michelin Power GP",
       "type": "part",
-      "category": "tires",
+      "category": "Покрышки",
       "price": 32000,
       "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport"
+        "Спорт"
       ],
       "brand": "Pirelli",
       "material": "Композитная резина",
@@ -478,11 +479,11 @@
       "id": 135,
       "name": "Шина Dunlop Sportmax Roadsmart IV",
       "type": "part",
-      "category": "tires",
+      "category": "Покрышки",
       "price": 24000,
       "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "road"
+        "Дорожный"
       ],
       "brand": "Pirelli",
       "material": "Композитная резина",
@@ -493,11 +494,11 @@
       "id": 136,
       "name": "Шина Metzeler ME888 Marathon Ultra",
       "type": "part",
-      "category": "tires",
+      "category": "Покрышки",
       "price": 26500,
       "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "cruiser"
+        "Круизер"
       ],
       "brand": "Pirelli",
       "material": "Композитная резина",
@@ -508,11 +509,11 @@
       "id": 137,
       "name": "Шина Kenda K761 Dual Sport",
       "type": "part",
-      "category": "tires",
+      "category": "Покрышки",
       "price": 4800,
       "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "pitbike"
+        "Питбайк"
       ],
       "brand": "Pirelli",
       "material": "Композитная резина",
@@ -523,12 +524,12 @@
       "id": 138,
       "name": "Шина Bridgestone Battlax S22",
       "type": "part",
-      "category": "tires",
+      "category": "Покрышки",
       "price": 29500,
       "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport",
-        "road"
+        "Спорт",
+        "Дорожный"
       ],
       "brand": "Pirelli",
       "material": "Композитная резина",
@@ -539,12 +540,13 @@
       "id": 107,
       "name": "Защита рычагов Barkbusters",
       "type": "part",
-      "category": "protection",
+      "category": "Защита",
       "price": 12000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "enduro",
-        "pitbike"
+        "Эндуро",
+        "Питбайк",
+        "Кросс"
       ],
       "brand": "Barkbusters",
       "material": "Алюминий / ABS-пластик",
@@ -555,12 +557,12 @@
       "id": 139,
       "name": "Защита двигателя R&G Racing",
       "type": "part",
-      "category": "protection",
+      "category": "Защита",
       "price": 18500,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport",
-        "road"
+        "Спорт",
+        "Дорожный"
       ],
       "brand": "Barkbusters",
       "material": "Алюминий / ABS-пластик",
@@ -571,11 +573,11 @@
       "id": 140,
       "name": "Защита картера SW-Motech Skid Plate",
       "type": "part",
-      "category": "protection",
+      "category": "Защита",
       "price": 14200,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "enduro"
+        "Эндуро"
       ],
       "brand": "Barkbusters",
       "material": "Алюминий / ABS-пластик",
@@ -586,11 +588,11 @@
       "id": 141,
       "name": "Слайдеры рамы Puig No Cut",
       "type": "part",
-      "category": "protection",
+      "category": "Защита",
       "price": 21000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport"
+        "Спорт"
       ],
       "brand": "Barkbusters",
       "material": "Алюминий / ABS-пластик",
@@ -601,12 +603,12 @@
       "id": 108,
       "name": "Тормозные колодки Brembo Z04",
       "type": "part",
-      "category": "brakes",
+      "category": "Тормоза",
       "price": 15000,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport",
-        "road"
+        "Спорт",
+        "Дорожный"
       ],
       "brand": "Brembo",
       "material": "Керамика / сталь",
@@ -617,12 +619,12 @@
       "id": 142,
       "name": "Тормозные колодки EBC HH Sintered",
       "type": "part",
-      "category": "brakes",
+      "category": "Тормоза",
       "price": 6800,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "cruiser",
-        "road"
+        "Круизер",
+        "Дорожный"
       ],
       "brand": "Brembo",
       "material": "Керамика / сталь",
@@ -633,11 +635,11 @@
       "id": 143,
       "name": "Тормозные диски Braking STX",
       "type": "part",
-      "category": "brakes",
+      "category": "Тормоза",
       "price": 24000,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport"
+        "Спорт"
       ],
       "brand": "Brembo",
       "material": "Керамика / сталь",
@@ -648,13 +650,13 @@
       "id": 144,
       "name": "Тормозной шланг Goodridge G-Line",
       "type": "part",
-      "category": "brakes",
+      "category": "Тормоза",
       "price": 5500,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport",
-        "road",
-        "enduro"
+        "Спорт",
+        "Дорожный",
+        "Эндуро"
       ],
       "brand": "Brembo",
       "material": "Керамика / сталь",
@@ -665,11 +667,11 @@
       "id": 105,
       "name": "Кофры алюминиевые Touratech",
       "type": "part",
-      "category": "luggage",
+      "category": "Багаж",
       "price": 85000,
       "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "enduro"
+        "Эндуро"
       ],
       "brand": "Touratech",
       "material": "Алюминий / ABS",
@@ -680,12 +682,12 @@
       "id": 145,
       "name": "Кофры Givi Trekker Outback",
       "type": "part",
-      "category": "luggage",
+      "category": "Багаж",
       "price": 62000,
       "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "enduro",
-        "road"
+        "Эндуро",
+        "Дорожный"
       ],
       "brand": "Touratech",
       "material": "Алюминий / ABS",
@@ -696,11 +698,11 @@
       "id": 146,
       "name": "Сумка на багажник Harley Premium",
       "type": "part",
-      "category": "luggage",
+      "category": "Багаж",
       "price": 38000,
       "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "cruiser"
+        "Круизер"
       ],
       "brand": "Touratech",
       "material": "Алюминий / ABS",
@@ -711,12 +713,12 @@
       "id": 109,
       "name": "Ветровое стекло Puig High",
       "type": "part",
-      "category": "body",
+      "category": "Кузов",
       "price": 18000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "enduro",
-        "road"
+        "Эндуро",
+        "Дорожный"
       ],
       "brand": "Puig",
       "material": "Поликарбонат / ABS",
@@ -727,11 +729,11 @@
       "id": 147,
       "name": "Ветровое стекло Givi Airflow",
       "type": "part",
-      "category": "body",
+      "category": "Кузов",
       "price": 22000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "road"
+        "Дорожный"
       ],
       "brand": "Puig",
       "material": "Поликарбонат / ABS",
@@ -742,11 +744,11 @@
       "id": 148,
       "name": "Защита радиатора R&G",
       "type": "part",
-      "category": "body",
+      "category": "Кузов",
       "price": 9500,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport"
+        "Спорт"
       ],
       "brand": "Puig",
       "material": "Поликарбонат / ABS",
@@ -757,11 +759,11 @@
       "id": 110,
       "name": "Сиденье Mustang Touring",
       "type": "part",
-      "category": "seat",
+      "category": "Сиденья",
       "price": 45000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "cruiser"
+        "Круизер"
       ],
       "brand": "Mustang",
       "material": "Кожа / гелевый наполнитель",
@@ -772,12 +774,12 @@
       "id": 149,
       "name": "Сиденье Sargent World Sport",
       "type": "part",
-      "category": "seat",
+      "category": "Сиденья",
       "price": 52000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "enduro",
-        "road"
+        "Эндуро",
+        "Дорожный"
       ],
       "brand": "Mustang",
       "material": "Кожа / гелевый наполнитель",
@@ -788,11 +790,11 @@
       "id": 150,
       "name": "Сиденье Corbin Gunfighter",
       "type": "part",
-      "category": "seat",
+      "category": "Сиденья",
       "price": 48000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "cruiser"
+        "Круизер"
       ],
       "brand": "Mustang",
       "material": "Кожа / гелевый наполнитель",
@@ -803,12 +805,12 @@
       "id": 111,
       "name": "Светодиодная фара Daymaker",
       "type": "part",
-      "category": "lighting",
+      "category": "Освещение",
       "price": 25000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "cruiser",
-        "road"
+        "Круизер",
+        "Дорожный"
       ],
       "brand": "Daymaker",
       "material": "LED / поликарбонат",
@@ -819,12 +821,12 @@
       "id": 151,
       "name": "Фара LED JW Speaker Adaptive",
       "type": "part",
-      "category": "lighting",
+      "category": "Освещение",
       "price": 32000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "enduro",
-        "road"
+        "Эндуро",
+        "Дорожный"
       ],
       "brand": "Daymaker",
       "material": "LED / поликарбонат",
@@ -835,12 +837,12 @@
       "id": 152,
       "name": "Задний фонарь Rizoma Light Unit",
       "type": "part",
-      "category": "lighting",
+      "category": "Освещение",
       "price": 14500,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport",
-        "road"
+        "Спорт",
+        "Дорожный"
       ],
       "brand": "Daymaker",
       "material": "LED / поликарбонат",
@@ -851,12 +853,12 @@
       "id": 114,
       "name": "Подножки заниженные SW-Motech",
       "type": "part",
-      "category": "footpegs",
+      "category": "Подножки",
       "price": 14000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "enduro",
-        "road"
+        "Эндуро",
+        "Дорожный"
       ],
       "brand": "SW-Motech",
       "material": "Алюминий / нержавеющая сталь",
@@ -867,13 +869,13 @@
       "id": 153,
       "name": "Подножки Pro Footpegs Titanium",
       "type": "part",
-      "category": "footpegs",
+      "category": "Подножки",
       "price": 8200,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "pitbike",
-        "enduro",
-        "cross"
+        "Питбайк",
+        "Эндуро",
+        "Кросс"
       ],
       "brand": "SW-Motech",
       "material": "Алюминий / нержавеющая сталь",
@@ -884,12 +886,12 @@
       "id": 154,
       "name": "Подножки MFW Vario",
       "type": "part",
-      "category": "footpegs",
+      "category": "Подножки",
       "price": 19500,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport",
-        "road"
+        "Спорт",
+        "Дорожный"
       ],
       "brand": "SW-Motech",
       "material": "Алюминий / нержавеющая сталь",
@@ -900,12 +902,12 @@
       "id": 115,
       "name": "Quickshifter Dynojet",
       "type": "part",
-      "category": "electronics",
+      "category": "Электроника",
       "price": 32000,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport",
-        "road"
+        "Спорт",
+        "Дорожный"
       ],
       "brand": "Dynojet",
       "material": "Электроника, пластик",
@@ -916,12 +918,12 @@
       "id": 155,
       "name": "Блок Rapid Bike Evo",
       "type": "part",
-      "category": "electronics",
+      "category": "Электроника",
       "price": 38000,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport",
-        "road"
+        "Спорт",
+        "Дорожный"
       ],
       "brand": "Dynojet",
       "material": "Электроника, пластик",
@@ -932,13 +934,13 @@
       "id": 156,
       "name": "Система TPMS Ride-On",
       "type": "part",
-      "category": "electronics",
+      "category": "Электроника",
       "price": 12500,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "enduro",
-        "road",
-        "sport"
+        "Эндуро",
+        "Дорожный",
+        "Спорт"
       ],
       "brand": "Dynojet",
       "material": "Электроника, пластик",
@@ -949,16 +951,68 @@
       "id": 157,
       "name": "Quickshifter HM Plug & Play",
       "type": "part",
-      "category": "electronics",
+      "category": "Электроника",
       "price": 27500,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
       "compatible_with": [
-        "sport"
+        "Спорт"
       ],
       "brand": "Dynojet",
       "material": "Электроника, пластик",
       "description": "Качественная запчасть категории «electronics» для мотоциклов: sport.",
       "stock": 15
+    },
+    {
+      "id": 6,
+      "name": "KTM 450 SX-F",
+      "type": "vehicle",
+      "category": "Кросс",
+      "price": 1150000,
+      "image": "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&q=80&w=800",
+      "description": "Легендарный кроссовый мотоцикл для мотocross и supercross. Лёгкий, мощный и готовый к прыжкам.",
+      "engine": "450 см³ / 63 л.с.",
+      "weight": "103 кг",
+      "transmission": "5-ступенчатая механика",
+      "stock": 3
+    },
+    {
+      "id": 7,
+      "name": "Honda CBR600RR",
+      "type": "vehicle",
+      "category": "Спорт",
+      "price": 890000,
+      "image": "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&q=80&w=800",
+      "description": "Классический supersport среднего класса. Идеален для трека и агрессивной езды по шоссе.",
+      "engine": "599 см³ / 118 л.с.",
+      "weight": "194 кг",
+      "transmission": "6-ступенчатая механика",
+      "stock": 3
+    },
+    {
+      "id": 8,
+      "name": "Royal Enfield Classic 350",
+      "type": "vehicle",
+      "category": "Круизер",
+      "price": 320000,
+      "image": "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&q=80&w=800",
+      "description": "Ретро-круизер с характером. Спокойная езда, стиль и надёжность для городских прогулок.",
+      "engine": "349 см³ / 20 л.с.",
+      "weight": "192 кг",
+      "transmission": "5-ступенчатая механика",
+      "stock": 3
+    },
+    {
+      "id": 9,
+      "name": "Beta RR 300",
+      "type": "vehicle",
+      "category": "Эндуро",
+      "price": 680000,
+      "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?auto=format&fit=crop&q=80&w=800",
+      "description": "Лёгкий эндуро для лесных трасс и соревнований. Отличная управляемость и тяга на низах.",
+      "engine": "300 см³ / 45 л.с.",
+      "weight": "103 кг",
+      "transmission": "6-ступенчатая механика",
+      "stock": 3
     }
   ],
   "assembly_rules": [
@@ -1011,6 +1065,43 @@
         106,
         107,
         113
+      ]
+    },
+    {
+      "vehicle_id": 6,
+      "default_parts": [
+        132,
+        119,
+        153,
+        107
+      ]
+    },
+    {
+      "vehicle_id": 7,
+      "default_parts": [
+        134,
+        131,
+        143,
+        157
+      ]
+    },
+    {
+      "vehicle_id": 8,
+      "default_parts": [
+        110,
+        130,
+        136,
+        111
+      ]
+    },
+    {
+      "vehicle_id": 9,
+      "default_parts": [
+        112,
+        128,
+        106,
+        107,
+        140
       ]
     }
   ],

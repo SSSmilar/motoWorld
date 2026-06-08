@@ -7,7 +7,7 @@ export function isPartCompatible(part, vehicle) {
     return false;
   }
 
-  const category = vehicle.category?.toLowerCase();
+  const category = vehicle.category;
   return Array.isArray(part.compatible_with) && part.compatible_with.includes(category);
 }
 

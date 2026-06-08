@@ -11,6 +11,33 @@ export function normalizeProduct(p) {
   };
 }
 
+/** Категории мотоциклов (для фильтров каталога) */
+export const VEHICLE_CATEGORIES = [
+  'Спорт',
+  'Круизер',
+  'Эндуро',
+  'Дорожный',
+  'Питбайк',
+  'Кросс',
+];
+
+/** Категории запчастей (для фильтров каталога) */
+export const PART_CATEGORIES = [
+  'Карбюраторы',
+  'Цепи и звезды',
+  'Рули',
+  'Выхлоп',
+  'Покрышки',
+  'Защита',
+  'Тормоза',
+  'Багаж',
+  'Кузов',
+  'Сиденья',
+  'Освещение',
+  'Подножки',
+  'Электроника',
+];
+
 /** Одна запчасть на категорию; тюнинг заменяет сток */
 export function resolvePartsByCategory(allParts, selectedPartIds, stockPartIds = []) {
   const stockSet = new Set(stockPartIds);
@@ -51,28 +78,12 @@ export function calculateBuildPrice(vehicle, selectedPartIds, allParts, stockPar
   };
 }
 
-export const VEHICLE_CATEGORY_LABELS = {
-  sport: 'Спорт',
-  cruiser: 'Круизер',
-  enduro: 'Эндуро',
-  road: 'Дорожный',
-  pitbike: 'Питбайк',
-  cross: 'Кросс',
-};
+/** Проверка совместимости на клиенте (категории на русском) */
+export function isPartCompatibleWithVehicle(part, vehicle) {
+  if (!part?.compatible_with || !vehicle?.category) return false;
+  return part.compatible_with.includes(vehicle.category);
+}
 
-export const PART_CATEGORY_LABELS = {
-  carburetor: 'Карбюратор',
-  chain: 'Цепь',
-  tires: 'Резина',
-  exhaust: 'Выхлоп',
-  luggage: 'Багаж',
-  handlebars: 'Руль',
-  protection: 'Защита',
-  brakes: 'Тормоза',
-  body: 'Кузов',
-  seat: 'Сиденье',
-  lighting: 'Освещение',
-  sprockets: 'Звёзды',
-  footpegs: 'Подножки',
-  electronics: 'Электроника',
-};
+export function getCategoriesForType(type) {
+  return type === 'vehicle' ? VEHICLE_CATEGORIES : PART_CATEGORIES;
+}

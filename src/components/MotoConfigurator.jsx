@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { CheckCircle, Wrench, Sparkles, Loader2, ShoppingCart } from 'lucide-react';
+import { CheckCircle, Wrench, Sparkles, Loader2, ShoppingCart, Settings2 } from 'lucide-react';
 import {
   fetchProducts,
   fetchStockParts,
@@ -9,38 +9,41 @@ import {
 } from '../services/configuratorService';
 import {
   calculateBuildPrice,
-  VEHICLE_CATEGORY_LABELS,
-  PART_CATEGORY_LABELS,
+  isPartCompatibleWithVehicle,
 } from '../utils/productUtils';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 
 function PartRow({ part, checked, onToggle, badge, priceDelta }) {
+  const deltaLabel = priceDelta > 0 ? `+${formatPrice(priceDelta)}` : priceDelta < 0 ? `-${formatPrice(Math.abs(priceDelta))}` : formatPrice(part.price);
+
   return (
-    <label className="flex items-center justify-between gap-4 p-3 rounded border border-white/5 hover:border-accent/30 cursor-pointer transition-colors bg-black/20">
-      <div className="flex items-center gap-3 min-w-0">
-        <input
-          type="checkbox"
-          checked={checked}
-          onChange={() => onToggle(part.id)}
-          className="w-4 h-4 accent-accent shrink-0"
-        />
-        <div className="min-w-0">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-sm font-medium truncate">{part.name}</span>
-            {badge && (
-              <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 bg-accent/20 text-accent font-bold">
-                {badge}
-              </span>
-            )}
-          </div>
-          <span className="text-[10px] text-gray-500 uppercase tracking-wider">
-            {PART_CATEGORY_LABELS[part.category] ?? part.category}
-          </span>
+    <label className="flex items-stretch gap-3 p-3 border border-white/10 bg-black/30 hover:border-accent/30 cursor-pointer transition-colors">
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={() => onToggle(part.id)}
+        className="w-4 h-4 accent-accent shrink-0 mt-1"
+      />
+      <div className="w-10 h-10 shrink-0 flex items-center justify-center bg-accent/10 border border-accent/20">
+        <Settings2 className="w-4 h-4 text-accent" />
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2 flex-wrap mb-0.5">
+          <span className="text-sm font-medium">{part.name}</span>
+          {badge && (
+            <span className="text-[10px] uppercase px-1.5 py-0.5 bg-accent/20 text-accent font-bold">
+              {badge}
+            </span>
+          )}
+        </div>
+        <div className="flex gap-2 text-[10px] text-gray-500 uppercase tracking-wider">
+          <span>{part.category}</span>
+          {part.brand && <span>· {part.brand}</span>}
         </div>
       </div>
-      <span className={`text-sm shrink-0 ${priceDelta > 0 ? 'text-accent' : priceDelta < 0 ? 'text-green-400' : 'text-gray-400'}`}>
-        {priceDelta > 0 ? '+' : ''}{priceDelta !== 0 ? formatPrice(Math.abs(priceDelta)) : formatPrice(part.price)}
+      <span className={`text-sm font-bold shrink-0 self-center ${priceDelta > 0 ? 'text-accent' : 'text-gray-300'}`}>
+        {deltaLabel}
       </span>
     </label>
   );
@@ -124,12 +127,11 @@ const MotoConfigurator = () => {
     const part = allParts.find((p) => p.id === partId);
     if (!part || !selectedVehicle) return;
 
-    const category = selectedVehicle.category.toLowerCase();
     const isAdding = !selectedPartIds.includes(partId);
 
-    if (isAdding && !part.compatible_with?.includes(category)) {
+    if (isAdding && !isPartCompatibleWithVehicle(part, selectedVehicle)) {
       setValidationError(
-        `Запчасть «${part.name}» не совместима с категорией ${VEHICLE_CATEGORY_LABELS[category] ?? category}`
+        `Запчасть «${part.name}» не совместима с типом «${selectedVehicle.category}»`
       );
       return;
     }
@@ -225,7 +227,7 @@ const MotoConfigurator = () => {
                   <p className="text-gray-400 text-sm mb-3">{selectedVehicle.description}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] uppercase tracking-wider px-2 py-1 bg-white/5 text-gray-400">
-                      {VEHICLE_CATEGORY_LABELS[selectedVehicle.category] ?? selectedVehicle.category}
+                      {selectedVehicle.category}
                     </span>
                     <span className="text-accent font-black">{formatPrice(selectedVehicle.price)}</span>
                   </div>
