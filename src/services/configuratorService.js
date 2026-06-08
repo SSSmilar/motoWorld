@@ -19,6 +19,10 @@ export async function fetchProducts() {
   return request('/api/products');
 }
 
+export async function fetchProductById(id) {
+  return request(`/api/products/${id}`);
+}
+
 export async function fetchStockParts(vehicleId) {
   return request(`/api/vehicles/${vehicleId}/parts`);
 }
@@ -30,10 +34,7 @@ export async function fetchCompatibleTuning(vehicleId) {
 export async function validateConfig(vehicleId, selectedPartIds) {
   return request('/api/validate-config', {
     method: 'POST',
-    body: JSON.stringify({
-      vehicle_id: vehicleId,
-      selected_part_ids: selectedPartIds,
-    }),
+    body: JSON.stringify({ vehicle_id: vehicleId, selected_part_ids: selectedPartIds }),
   });
 }
 
@@ -42,6 +43,11 @@ export async function createOrder(payload) {
     method: 'POST',
     body: JSON.stringify(payload),
   });
+}
+
+export async function fetchOrders(userId) {
+  const query = userId ? `?user_id=${encodeURIComponent(userId)}` : '';
+  return request(`/api/orders${query}`);
 }
 
 export function formatPrice(rub) {

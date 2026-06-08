@@ -7,12 +7,22 @@ import {
   saveToDisk,
 } from './db.js';
 import { isPartCompatible, validateConfiguration } from './compatibility.js';
+import { calculateCustomBuildPrice, calculateOrderTotal } from './pricing.js';
 
 const router = Router();
 
 /** GET /api/products — все товары из памяти */
 router.get('/products', (_req, res) => {
   res.json(getDb().products);
+});
+
+/** GET /api/products/:id — один товар */
+router.get('/products/:id', (req, res) => {
+  const product = findProductById(req.params.id);
+  if (!product) {
+    return res.status(404).json({ error: 'Товар не найден' });
+  }
+  res.json(product);
 });
 
 /**
@@ -38,10 +48,34 @@ router.get('/vehicles/:id/parts', (req, res) => {
   res.json(parts);
 });
 
+/** GET /api/vehicles/:id/price-preview — расчёт цены сборки на сервере */
+router.post('/vehicles/:id/price-preview', (req, res) => {
+  try {
+    const { selected_part_ids } = req.body ?? {};
+    if (!Array.isArray(selected_part_ids)) {
+      return res.status(400).json({ error: 'Требуется selected_part_ids (массив)' });
+    }
+
+    const result = calculateCustomBuildPrice(req.params.id, selected_part_ids);
+    const compatibility = validateConfiguration(result.vehicle, result.resolvedParts);
+    if (!compatibility.valid) {
+      return res.status(400).json({ error: compatibility.error });
+    }
+
+    res.json({
+      vehicle_price: result.vehicle.price,
+      parts_total: result.resolvedParts.reduce((s, p) => s + p.price, 0),
+      total: result.total,
+      resolved_part_ids: result.resolvedPartIds,
+    });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 /**
  * POST /api/validate-config
- * Body: { vehicle_id, selected_part_ids: string[] }
- * Побитовая проверка каждой выбранной детали.
+ * Body: { vehicle_id, selected_part_ids: number[] }
  */
 router.post('/validate-config', (req, res) => {
   const { vehicle_id, selected_part_ids } = req.body ?? {};
@@ -58,69 +92,66 @@ router.post('/validate-config', (req, res) => {
     return res.status(404).json({ valid: false, error: 'Мотоцикл не найден' });
   }
 
-  const selectedParts = selected_part_ids
-    .map((id) => findProductById(id))
-    .filter(Boolean);
+  try {
+    const { resolvedParts } = calculateCustomBuildPrice(vehicle_id, selected_part_ids);
+    const result = validateConfiguration(vehicle, resolvedParts);
+    return res.json(result);
+  } catch (err) {
+    return res.status(400).json({ valid: false, error: err.message });
+  }
+});
 
-  if (selectedParts.length !== selected_part_ids.length) {
-    return res.status(400).json({ valid: false, error: 'Одна или несколько запчастей не найдены' });
+/** GET /api/orders — список заказов (опционально ?user_id=) */
+router.get('/orders', (req, res) => {
+  const { user_id } = req.query;
+  let orders = getDb().orders ?? [];
+
+  if (user_id) {
+    orders = orders.filter((o) => o.user_id == user_id);
   }
 
-  const result = validateConfiguration(vehicle, selectedParts);
-  return res.json(result);
+  res.json(orders);
 });
 
 /**
  * POST /api/orders
- * Сохраняет заказ в память и вызывает saveToDisk().
+ * Body: { customer_name, phone, user_id?, items: CartItem[] }
+ * items: { type: 'part', product_id, quantity } | { type: 'custom_build', vehicle_id, selected_part_ids, quantity }
  */
 router.post('/orders', async (req, res) => {
   try {
-    const { vehicle_id, selected_part_ids, customer_name, phone, total_price } = req.body ?? {};
+    const { customer_name, phone, user_id, items } = req.body ?? {};
 
-    if (!vehicle_id || !Array.isArray(selected_part_ids) || !customer_name || !phone) {
-      return res.status(400).json({ error: 'Требуются customer_name, phone, vehicle_id и selected_part_ids' });
+    if (!customer_name || !phone || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({
+        error: 'Требуются customer_name, phone и непустой массив items',
+      });
     }
 
-    const vehicle = findProductById(vehicle_id);
-    if (!vehicle || vehicle.type !== 'vehicle') {
-      return res.status(404).json({ error: 'Мотоцикл не найден' });
-    }
-
-    const selectedParts = selected_part_ids
-      .map((id) => findProductById(id))
-      .filter(Boolean);
-
-    if (selectedParts.length !== selected_part_ids.length) {
-      return res.status(400).json({ error: 'Одна или несколько запчастей не найдены' });
-    }
-
-    const compatibility = validateConfiguration(vehicle, selectedParts);
-    if (!compatibility.valid) {
-      return res.status(400).json({ error: compatibility.error });
-    }
+    const { items: processedItems, total } = calculateOrderTotal(items);
 
     const order = {
       id: `ORD-${Math.random().toString(36).substr(2, 9).toUpperCase()}`,
       customer_name,
       phone,
-      vehicle_id,
-      selected_part_ids,
-      total_price,
+      user_id: user_id ?? null,
+      items: processedItems,
+      total_price: total,
+      status: 'В обработке',
       created_at: new Date().toISOString(),
     };
 
     addOrder(order);
     await saveToDisk();
 
-    res.status(201).json({ success: true, order_id: order.id });
+    res.status(201).json({ success: true, order_id: order.id, total });
   } catch (err) {
     console.error('[Orders]', err);
-    res.status(500).json({ error: 'Не удалось сохранить заказ' });
+    res.status(400).json({ error: err.message || 'Не удалось сохранить заказ' });
   }
 });
 
-/** Дополнительный эндпоинт: список тюнинг-запчастей, совместимых с мотоциклом */
+/** GET /api/vehicles/:id/compatible-parts — тюнинг, совместимый с мотоциклом */
 router.get('/vehicles/:id/compatible-parts', (req, res) => {
   const vehicle = findProductById(req.params.id);
 

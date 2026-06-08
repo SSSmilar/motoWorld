@@ -7,7 +7,11 @@
       "category": "sport",
       "price": 2278500,
       "image": "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&q=80&w=800",
-      "description": "Вершина спортивных технологий. Итальянская страсть и невероятная мощность в каждом повороте."
+      "description": "Вершина спортивных технологий. Итальянская страсть и невероятная мощность в каждом повороте.",
+      "engine": "1103 см³ / 214 л.с.",
+      "weight": "195 кг",
+      "transmission": "6-ступенчатая, DCT опция",
+      "stock": 3
     },
     {
       "id": 2,
@@ -16,7 +20,11 @@
       "category": "cruiser",
       "price": 1841400,
       "image": "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&q=80&w=800",
-      "description": "Икона американского стиля. Массивный, мощный и неповторимый круизер для дальних дорог."
+      "description": "Икона американского стиля. Массивный, мощный и неповторимый круизер для дальних дорог.",
+      "engine": "1868 см³ / 93 л.с.",
+      "weight": "297 кг",
+      "transmission": "6-ступенчатая механика",
+      "stock": 3
     },
     {
       "id": 3,
@@ -25,7 +33,11 @@
       "category": "enduro",
       "price": 1971600,
       "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?auto=format&fit=crop&q=80&w=800",
-      "description": "Король бездорожья и путешествий. Надежность и комфорт в любых условиях эксплуатации."
+      "description": "Король бездорожья и путешествий. Надежность и комфорт в любых условиях эксплуатации.",
+      "engine": "1254 см³ / 136 л.с.",
+      "weight": "249 кг",
+      "transmission": "6-ступенчатая, Shaft Drive",
+      "stock": 3
     },
     {
       "id": 4,
@@ -34,7 +46,11 @@
       "category": "road",
       "price": 976500,
       "image": "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e?auto=format&fit=crop&q=80&w=800",
-      "description": "Мастер крутящего момента. Агрессивный дизайн и взрывной характер городского хулигана."
+      "description": "Мастер крутящего момента. Агрессивный дизайн и взрывной характер городского хулигана.",
+      "engine": "890 см³ / 117 л.с.",
+      "weight": "193 кг",
+      "transmission": "6-ступенчатая механика",
+      "stock": 3
     },
     {
       "id": 5,
@@ -43,9 +59,12 @@
       "category": "pitbike",
       "price": 130000,
       "image": "https://images.unsplash.com/photo-1558981403-c5f91cbba527?q=80&w=400&auto=format&fit=crop",
-      "description": "Отличный выбор для начинающих райдеров и тренировок на картодроме."
+      "description": "Отличный выбор для начинающих райдеров и тренировок на картодроме.",
+      "engine": "140 см³ / 12 л.с.",
+      "weight": "78 кг",
+      "transmission": "4-ступенчатая механика",
+      "stock": 3
     },
-
     {
       "id": 101,
       "name": "Карбюратор Nibbi PE19",
@@ -53,7 +72,13 @@
       "category": "carburetor",
       "price": 4500,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["pitbike"]
+      "compatible_with": [
+        "pitbike"
+      ],
+      "brand": "Nibbi",
+      "material": "Алюминий, латунь",
+      "description": "Качественная запчасть категории «carburetor» для мотоциклов: pitbike.",
+      "stock": 15
     },
     {
       "id": 116,
@@ -62,7 +87,13 @@
       "category": "carburetor",
       "price": 5200,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["pitbike"]
+      "compatible_with": [
+        "pitbike"
+      ],
+      "brand": "Nibbi",
+      "material": "Алюминий, латунь",
+      "description": "Качественная запчасть категории «carburetor» для мотоциклов: pitbike.",
+      "stock": 15
     },
     {
       "id": 117,
@@ -71,7 +102,14 @@
       "category": "carburetor",
       "price": 28500,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["enduro", "cross"]
+      "compatible_with": [
+        "enduro",
+        "cross"
+      ],
+      "brand": "Nibbi",
+      "material": "Алюминий, латунь",
+      "description": "Качественная запчасть категории «carburetor» для мотоциклов: enduro, cross.",
+      "stock": 15
     },
     {
       "id": 118,
@@ -80,7 +118,14 @@
       "category": "carburetor",
       "price": 42000,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport", "road"]
+      "compatible_with": [
+        "sport",
+        "road"
+      ],
+      "brand": "Nibbi",
+      "material": "Алюминий, латунь",
+      "description": "Качественная запчасть категории «carburetor» для мотоциклов: sport, road.",
+      "stock": 15
     },
     {
       "id": 119,
@@ -89,9 +134,15 @@
       "category": "carburetor",
       "price": 6800,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["pitbike", "cross"]
+      "compatible_with": [
+        "pitbike",
+        "cross"
+      ],
+      "brand": "Nibbi",
+      "material": "Алюминий, латунь",
+      "description": "Качественная запчасть категории «carburetor» для мотоциклов: pitbike, cross.",
+      "stock": 15
     },
-
     {
       "id": 102,
       "name": "Цепь DID 520 Усиленная",
@@ -99,7 +150,15 @@
       "category": "chain",
       "price": 7500,
       "image": "https://images.unsplash.com/photo-1591452107412-df4c62c3e60a?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["enduro", "road", "sport"]
+      "compatible_with": [
+        "enduro",
+        "road",
+        "sport"
+      ],
+      "brand": "DID",
+      "material": "Закалённая сталь",
+      "description": "Качественная запчасть категории «chain» для мотоциклов: enduro, road, sport.",
+      "stock": 15
     },
     {
       "id": 120,
@@ -108,7 +167,14 @@
       "category": "chain",
       "price": 8900,
       "image": "https://images.unsplash.com/photo-1591452107412-df4c62c3e60a?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport", "road"]
+      "compatible_with": [
+        "sport",
+        "road"
+      ],
+      "brand": "DID",
+      "material": "Закалённая сталь",
+      "description": "Качественная запчасть категории «chain» для мотоциклов: sport, road.",
+      "stock": 15
     },
     {
       "id": 121,
@@ -117,7 +183,13 @@
       "category": "chain",
       "price": 3200,
       "image": "https://images.unsplash.com/photo-1591452107412-df4c62c3e60a?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["pitbike"]
+      "compatible_with": [
+        "pitbike"
+      ],
+      "brand": "DID",
+      "material": "Закалённая сталь",
+      "description": "Качественная запчасть категории «chain» для мотоциклов: pitbike.",
+      "stock": 15
     },
     {
       "id": 113,
@@ -126,7 +198,14 @@
       "category": "sprockets",
       "price": 6000,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["pitbike", "enduro"]
+      "compatible_with": [
+        "pitbike",
+        "enduro"
+      ],
+      "brand": "JT",
+      "material": "Анодированный алюминий",
+      "description": "Качественная запчасть категории «sprockets» для мотоциклов: pitbike, enduro.",
+      "stock": 15
     },
     {
       "id": 122,
@@ -135,7 +214,15 @@
       "category": "sprockets",
       "price": 11500,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["pitbike", "enduro", "cross"]
+      "compatible_with": [
+        "pitbike",
+        "enduro",
+        "cross"
+      ],
+      "brand": "JT",
+      "material": "Анодированный алюминий",
+      "description": "Качественная запчасть категории «sprockets» для мотоциклов: pitbike, enduro, cross.",
+      "stock": 15
     },
     {
       "id": 123,
@@ -144,9 +231,15 @@
       "category": "sprockets",
       "price": 9800,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport", "road"]
+      "compatible_with": [
+        "sport",
+        "road"
+      ],
+      "brand": "JT",
+      "material": "Анодированный алюминий",
+      "description": "Качественная запчасть категории «sprockets» для мотоциклов: sport, road.",
+      "stock": 15
     },
-
     {
       "id": 106,
       "name": "Руль Fatbar Renthal",
@@ -154,7 +247,15 @@
       "category": "handlebars",
       "price": 9000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["pitbike", "enduro", "road"]
+      "compatible_with": [
+        "pitbike",
+        "enduro",
+        "road"
+      ],
+      "brand": "Renthal",
+      "material": "Хром-молибденовая сталь",
+      "description": "Качественная запчасть категории «handlebars» для мотоциклов: pitbike, enduro, road.",
+      "stock": 15
     },
     {
       "id": 124,
@@ -163,7 +264,15 @@
       "category": "handlebars",
       "price": 7800,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["pitbike", "enduro", "cross"]
+      "compatible_with": [
+        "pitbike",
+        "enduro",
+        "cross"
+      ],
+      "brand": "Renthal",
+      "material": "Хром-молибденовая сталь",
+      "description": "Качественная запчасть категории «handlebars» для мотоциклов: pitbike, enduro, cross.",
+      "stock": 15
     },
     {
       "id": 125,
@@ -172,7 +281,14 @@
       "category": "handlebars",
       "price": 22000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport", "road"]
+      "compatible_with": [
+        "sport",
+        "road"
+      ],
+      "brand": "Renthal",
+      "material": "Хром-молибденовая сталь",
+      "description": "Качественная запчасть категории «handlebars» для мотоциклов: sport, road.",
+      "stock": 15
     },
     {
       "id": 126,
@@ -181,7 +297,13 @@
       "category": "handlebars",
       "price": 16500,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport"]
+      "compatible_with": [
+        "sport"
+      ],
+      "brand": "Renthal",
+      "material": "Хром-молибденовая сталь",
+      "description": "Качественная запчасть категории «handlebars» для мотоциклов: sport.",
+      "stock": 15
     },
     {
       "id": 127,
@@ -190,9 +312,14 @@
       "category": "handlebars",
       "price": 18500,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["cruiser"]
+      "compatible_with": [
+        "cruiser"
+      ],
+      "brand": "Renthal",
+      "material": "Хром-молибденовая сталь",
+      "description": "Качественная запчасть категории «handlebars» для мотоциклов: cruiser.",
+      "stock": 15
     },
-
     {
       "id": 104,
       "name": "Выхлоп Akrapovic Titanium",
@@ -200,7 +327,14 @@
       "category": "exhaust",
       "price": 120000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport", "road"]
+      "compatible_with": [
+        "sport",
+        "road"
+      ],
+      "brand": "Akrapovic",
+      "material": "Титан / нержавеющая сталь",
+      "description": "Качественная запчасть категории «exhaust» для мотоциклов: sport, road.",
+      "stock": 15
     },
     {
       "id": 128,
@@ -209,7 +343,13 @@
       "category": "exhaust",
       "price": 34500,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["enduro"]
+      "compatible_with": [
+        "enduro"
+      ],
+      "brand": "Akrapovic",
+      "material": "Титан / нержавеющая сталь",
+      "description": "Качественная запчасть категории «exhaust» для мотоциклов: enduro.",
+      "stock": 15
     },
     {
       "id": 129,
@@ -218,7 +358,13 @@
       "category": "exhaust",
       "price": 98000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport"]
+      "compatible_with": [
+        "sport"
+      ],
+      "brand": "Akrapovic",
+      "material": "Титан / нержавеющая сталь",
+      "description": "Качественная запчасть категории «exhaust» для мотоциклов: sport.",
+      "stock": 15
     },
     {
       "id": 130,
@@ -227,7 +373,13 @@
       "category": "exhaust",
       "price": 72000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["cruiser"]
+      "compatible_with": [
+        "cruiser"
+      ],
+      "brand": "Akrapovic",
+      "material": "Титан / нержавеющая сталь",
+      "description": "Качественная запчасть категории «exhaust» для мотоциклов: cruiser.",
+      "stock": 15
     },
     {
       "id": 131,
@@ -236,7 +388,14 @@
       "category": "exhaust",
       "price": 87000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport", "road"]
+      "compatible_with": [
+        "sport",
+        "road"
+      ],
+      "brand": "Akrapovic",
+      "material": "Титан / нержавеющая сталь",
+      "description": "Качественная запчасть категории «exhaust» для мотоциклов: sport, road.",
+      "stock": 15
     },
     {
       "id": 132,
@@ -245,9 +404,15 @@
       "category": "exhaust",
       "price": 12800,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["pitbike", "cross"]
+      "compatible_with": [
+        "pitbike",
+        "cross"
+      ],
+      "brand": "Akrapovic",
+      "material": "Титан / нержавеющая сталь",
+      "description": "Качественная запчасть категории «exhaust» для мотоциклов: pitbike, cross.",
+      "stock": 15
     },
-
     {
       "id": 103,
       "name": "Слики Pirelli Diablo Supercorsa",
@@ -255,7 +420,13 @@
       "category": "tires",
       "price": 35000,
       "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport"]
+      "compatible_with": [
+        "sport"
+      ],
+      "brand": "Pirelli",
+      "material": "Композитная резина",
+      "description": "Качественная запчасть категории «tires» для мотоциклов: sport.",
+      "stock": 15
     },
     {
       "id": 112,
@@ -264,7 +435,13 @@
       "category": "tires",
       "price": 28000,
       "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["enduro"]
+      "compatible_with": [
+        "enduro"
+      ],
+      "brand": "Pirelli",
+      "material": "Композитная резина",
+      "description": "Качественная запчасть категории «tires» для мотоциклов: enduro.",
+      "stock": 15
     },
     {
       "id": 133,
@@ -273,7 +450,14 @@
       "category": "tires",
       "price": 19500,
       "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["enduro", "cross"]
+      "compatible_with": [
+        "enduro",
+        "cross"
+      ],
+      "brand": "Pirelli",
+      "material": "Композитная резина",
+      "description": "Качественная запчасть категории «tires» для мотоциклов: enduro, cross.",
+      "stock": 15
     },
     {
       "id": 134,
@@ -282,7 +466,13 @@
       "category": "tires",
       "price": 32000,
       "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport"]
+      "compatible_with": [
+        "sport"
+      ],
+      "brand": "Pirelli",
+      "material": "Композитная резина",
+      "description": "Качественная запчасть категории «tires» для мотоциклов: sport.",
+      "stock": 15
     },
     {
       "id": 135,
@@ -291,7 +481,13 @@
       "category": "tires",
       "price": 24000,
       "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["road"]
+      "compatible_with": [
+        "road"
+      ],
+      "brand": "Pirelli",
+      "material": "Композитная резина",
+      "description": "Качественная запчасть категории «tires» для мотоциклов: road.",
+      "stock": 15
     },
     {
       "id": 136,
@@ -300,7 +496,13 @@
       "category": "tires",
       "price": 26500,
       "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["cruiser"]
+      "compatible_with": [
+        "cruiser"
+      ],
+      "brand": "Pirelli",
+      "material": "Композитная резина",
+      "description": "Качественная запчасть категории «tires» для мотоциклов: cruiser.",
+      "stock": 15
     },
     {
       "id": 137,
@@ -309,7 +511,13 @@
       "category": "tires",
       "price": 4800,
       "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["pitbike"]
+      "compatible_with": [
+        "pitbike"
+      ],
+      "brand": "Pirelli",
+      "material": "Композитная резина",
+      "description": "Качественная запчасть категории «tires» для мотоциклов: pitbike.",
+      "stock": 15
     },
     {
       "id": 138,
@@ -318,9 +526,15 @@
       "category": "tires",
       "price": 29500,
       "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport", "road"]
+      "compatible_with": [
+        "sport",
+        "road"
+      ],
+      "brand": "Pirelli",
+      "material": "Композитная резина",
+      "description": "Качественная запчасть категории «tires» для мотоциклов: sport, road.",
+      "stock": 15
     },
-
     {
       "id": 107,
       "name": "Защита рычагов Barkbusters",
@@ -328,7 +542,14 @@
       "category": "protection",
       "price": 12000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["enduro", "pitbike"]
+      "compatible_with": [
+        "enduro",
+        "pitbike"
+      ],
+      "brand": "Barkbusters",
+      "material": "Алюминий / ABS-пластик",
+      "description": "Качественная запчасть категории «protection» для мотоциклов: enduro, pitbike.",
+      "stock": 15
     },
     {
       "id": 139,
@@ -337,7 +558,14 @@
       "category": "protection",
       "price": 18500,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport", "road"]
+      "compatible_with": [
+        "sport",
+        "road"
+      ],
+      "brand": "Barkbusters",
+      "material": "Алюминий / ABS-пластик",
+      "description": "Качественная запчасть категории «protection» для мотоциклов: sport, road.",
+      "stock": 15
     },
     {
       "id": 140,
@@ -346,7 +574,13 @@
       "category": "protection",
       "price": 14200,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["enduro"]
+      "compatible_with": [
+        "enduro"
+      ],
+      "brand": "Barkbusters",
+      "material": "Алюминий / ABS-пластик",
+      "description": "Качественная запчасть категории «protection» для мотоциклов: enduro.",
+      "stock": 15
     },
     {
       "id": 141,
@@ -355,9 +589,14 @@
       "category": "protection",
       "price": 21000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport"]
+      "compatible_with": [
+        "sport"
+      ],
+      "brand": "Barkbusters",
+      "material": "Алюминий / ABS-пластик",
+      "description": "Качественная запчасть категории «protection» для мотоциклов: sport.",
+      "stock": 15
     },
-
     {
       "id": 108,
       "name": "Тормозные колодки Brembo Z04",
@@ -365,7 +604,14 @@
       "category": "brakes",
       "price": 15000,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport", "road"]
+      "compatible_with": [
+        "sport",
+        "road"
+      ],
+      "brand": "Brembo",
+      "material": "Керамика / сталь",
+      "description": "Качественная запчасть категории «brakes» для мотоциклов: sport, road.",
+      "stock": 15
     },
     {
       "id": 142,
@@ -374,7 +620,14 @@
       "category": "brakes",
       "price": 6800,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["cruiser", "road"]
+      "compatible_with": [
+        "cruiser",
+        "road"
+      ],
+      "brand": "Brembo",
+      "material": "Керамика / сталь",
+      "description": "Качественная запчасть категории «brakes» для мотоциклов: cruiser, road.",
+      "stock": 15
     },
     {
       "id": 143,
@@ -383,7 +636,13 @@
       "category": "brakes",
       "price": 24000,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport"]
+      "compatible_with": [
+        "sport"
+      ],
+      "brand": "Brembo",
+      "material": "Керамика / сталь",
+      "description": "Качественная запчасть категории «brakes» для мотоциклов: sport.",
+      "stock": 15
     },
     {
       "id": 144,
@@ -392,9 +651,16 @@
       "category": "brakes",
       "price": 5500,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport", "road", "enduro"]
+      "compatible_with": [
+        "sport",
+        "road",
+        "enduro"
+      ],
+      "brand": "Brembo",
+      "material": "Керамика / сталь",
+      "description": "Качественная запчасть категории «brakes» для мотоциклов: sport, road, enduro.",
+      "stock": 15
     },
-
     {
       "id": 105,
       "name": "Кофры алюминиевые Touratech",
@@ -402,7 +668,13 @@
       "category": "luggage",
       "price": 85000,
       "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["enduro"]
+      "compatible_with": [
+        "enduro"
+      ],
+      "brand": "Touratech",
+      "material": "Алюминий / ABS",
+      "description": "Качественная запчасть категории «luggage» для мотоциклов: enduro.",
+      "stock": 15
     },
     {
       "id": 145,
@@ -411,7 +683,14 @@
       "category": "luggage",
       "price": 62000,
       "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["enduro", "road"]
+      "compatible_with": [
+        "enduro",
+        "road"
+      ],
+      "brand": "Touratech",
+      "material": "Алюминий / ABS",
+      "description": "Качественная запчасть категории «luggage» для мотоциклов: enduro, road.",
+      "stock": 15
     },
     {
       "id": 146,
@@ -420,9 +699,14 @@
       "category": "luggage",
       "price": 38000,
       "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["cruiser"]
+      "compatible_with": [
+        "cruiser"
+      ],
+      "brand": "Touratech",
+      "material": "Алюминий / ABS",
+      "description": "Качественная запчасть категории «luggage» для мотоциклов: cruiser.",
+      "stock": 15
     },
-
     {
       "id": 109,
       "name": "Ветровое стекло Puig High",
@@ -430,7 +714,14 @@
       "category": "body",
       "price": 18000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["enduro", "road"]
+      "compatible_with": [
+        "enduro",
+        "road"
+      ],
+      "brand": "Puig",
+      "material": "Поликарбонат / ABS",
+      "description": "Качественная запчасть категории «body» для мотоциклов: enduro, road.",
+      "stock": 15
     },
     {
       "id": 147,
@@ -439,7 +730,13 @@
       "category": "body",
       "price": 22000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["road"]
+      "compatible_with": [
+        "road"
+      ],
+      "brand": "Puig",
+      "material": "Поликарбонат / ABS",
+      "description": "Качественная запчасть категории «body» для мотоциклов: road.",
+      "stock": 15
     },
     {
       "id": 148,
@@ -448,9 +745,14 @@
       "category": "body",
       "price": 9500,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport"]
+      "compatible_with": [
+        "sport"
+      ],
+      "brand": "Puig",
+      "material": "Поликарбонат / ABS",
+      "description": "Качественная запчасть категории «body» для мотоциклов: sport.",
+      "stock": 15
     },
-
     {
       "id": 110,
       "name": "Сиденье Mustang Touring",
@@ -458,7 +760,13 @@
       "category": "seat",
       "price": 45000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["cruiser"]
+      "compatible_with": [
+        "cruiser"
+      ],
+      "brand": "Mustang",
+      "material": "Кожа / гелевый наполнитель",
+      "description": "Качественная запчасть категории «seat» для мотоциклов: cruiser.",
+      "stock": 15
     },
     {
       "id": 149,
@@ -467,7 +775,14 @@
       "category": "seat",
       "price": 52000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["enduro", "road"]
+      "compatible_with": [
+        "enduro",
+        "road"
+      ],
+      "brand": "Mustang",
+      "material": "Кожа / гелевый наполнитель",
+      "description": "Качественная запчасть категории «seat» для мотоциклов: enduro, road.",
+      "stock": 15
     },
     {
       "id": 150,
@@ -476,9 +791,14 @@
       "category": "seat",
       "price": 48000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["cruiser"]
+      "compatible_with": [
+        "cruiser"
+      ],
+      "brand": "Mustang",
+      "material": "Кожа / гелевый наполнитель",
+      "description": "Качественная запчасть категории «seat» для мотоциклов: cruiser.",
+      "stock": 15
     },
-
     {
       "id": 111,
       "name": "Светодиодная фара Daymaker",
@@ -486,7 +806,14 @@
       "category": "lighting",
       "price": 25000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["cruiser", "road"]
+      "compatible_with": [
+        "cruiser",
+        "road"
+      ],
+      "brand": "Daymaker",
+      "material": "LED / поликарбонат",
+      "description": "Качественная запчасть категории «lighting» для мотоциклов: cruiser, road.",
+      "stock": 15
     },
     {
       "id": 151,
@@ -495,7 +822,14 @@
       "category": "lighting",
       "price": 32000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["enduro", "road"]
+      "compatible_with": [
+        "enduro",
+        "road"
+      ],
+      "brand": "Daymaker",
+      "material": "LED / поликарбонат",
+      "description": "Качественная запчасть категории «lighting» для мотоциклов: enduro, road.",
+      "stock": 15
     },
     {
       "id": 152,
@@ -504,9 +838,15 @@
       "category": "lighting",
       "price": 14500,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport", "road"]
+      "compatible_with": [
+        "sport",
+        "road"
+      ],
+      "brand": "Daymaker",
+      "material": "LED / поликарбонат",
+      "description": "Качественная запчасть категории «lighting» для мотоциклов: sport, road.",
+      "stock": 15
     },
-
     {
       "id": 114,
       "name": "Подножки заниженные SW-Motech",
@@ -514,7 +854,14 @@
       "category": "footpegs",
       "price": 14000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["enduro", "road"]
+      "compatible_with": [
+        "enduro",
+        "road"
+      ],
+      "brand": "SW-Motech",
+      "material": "Алюминий / нержавеющая сталь",
+      "description": "Качественная запчасть категории «footpegs» для мотоциклов: enduro, road.",
+      "stock": 15
     },
     {
       "id": 153,
@@ -523,7 +870,15 @@
       "category": "footpegs",
       "price": 8200,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["pitbike", "enduro", "cross"]
+      "compatible_with": [
+        "pitbike",
+        "enduro",
+        "cross"
+      ],
+      "brand": "SW-Motech",
+      "material": "Алюминий / нержавеющая сталь",
+      "description": "Качественная запчасть категории «footpegs» для мотоциклов: pitbike, enduro, cross.",
+      "stock": 15
     },
     {
       "id": 154,
@@ -532,9 +887,15 @@
       "category": "footpegs",
       "price": 19500,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport", "road"]
+      "compatible_with": [
+        "sport",
+        "road"
+      ],
+      "brand": "SW-Motech",
+      "material": "Алюминий / нержавеющая сталь",
+      "description": "Качественная запчасть категории «footpegs» для мотоциклов: sport, road.",
+      "stock": 15
     },
-
     {
       "id": 115,
       "name": "Quickshifter Dynojet",
@@ -542,7 +903,14 @@
       "category": "electronics",
       "price": 32000,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport", "road"]
+      "compatible_with": [
+        "sport",
+        "road"
+      ],
+      "brand": "Dynojet",
+      "material": "Электроника, пластик",
+      "description": "Качественная запчасть категории «electronics» для мотоциклов: sport, road.",
+      "stock": 15
     },
     {
       "id": 155,
@@ -551,7 +919,14 @@
       "category": "electronics",
       "price": 38000,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport", "road"]
+      "compatible_with": [
+        "sport",
+        "road"
+      ],
+      "brand": "Dynojet",
+      "material": "Электроника, пластик",
+      "description": "Качественная запчасть категории «electronics» для мотоциклов: sport, road.",
+      "stock": 15
     },
     {
       "id": 156,
@@ -560,7 +935,15 @@
       "category": "electronics",
       "price": 12500,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["enduro", "road", "sport"]
+      "compatible_with": [
+        "enduro",
+        "road",
+        "sport"
+      ],
+      "brand": "Dynojet",
+      "material": "Электроника, пластик",
+      "description": "Качественная запчасть категории «electronics» для мотоциклов: enduro, road, sport.",
+      "stock": 15
     },
     {
       "id": 157,
@@ -569,29 +952,66 @@
       "category": "electronics",
       "price": 27500,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport"]
+      "compatible_with": [
+        "sport"
+      ],
+      "brand": "Dynojet",
+      "material": "Электроника, пластик",
+      "description": "Качественная запчасть категории «electronics» для мотоциклов: sport.",
+      "stock": 15
     }
   ],
   "assembly_rules": [
     {
       "vehicle_id": 1,
-      "default_parts": [103, 104, 108, 115]
+      "default_parts": [
+        103,
+        104,
+        108,
+        115
+      ]
     },
     {
       "vehicle_id": 2,
-      "default_parts": [110, 111, 102]
+      "default_parts": [
+        110,
+        111,
+        102
+      ]
     },
     {
       "vehicle_id": 3,
-      "default_parts": [102, 105, 106, 107, 112, 109, 114]
+      "default_parts": [
+        102,
+        105,
+        106,
+        107,
+        112,
+        109,
+        114
+      ]
     },
     {
       "vehicle_id": 4,
-      "default_parts": [102, 104, 106, 108, 109, 111, 114, 115]
+      "default_parts": [
+        102,
+        104,
+        106,
+        108,
+        109,
+        111,
+        114,
+        115
+      ]
     },
     {
       "vehicle_id": 5,
-      "default_parts": [101, 106, 107, 113]
+      "default_parts": [
+        101,
+        106,
+        107,
+        113
+      ]
     }
   ],
   "orders": []

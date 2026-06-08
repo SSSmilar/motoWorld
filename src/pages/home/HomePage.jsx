@@ -1,24 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Hero from '../../components/Hero';
 import ProductCard from '../../components/ProductCard';
-import { getProducts } from '../../services/productService';
+import { loadProducts } from '../../services/productService';
+import { normalizeProduct } from '../../utils/productUtils';
 
 const HomePage = () => {
-  // Показываем первые 4 товара как «популярные»
-  const topModels = getProducts().slice(0, 4);
+  const [topModels, setTopModels] = useState([]);
+
+  useEffect(() => {
+    loadProducts()
+      .then((data) => {
+        const vehicles = data.filter((p) => p.type === 'vehicle').map(normalizeProduct);
+        setTopModels(vehicles.slice(0, 4));
+      })
+      .catch(() => setTopModels([]));
+  }, []);
 
   return (
     <main>
       <Hero />
-      {/* ПОПУЛЯРНЫЕ МОДЕЛИ */}
       <section className="py-20 bg-dark-bg border-t border-white/5">
         <div className="container mx-auto px-6">
-          <div className="mb-10">
-            <h2 className="text-accent font-black uppercase tracking-[0.3em] text-sm mb-2">Выбор клиентов</h2>
-            <h3 className="text-4xl md:text-5xl font-black uppercase italic">ПОПУЛЯРНЫЕ МОДЕЛИ</h3>
+          <div className="mb-10 flex justify-between items-end">
+            <div>
+              <h2 className="text-accent font-black uppercase tracking-[0.3em] text-sm mb-2">Выбор клиентов</h2>
+              <h3 className="text-4xl md:text-5xl font-black uppercase italic">ПОПУЛЯРНЫЕ МОДЕЛИ</h3>
+            </div>
+            <Link to="/catalog" className="text-xs uppercase tracking-widest text-gray-400 hover:text-accent transition-colors">
+              Весь каталог →
+            </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {topModels.map(product => (
+            {topModels.map((product) => (
               <ProductCard key={product.id} product={product} isHighlighted={false} />
             ))}
           </div>

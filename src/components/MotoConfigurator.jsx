@@ -1,39 +1,21 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { X, CheckCircle, Wrench, Sparkles, Loader2 } from 'lucide-react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { CheckCircle, Wrench, Sparkles, Loader2, ShoppingCart } from 'lucide-react';
 import {
   fetchProducts,
   fetchStockParts,
   fetchCompatibleTuning,
-  createOrder,
   formatPrice,
 } from '../services/configuratorService';
+import {
+  calculateBuildPrice,
+  VEHICLE_CATEGORY_LABELS,
+  PART_CATEGORY_LABELS,
+} from '../utils/productUtils';
+import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 
-const CATEGORY_LABELS = {
-  carburetor: 'Карбюратор',
-  chain: 'Цепь',
-  tires: 'Резина',
-  exhaust: 'Выхлоп',
-  luggage: 'Багаж',
-  handlebars: 'Руль',
-  protection: 'Защита',
-  brakes: 'Тормоза',
-  body: 'Кузов',
-  seat: 'Сиденье',
-  lighting: 'Освещение',
-  sprockets: 'Звёзды',
-  footpegs: 'Подножки',
-  electronics: 'Электроника',
-};
-
-const VEHICLE_CATEGORY_LABELS = {
-  sport: 'Спорт',
-  cruiser: 'Круизер',
-  enduro: 'Эндуро',
-  road: 'Дорожный',
-  pitbike: 'Питбайк',
-};
-
-function PartRow({ part, checked, onToggle, badge }) {
+function PartRow({ part, checked, onToggle, badge, priceDelta }) {
   return (
     <label className="flex items-center justify-between gap-4 p-3 rounded border border-white/5 hover:border-accent/30 cursor-pointer transition-colors bg-black/20">
       <div className="flex items-center gap-3 min-w-0">
@@ -53,51 +35,55 @@ function PartRow({ part, checked, onToggle, badge }) {
             )}
           </div>
           <span className="text-[10px] text-gray-500 uppercase tracking-wider">
-            {CATEGORY_LABELS[part.category] ?? part.category}
+            {PART_CATEGORY_LABELS[part.category] ?? part.category}
           </span>
         </div>
       </div>
-      <span className="text-sm text-gray-400 shrink-0">+{formatPrice(part.price)}</span>
+      <span className={`text-sm shrink-0 ${priceDelta > 0 ? 'text-accent' : priceDelta < 0 ? 'text-green-400' : 'text-gray-400'}`}>
+        {priceDelta > 0 ? '+' : ''}{priceDelta !== 0 ? formatPrice(Math.abs(priceDelta)) : formatPrice(part.price)}
+      </span>
     </label>
   );
 }
 
 const MotoConfigurator = () => {
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const { addCustomBuild, openCart } = useCart();
+
   const [vehicles, setVehicles] = useState([]);
   const [allParts, setAllParts] = useState([]);
   const [selectedVehicle, setSelectedVehicle] = useState(null);
   const [stockParts, setStockParts] = useState([]);
+  const [stockPartIds, setStockPartIds] = useState([]);
   const [tuningParts, setTuningParts] = useState([]);
   const [selectedPartIds, setSelectedPartIds] = useState([]);
   const [validationError, setValidationError] = useState('');
   const [loading, setLoading] = useState(true);
   const [loadingParts, setLoadingParts] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-
-  const [showModal, setShowModal] = useState(false);
-  const [customerName, setCustomerName] = useState('');
-  const [phone, setPhone] = useState('');
-
-  const [orderSuccess, setOrderSuccess] = useState(false);
-  const [orderId, setOrderId] = useState('');
+  const [addedToCart, setAddedToCart] = useState(false);
 
   const loadVehicleParts = useCallback(async (vehicle) => {
     if (!vehicle) return;
     setLoadingParts(true);
     setValidationError('');
-    setOrderSuccess(false);
+    setAddedToCart(false);
 
     try {
       const [stock, tuning] = await Promise.all([
         fetchStockParts(vehicle.id),
         fetchCompatibleTuning(vehicle.id),
       ]);
+      const ids = stock.map((p) => p.id);
       setStockParts(stock);
+      setStockPartIds(ids);
       setTuningParts(tuning);
-      setSelectedPartIds(stock.map((p) => p.id));
+      setSelectedPartIds(ids);
     } catch (err) {
       setValidationError(err.message || 'Не удалось загрузить запчасти');
       setStockParts([]);
+      setStockPartIds([]);
       setTuningParts([]);
       setSelectedPartIds([]);
     } finally {
@@ -109,17 +95,23 @@ const MotoConfigurator = () => {
     fetchProducts()
       .then((data) => {
         const v = data.filter((p) => p.type === 'vehicle');
-        const p = data.filter((p) => p.type === 'part');
+        const p = data.filter((pt) => pt.type === 'part');
         setVehicles(v);
         setAllParts(p);
-        if (v.length > 0) {
-          setSelectedVehicle(v[0]);
-          loadVehicleParts(v[0]);
+
+        const fromUrl = searchParams.get('vehicle');
+        const initial = fromUrl
+          ? v.find((veh) => veh.id == fromUrl) ?? v[0]
+          : v[0];
+
+        if (initial) {
+          setSelectedVehicle(initial);
+          loadVehicleParts(initial);
         }
       })
       .catch((err) => setValidationError(err.message || 'Не удалось загрузить каталог'))
       .finally(() => setLoading(false));
-  }, [loadVehicleParts]);
+  }, [loadVehicleParts, searchParams]);
 
   const handleVehicleSelect = (vehicleId) => {
     const vehicle = vehicles.find((v) => v.id === Number(vehicleId));
@@ -130,68 +122,70 @@ const MotoConfigurator = () => {
 
   const handlePartToggle = (partId) => {
     const part = allParts.find((p) => p.id === partId);
+    if (!part || !selectedVehicle) return;
+
+    const category = selectedVehicle.category.toLowerCase();
     const isAdding = !selectedPartIds.includes(partId);
 
-    if (isAdding && part && selectedVehicle) {
-      const category = selectedVehicle.category.toLowerCase();
-      if (!part.compatible_with?.includes(category)) {
-        setValidationError(
-          `Запчасть «${part.name}» не совместима с категорией ${VEHICLE_CATEGORY_LABELS[category] ?? category}`
-        );
-        return;
-      }
+    if (isAdding && !part.compatible_with?.includes(category)) {
+      setValidationError(
+        `Запчасть «${part.name}» не совместима с категорией ${VEHICLE_CATEGORY_LABELS[category] ?? category}`
+      );
+      return;
     }
 
-    setSelectedPartIds((prev) =>
-      isAdding ? [...prev, partId] : prev.filter((id) => id !== partId)
-    );
+    setSelectedPartIds((prev) => {
+      let next = isAdding ? [...prev, partId] : prev.filter((id) => id !== partId);
+
+      if (isAdding) {
+        const sameCategoryIds = allParts
+          .filter((p) => p.category === part.category && p.id !== partId)
+          .map((p) => p.id);
+        next = next.filter((id) => !sameCategoryIds.includes(id));
+      }
+
+      return next;
+    });
     setValidationError('');
   };
 
-  const calculateTotal = () => {
-    if (!selectedVehicle) return 0;
-    const partsTotal = allParts
-      .filter((p) => selectedPartIds.includes(p.id))
-      .reduce((sum, p) => sum + p.price, 0);
-    return selectedVehicle.price + partsTotal;
+  const priceBreakdown = useMemo(() => {
+    if (!selectedVehicle) return { partsTotal: 0, total: 0, resolvedParts: [] };
+    return calculateBuildPrice(selectedVehicle, selectedPartIds, allParts, stockPartIds);
+  }, [selectedVehicle, selectedPartIds, allParts, stockPartIds]);
+
+  const stockTotal = useMemo(
+    () => stockParts.reduce((s, p) => s + p.price, 0),
+    [stockParts]
+  );
+
+  const getPartPriceDelta = (part) => {
+    const isStock = stockPartIds.includes(part.id);
+    if (isStock) return 0;
+    const stockInCategory = stockParts.find((p) => p.category === part.category);
+    return part.price - (stockInCategory?.price ?? 0);
   };
 
-  const resetConfigurator = async () => {
-    if (vehicles.length === 0) return;
-    const first = vehicles[0];
-    setSelectedVehicle(first);
-    setCustomerName('');
-    setPhone('');
-    await loadVehicleParts(first);
-  };
-
-  const handlePlaceOrder = async (e) => {
-    e.preventDefault();
-    if (!selectedVehicle || validationError) return;
-
-    setSubmitting(true);
-    setValidationError('');
-
-    try {
-      const data = await createOrder({
-        customer_name: customerName.trim(),
-        phone: phone.trim(),
-        vehicle_id: selectedVehicle.id,
-        selected_part_ids: selectedPartIds,
-        total_price: calculateTotal(),
-      });
-
-      if (data.success) {
-        setOrderSuccess(true);
-        setOrderId(data.order_id);
-        setShowModal(false);
-        await resetConfigurator();
-      }
-    } catch (err) {
-      setValidationError(err.message || 'Ошибка при оформлении заказа');
-    } finally {
-      setSubmitting(false);
+  const handleAddToCart = () => {
+    if (!user) {
+      navigate('/login');
+      return;
     }
+    if (!selectedVehicle || validationError || priceBreakdown.resolvedParts.length === 0) return;
+
+    const { resolvedParts, total } = priceBreakdown;
+
+    addCustomBuild({
+      vehicleId: selectedVehicle.id,
+      vehicleName: selectedVehicle.name,
+      vehicleImage: selectedVehicle.image,
+      selectedPartIds: resolvedParts.map((p) => p.id),
+      partNames: resolvedParts.map((p) => p.name),
+      price: total,
+    });
+
+    setAddedToCart(true);
+    openCart();
   };
 
   if (loading) {
@@ -211,7 +205,6 @@ const MotoConfigurator = () => {
 
       <div className="glass-card p-6 md:p-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Выбор мотоцикла */}
           <div className="lg:col-span-4">
             <h4 className="text-xs uppercase tracking-[0.2em] text-gray-500 font-bold mb-3">Модель</h4>
             <select
@@ -220,19 +213,13 @@ const MotoConfigurator = () => {
               value={selectedVehicle?.id ?? ''}
             >
               {vehicles.map((v) => (
-                <option key={v.id} value={v.id}>
-                  {v.name}
-                </option>
+                <option key={v.id} value={v.id}>{v.name}</option>
               ))}
             </select>
 
             {selectedVehicle && (
               <div className="overflow-hidden border border-white/10">
-                <img
-                  src={selectedVehicle.image}
-                  alt={selectedVehicle.name}
-                  className="w-full h-48 object-cover"
-                />
+                <img src={selectedVehicle.image} alt={selectedVehicle.name} className="w-full h-48 object-cover" />
                 <div className="p-4 bg-black/30">
                   <h5 className="text-xl font-black uppercase italic mb-2">{selectedVehicle.name}</h5>
                   <p className="text-gray-400 text-sm mb-3">{selectedVehicle.description}</p>
@@ -247,11 +234,8 @@ const MotoConfigurator = () => {
             )}
           </div>
 
-          {/* Запчасти */}
           <div className="lg:col-span-5">
-            <h4 className="text-xs uppercase tracking-[0.2em] text-gray-500 font-bold mb-3">
-              Компоненты и тюнинг
-            </h4>
+            <h4 className="text-xs uppercase tracking-[0.2em] text-gray-500 font-bold mb-3">Компоненты и тюнинг</h4>
 
             {loadingParts ? (
               <div className="flex items-center justify-center py-16">
@@ -265,19 +249,16 @@ const MotoConfigurator = () => {
                     <h5 className="text-sm font-bold uppercase tracking-wider">Стоковая комплектация</h5>
                   </div>
                   <div className="space-y-2">
-                    {stockParts.length === 0 ? (
-                      <p className="text-gray-500 text-sm">Стоковые детали не найдены</p>
-                    ) : (
-                      stockParts.map((part) => (
-                        <PartRow
-                          key={part.id}
-                          part={part}
-                          checked={selectedPartIds.includes(part.id)}
-                          onToggle={handlePartToggle}
-                          badge="Сток"
-                        />
-                      ))
-                    )}
+                    {stockParts.map((part) => (
+                      <PartRow
+                        key={part.id}
+                        part={part}
+                        checked={selectedPartIds.includes(part.id)}
+                        onToggle={handlePartToggle}
+                        badge="Сток"
+                        priceDelta={0}
+                      />
+                    ))}
                   </div>
                 </section>
 
@@ -295,6 +276,7 @@ const MotoConfigurator = () => {
                           checked={selectedPartIds.includes(part.id)}
                           onToggle={handlePartToggle}
                           badge="Тюнинг"
+                          priceDelta={getPartPriceDelta(part)}
                         />
                       ))}
                     </div>
@@ -304,10 +286,9 @@ const MotoConfigurator = () => {
             )}
           </div>
 
-          {/* Итог */}
           <div className="lg:col-span-3 lg:border-l lg:border-white/10 lg:pl-8">
             <h4 className="text-xs uppercase tracking-[0.2em] text-gray-500 font-bold mb-3">Итого</h4>
-            <div className="text-4xl font-black text-accent mb-6">{formatPrice(calculateTotal())}</div>
+            <div className="text-4xl font-black text-accent mb-6">{formatPrice(priceBreakdown.total)}</div>
 
             <div className="text-xs text-gray-500 mb-4 space-y-1">
               <div className="flex justify-between">
@@ -315,117 +296,50 @@ const MotoConfigurator = () => {
                 <span>{selectedVehicle ? formatPrice(selectedVehicle.price) : '—'}</span>
               </div>
               <div className="flex justify-between">
-                <span>Запчасти ({selectedPartIds.length})</span>
-                <span>
-                  {formatPrice(
-                    allParts
-                      .filter((p) => selectedPartIds.includes(p.id))
-                      .reduce((sum, p) => sum + p.price, 0)
-                  )}
-                </span>
+                <span>Стоковые запчасти</span>
+                <span>{formatPrice(stockTotal)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Выбрано ({priceBreakdown.resolvedParts.length})</span>
+                <span>{formatPrice(priceBreakdown.partsTotal)}</span>
               </div>
             </div>
 
             {validationError && (
-              <div className="mb-4 p-3 border border-red-500/50 bg-red-500/10 text-red-400 text-sm">
-                {validationError}
-              </div>
+              <div className="mb-4 p-3 border border-red-500/50 bg-red-500/10 text-red-400 text-sm">{validationError}</div>
             )}
 
-            {orderSuccess && (
+            {addedToCart && (
               <div className="mb-4 p-4 border border-green-500/50 bg-green-500/10 text-green-400 text-sm flex gap-3">
-                <CheckCircle className="w-5 h-5 shrink-0 mt-0.5" />
+                <CheckCircle className="w-5 h-5 shrink-0" />
                 <div>
-                  <p className="font-bold mb-1">Заказ успешно оформлен!</p>
-                  <p>
-                    Номер вашего заказа: <strong className="text-white">{orderId}</strong>
-                  </p>
+                  <p className="font-bold">Сборка добавлена в корзину!</p>
+                  <button onClick={() => navigate('/cart')} className="underline text-white mt-1 text-xs">
+                    Перейти к оформлению →
+                  </button>
                 </div>
               </div>
             )}
 
             <button
-              className="btn-primary w-full disabled:opacity-40 disabled:cursor-not-allowed"
-              disabled={!selectedVehicle || !!validationError || loadingParts || selectedPartIds.length === 0}
-              onClick={() => setShowModal(true)}
+              className="btn-primary w-full disabled:opacity-40 disabled:cursor-not-allowed mb-3"
+              disabled={!selectedVehicle || !!validationError || loadingParts || priceBreakdown.resolvedParts.length === 0}
+              onClick={handleAddToCart}
             >
-              <span className="block skew-x-[12deg]">Оформить заказ</span>
+              <span className="block skew-x-[12deg] flex items-center justify-center gap-2">
+                <ShoppingCart size={18} /> В корзину
+              </span>
+            </button>
+
+            <button
+              className="w-full py-3 border border-white/10 text-gray-400 text-xs uppercase tracking-wider hover:border-accent/50 hover:text-white transition-colors"
+              onClick={() => navigate('/cart')}
+            >
+              Перейти в корзину
             </button>
           </div>
         </div>
       </div>
-
-      {/* Модальное окно */}
-      {showModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          <div
-            className="absolute inset-0 bg-black/90 backdrop-blur-sm"
-            onClick={() => !submitting && setShowModal(false)}
-          />
-          <div className="relative glass-card w-full max-w-md p-6 animate-in fade-in zoom-in duration-300">
-            <button
-              type="button"
-              onClick={() => !submitting && setShowModal(false)}
-              className="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-full transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <h5 className="text-2xl font-black uppercase italic mb-6">Оформление заказа</h5>
-
-            <form onSubmit={handlePlaceOrder} className="space-y-4">
-              <div>
-                <label className="block text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">
-                  Имя
-                </label>
-                <input
-                  type="text"
-                  className="w-full bg-black/40 border border-white/10 px-4 py-3 text-white focus:border-accent outline-none"
-                  value={customerName}
-                  onChange={(e) => setCustomerName(e.target.value)}
-                  required
-                  disabled={submitting}
-                />
-              </div>
-              <div>
-                <label className="block text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">
-                  Телефон
-                </label>
-                <input
-                  type="tel"
-                  className="w-full bg-black/40 border border-white/10 px-4 py-3 text-white focus:border-accent outline-none"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  required
-                  disabled={submitting}
-                  placeholder="+7 (___) ___-__-__"
-                />
-              </div>
-
-              <div className="pt-2 flex gap-3">
-                <button
-                  type="button"
-                  className="flex-1 py-3 border border-white/10 hover:border-white/30 transition-colors uppercase text-sm tracking-wider"
-                  onClick={() => setShowModal(false)}
-                  disabled={submitting}
-                >
-                  Отмена
-                </button>
-                <button
-                  type="submit"
-                  className="btn-primary flex-1 disabled:opacity-40"
-                  disabled={submitting}
-                >
-                  <span className="block skew-x-[12deg] flex items-center justify-center gap-2">
-                    {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
-                    Подтвердить
-                  </span>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

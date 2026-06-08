@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, useMemo, useEffect, useCallback } from 'react';
 import { useAuth } from './AuthContext';
 import * as cartSvc from '../services/cartService';
-import { getProducts } from '../services/productService';
 
 const CartContext = createContext();
 
@@ -11,17 +10,12 @@ export const useCart = () => {
   return ctx;
 };
 
-/**
- * CartProvider — корзина привязана к текущему пользователю.
- * Данные хранятся в LocalStorage через cartService.
- */
 export const CartProvider = ({ children }) => {
   const { user } = useAuth();
-  const [cartItems, setCartItems] = useState([]); // [{ productId, quantity }]
+  const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  // Загружаем корзину при смене пользователя
-  useEffect(() => {
+  const reloadCart = useCallback(() => {
     if (user) {
       setCartItems(cartSvc.get_cart(user.userId));
     } else {
@@ -29,38 +23,40 @@ export const CartProvider = ({ children }) => {
     }
   }, [user?.userId]);
 
-  const products = useMemo(() => getProducts(), [cartItems]);
+  useEffect(() => {
+    reloadCart();
+  }, [reloadCart]);
 
-  /** Получить количество данного товара уже в корзине */
   const getCartQuantity = useCallback(
     (productId) => {
-      const item = cartItems.find((i) => i.id === productId);
+      const item = cartItems.find((i) => i.type === 'part' && i.productId === productId);
       return item ? item.quantity : 0;
     },
     [cartItems]
   );
 
-  const addToCart = (productId) => {
-    if (!user) return;
-    const product = products.find((p) => p.id === productId);
-    if (!product) return;
-    cartSvc.add_to_cart(user.userId, product, 1);
-    setCartItems([...cartSvc.get_cart(user.userId)]);
+  const addToCart = (product, quantity = 1) => {
+    if (!user || !product) return;
+    cartSvc.add_part_to_cart(user.userId, product, quantity);
+    reloadCart();
   };
 
-  const updateQuantity = (productId, quantity) => {
-    if (!user) return;
-    const product = products.find((p) => p.id === productId);
-    const maxQty = product ? product.stock : quantity;
-    const clamped = Math.min(quantity, maxQty);
-    cartSvc.update_cart_item_quantity(user.userId, productId, clamped);
-    setCartItems([...cartSvc.get_cart(user.userId)]);
+  const addCustomBuild = (build) => {
+    if (!user || !build) return;
+    cartSvc.add_custom_build_to_cart(user.userId, build);
+    reloadCart();
   };
 
-  const removeFromCart = (productId) => {
+  const updateQuantity = (cartItemId, quantity) => {
     if (!user) return;
-    cartSvc.remove_from_cart(user.userId, productId);
-    setCartItems([...cartSvc.get_cart(user.userId)]);
+    cartSvc.update_cart_item_quantity(user.userId, cartItemId, quantity);
+    reloadCart();
+  };
+
+  const removeFromCart = (cartItemId) => {
+    if (!user) return;
+    cartSvc.remove_from_cart(user.userId, cartItemId);
+    reloadCart();
   };
 
   const clearCart = () => {
@@ -69,33 +65,22 @@ export const CartProvider = ({ children }) => {
     setCartItems([]);
   };
 
-  // Обогащённые элементы корзины (с данными товара)
-  const enrichedItems = useMemo(() => {
-    return cartItems.map((ci) => {
-      const p = products.find((pr) => pr.id === ci.id) || {};
-      return { ...ci, title: p.title ?? ci.title, price: p.price ?? ci.price, imageUrl: p.imageUrl ?? ci.imageUrl, stock: p.stock ?? ci.stock };
-    });
-  }, [cartItems, products]);
-
-  const cartTotal = useMemo(
-    () => enrichedItems.reduce((s, i) => s + (i.price || 0) * i.quantity, 0),
-    [enrichedItems]
-  );
+  const cartTotal = useMemo(() => cartSvc.get_cart_total(cartItems), [cartItems]);
 
   const cartCount = useMemo(
-    () => cartItems.reduce((s, i) => s + i.quantity, 0),
+    () => cartItems.reduce((s, i) => s + (i.quantity ?? 1), 0),
     [cartItems]
   );
 
-  // Блокировка скролла при открытой корзине
   useEffect(() => {
     document.body.style.overflow = isCartOpen ? 'hidden' : 'unset';
     return () => { document.body.style.overflow = 'unset'; };
   }, [isCartOpen]);
 
   const value = {
-    cartItems: enrichedItems,
+    cartItems,
     addToCart,
+    addCustomBuild,
     removeFromCart,
     updateQuantity,
     clearCart,

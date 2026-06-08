@@ -1,126 +1,42 @@
-/**
- * Сервис заказов (mock-api).
- * Единое хранилище: ключ "mw_orders" — массив всех заказов.
- * Каждый заказ имеет поле user_id для фильтрации по пользователю.
- */
+import { createOrder, fetchOrders } from './configuratorService';
 
-import { v4 as uuidv4 } from 'uuid';
-import { update_stock } from './productService';
-
-const ORDERS_KEY = 'mw_orders';
-
-const get_all_raw = () => {
-    try {
-        const data = localStorage.getItem(ORDERS_KEY);
-        return data ? JSON.parse(data) : [];
-    } catch {
-        return [];
-    }
-};
-
-const save_all = (orders) => {
-    try {
-        localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
-    } catch { /* storage full or unavailable */ }
-};
-
-const formatDate = (iso) => iso.slice(0, 10); // "YYYY-MM-DD"
-
-/** Получить заказы пользователя; при первом вызове создаёт демо-данные */
-export function getOrders(userId) {
-    const all = get_all_raw();
-    const userOrders = all.filter(o => o.user_id === userId);
-
-    if (userOrders.length === 0) {
-        const fake = [
-            {
-                id: 'ord-1',
-                user_id: userId,
-                date: '2025-12-01',
-                items: [{ title: 'Yamaha MT-09', quantity: 1, price: 9500, imageUrl: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=200&q=80' }],
-                total: 9500,
-                status: 'Доставлен',
-            },
-            {
-                id: 'ord-2',
-                user_id: userId,
-                date: '2026-02-14',
-                items: [
-                    { title: 'Ducati Panigale V4 R', quantity: 1, price: 45000, imageUrl: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=200&q=80' },
-                    { title: 'BMW R 1250 GS Adventure', quantity: 1, price: 24500, imageUrl: 'https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=200&q=80' },
-                ],
-                total: 69500,
-                status: 'В обработке',
-            },
-            {
-                id: 'ord-3',
-                user_id: userId,
-                date: '2026-03-28',
-                items: [{ title: 'Honda CB650R', quantity: 2, price: 8900, imageUrl: 'https://images.unsplash.com/photo-1622185135505-2d795003994a?w=200&q=80' }],
-                total: 17800,
-                status: 'Доставлен',
-            },
-        ];
-        save_all([...all, ...fake]);
-        return fake;
-    }
-
-    return userOrders;
+/** Создать заказ через API бэкенда */
+export async function submitOrder({ userId, customerName, phone, cartItems }) {
+  return createOrder({
+    customer_name: customerName,
+    phone,
+    user_id: userId ?? null,
+    items: cartItems,
+  });
 }
 
-/** Создать новый заказ */
-export const create_order = (user_id, cart_items) => {
-    const all = get_all_raw();
-    const new_order = {
-        id: uuidv4(),
-        user_id,
-        date: formatDate(new Date().toISOString()),
-        items: cart_items.map(item => ({
-            title: item.title,
-            quantity: item.quantity,
-            price: item.price,
-            imageUrl: item.imageUrl || null,
-        })),
-        status: 'В обработке',
-        total: cart_items.reduce((sum, item) => sum + item.price * item.quantity, 0),
-    };
+/** Получить заказы пользователя с бэкенда */
+export async function getOrders(userId) {
+  const orders = await fetchOrders(userId);
+  return orders.map((order) => ({
+    id: order.id,
+    date: order.created_at?.slice(0, 10) ?? '',
+    status: order.status ?? 'В обработке',
+    total: order.total_price,
+    items: (order.items ?? []).map((item) => ({
+      title:
+        item.type === 'custom_build'
+          ? `${item.vehicle_name} (сборка)`
+          : item.name,
+      quantity: item.quantity ?? 1,
+      price: item.unit_price ?? item.line_total,
+      imageUrl: null,
+      part_names: item.part_names,
+    })),
+  }));
+}
 
-    cart_items.forEach(item => {
-        update_stock(item.id, -item.quantity);
-    });
-
-    all.push(new_order);
-    save_all(all);
-    return new_order;
+/** @deprecated */
+export const create_order = async () => {
+  throw new Error('Используйте submitOrder() — заказы теперь на бэкенде');
 };
 
-/** Заказы конкретного пользователя */
-export const get_orders_by_user = (user_id) => {
-    return get_all_raw().filter(order => order.user_id === user_id);
-};
-
-/** Все заказы (для админа) */
-export const get_all_orders = () => {
-    return get_all_raw();
-};
-
-export const update_order_status = (order_id, status) => {
-    const orders = get_all_raw();
-    const index = orders.findIndex(o => o.id === order_id);
-    if (index !== -1) {
-        orders[index].status = status;
-        save_all(orders);
-    }
-};
-
-export const cancel_order = (order_id) => {
-    const orders = get_all_raw();
-    const index = orders.findIndex(o => o.id === order_id);
-    if (index !== -1 && orders[index].status !== 'Отменен') {
-        orders[index].status = 'Отменен';
-        orders[index].items.forEach(item => {
-            update_stock(item.id, item.quantity);
-        });
-        save_all(orders);
-    }
-};
+export const get_all_orders = () => fetchOrders();
+export const get_orders_by_user = (user_id) => fetchOrders(user_id);
+export const update_order_status = () => {};
+export const cancel_order = () => {};
