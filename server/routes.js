@@ -95,13 +95,9 @@ router.post('/orders', async (req, res) => {
       return res.status(400).json({ error: 'Одна или несколько запчастей не найдены' });
     }
 
-    // Валидация: все запчасти должны быть совместимы с категорией мотоцикла
-    for (const part of selectedParts) {
-      if (!part.compatible_with || !part.compatible_with.includes(vehicle.category)) {
-        return res.status(400).json({
-          error: `Запчасть ${part.name} не совместима с категорией ${vehicle.category}`
-        });
-      }
+    const compatibility = validateConfiguration(vehicle, selectedParts);
+    if (!compatibility.valid) {
+      return res.status(400).json({ error: compatibility.error });
     }
 
     const order = {

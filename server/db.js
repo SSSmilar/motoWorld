@@ -56,7 +56,7 @@ export async function saveToDisk() {
 }
 
 export function findProductById(id) {
-  return getDb().products.find((p) => p.id === id) ?? null;
+  return getDb().products.find((p) => p.id == id) ?? null;
 }
 
 export function getVehicles() {
@@ -68,7 +68,7 @@ export function getParts() {
 }
 
 export function getAssemblyRule(vehicleId) {
-  return getDb().assembly_rules.find((r) => r.vehicle_id === vehicleId) ?? null;
+  return getDb().assembly_rules.find((r) => r.vehicle_id == vehicleId) ?? null;
 }
 
 export function addOrder(order) {
