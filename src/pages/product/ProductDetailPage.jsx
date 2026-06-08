@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ShoppingCart, Wrench, Loader2, CheckCircle } from 'lucide-react';
-import { getProductById } from '../services/productService';
-import { formatPrice } from '../services/configuratorService';
-import { VEHICLE_CATEGORY_LABELS, PART_CATEGORY_LABELS } from '../utils/productUtils';
-import { useCart } from '../context/CartContext';
-import { useAuth } from '../context/AuthContext';
+import { getProductById } from '../../services/productService';
+import { formatPrice } from '../../services/configuratorService';
+import { VEHICLE_CATEGORY_LABELS, PART_CATEGORY_LABELS } from '../../utils/productUtils';
+import { useCart } from '../../context/CartContext';
+import { useAuth } from '../../context/AuthContext';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
