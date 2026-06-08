@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { ShoppingCart, Check, Wrench } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
@@ -25,9 +24,8 @@ const PartCard = ({ product, isHighlighted }) => {
   };
 
   return (
-    <Link
-      to={`/product/${product.id}`}
-      className={`block border border-white/10 bg-black/30 hover:border-accent/40 hover:bg-black/50 transition-all duration-300 p-5 h-full ${
+    <div
+      className={`border border-white/10 bg-black/30 hover:border-accent/40 hover:bg-black/50 transition-all duration-300 p-5 h-full ${
         isHighlighted ? 'ring-2 ring-accent border-accent/50' : ''
       }`}
     >
@@ -46,12 +44,25 @@ const PartCard = ({ product, isHighlighted }) => {
             )}
           </div>
 
-          <h3 className="text-sm font-bold uppercase tracking-tight mb-2 line-clamp-2 group-hover:text-accent">
+          <h3 className="text-sm font-bold uppercase tracking-tight mb-2 line-clamp-2">
             {product.title}
           </h3>
 
+          {product.material && (
+            <p className="text-xs text-gray-400 mb-1">
+              <span className="text-gray-500 uppercase text-[10px] tracking-wider">Материал: </span>
+              {product.material}
+            </p>
+          )}
+
+          {product.description && (
+            <p className="text-xs text-gray-500 mb-2 line-clamp-2 leading-relaxed">
+              {product.description}
+            </p>
+          )}
+
           {product.compatible_with?.length > 0 && (
-            <p className="text-[10px] text-gray-500 mb-3 line-clamp-1">
+            <p className="text-[10px] text-gray-600 mb-3 line-clamp-1">
               Для: {product.compatible_with.join(', ')}
             </p>
           )}
@@ -61,7 +72,7 @@ const PartCard = ({ product, isHighlighted }) => {
               <div className="text-lg font-black text-white italic">
                 {product.price.toLocaleString()} ₽
               </div>
-              <div className="text-[10px] text-gray-500 uppercase">
+              <div className={`text-[10px] uppercase font-bold ${inStock ? 'text-gray-500' : 'text-red-400'}`}>
                 {inStock ? `${product.stock} шт.` : 'Нет в наличии'}
               </div>
             </div>
@@ -79,7 +90,7 @@ const PartCard = ({ product, isHighlighted }) => {
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

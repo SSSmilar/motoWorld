@@ -10,15 +10,31 @@ import {
 import {
   calculateBuildPrice,
   isPartCompatibleWithVehicle,
+  normalizeProduct,
+  resolveProductImage,
 } from '../utils/productUtils';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 
-function PartRow({ part, checked, onToggle, badge, priceDelta }) {
-  const deltaLabel = priceDelta > 0 ? `+${formatPrice(priceDelta)}` : priceDelta < 0 ? `-${formatPrice(Math.abs(priceDelta))}` : formatPrice(part.price);
+function PartRow({ part, checked, isSelected, onToggle, badge, priceDelta }) {
+  let deltaLabel = '±0';
+  let deltaClass = 'text-gray-500';
+
+  if (isSelected) {
+    deltaLabel = '✓ выбрано';
+    deltaClass = 'text-green-400';
+  } else if (priceDelta > 0) {
+    deltaLabel = `+ ${formatPrice(priceDelta)}`;
+    deltaClass = 'text-accent';
+  } else if (priceDelta < 0) {
+    deltaLabel = `- ${formatPrice(Math.abs(priceDelta))}`;
+    deltaClass = 'text-green-400';
+  }
 
   return (
-    <label className="flex items-stretch gap-3 p-3 border border-white/10 bg-black/30 hover:border-accent/30 cursor-pointer transition-colors">
+    <label className={`flex items-stretch gap-3 p-3 border cursor-pointer transition-colors ${
+      isSelected ? 'border-accent/50 bg-accent/5' : 'border-white/10 bg-black/30 hover:border-accent/30'
+    }`}>
       <input
         type="checkbox"
         checked={checked}
@@ -42,7 +58,7 @@ function PartRow({ part, checked, onToggle, badge, priceDelta }) {
           {part.brand && <span>· {part.brand}</span>}
         </div>
       </div>
-      <span className={`text-sm font-bold shrink-0 self-center ${priceDelta > 0 ? 'text-accent' : 'text-gray-300'}`}>
+      <span className={`text-sm font-bold shrink-0 self-center ${deltaClass}`}>
         {deltaLabel}
       </span>
     </label>
@@ -97,7 +113,7 @@ const MotoConfigurator = () => {
   useEffect(() => {
     fetchProducts()
       .then((data) => {
-        const v = data.filter((p) => p.type === 'vehicle');
+        const v = data.filter((p) => p.type === 'vehicle').map(normalizeProduct);
         const p = data.filter((pt) => pt.type === 'part');
         setVehicles(v);
         setAllParts(p);
@@ -156,17 +172,29 @@ const MotoConfigurator = () => {
     return calculateBuildPrice(selectedVehicle, selectedPartIds, allParts, stockPartIds);
   }, [selectedVehicle, selectedPartIds, allParts, stockPartIds]);
 
+  /** Текущий выбранный узел в каждой категории */
+  const selectedByCategory = useMemo(() => {
+    const map = {};
+    for (const partId of selectedPartIds) {
+      const part = allParts.find((p) => p.id === partId);
+      if (part) map[part.category] = part;
+    }
+    return map;
+  }, [selectedPartIds, allParts]);
+
+  const getPartPriceDelta = (part) => {
+    const current = selectedByCategory[part.category];
+    if (!current) return 0;
+    return part.price - current.price;
+  };
+
+  const isPartSelectedInCategory = (part) =>
+    selectedByCategory[part.category]?.id === part.id;
+
   const stockTotal = useMemo(
     () => stockParts.reduce((s, p) => s + p.price, 0),
     [stockParts]
   );
-
-  const getPartPriceDelta = (part) => {
-    const isStock = stockPartIds.includes(part.id);
-    if (isStock) return 0;
-    const stockInCategory = stockParts.find((p) => p.category === part.category);
-    return part.price - (stockInCategory?.price ?? 0);
-  };
 
   const handleAddToCart = () => {
     if (!user) {
@@ -180,7 +208,7 @@ const MotoConfigurator = () => {
     addCustomBuild({
       vehicleId: selectedVehicle.id,
       vehicleName: selectedVehicle.name,
-      vehicleImage: selectedVehicle.image,
+      vehicleImage: resolveProductImage(selectedVehicle) ?? selectedVehicle.image,
       selectedPartIds: resolvedParts.map((p) => p.id),
       partNames: resolvedParts.map((p) => p.name),
       price: total,
@@ -256,9 +284,10 @@ const MotoConfigurator = () => {
                         key={part.id}
                         part={part}
                         checked={selectedPartIds.includes(part.id)}
+                        isSelected={isPartSelectedInCategory(part)}
                         onToggle={handlePartToggle}
                         badge="Сток"
-                        priceDelta={0}
+                        priceDelta={getPartPriceDelta(part)}
                       />
                     ))}
                   </div>
@@ -276,6 +305,7 @@ const MotoConfigurator = () => {
                           key={part.id}
                           part={part}
                           checked={selectedPartIds.includes(part.id)}
+                          isSelected={isPartSelectedInCategory(part)}
                           onToggle={handlePartToggle}
                           badge="Тюнинг"
                           priceDelta={getPartPriceDelta(part)}

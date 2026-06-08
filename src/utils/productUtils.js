@@ -1,12 +1,21 @@
+/** Преобразует локальное имя файла в URL для public/images */
+export function resolveProductImage(p) {
+  const src = p?.image ?? p?.imageUrl;
+  if (!src) return null;
+  if (src.startsWith('http') || src.startsWith('/')) return src;
+  return `/images/${src}`;
+}
+
 /** Нормализация товара из API к единому формату фронтенда */
 export function normalizeProduct(p) {
   if (!p) return null;
+  const imageUrl = resolveProductImage(p);
   return {
     ...p,
     title: p.name ?? p.title,
     name: p.name ?? p.title,
-    imageUrl: p.image ?? p.imageUrl,
-    image: p.image ?? p.imageUrl,
+    imageUrl,
+    image: imageUrl,
     stock: p.stock ?? (p.type === 'vehicle' ? 3 : 15),
   };
 }

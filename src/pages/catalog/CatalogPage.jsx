@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Search, Wrench } from 'lucide-react';
 import ProductCard from '../../components/ProductCard';
 import { loadProducts } from '../../services/productService';
@@ -19,10 +20,11 @@ const PartSkeleton = () => (
 );
 
 const CatalogPage = () => {
+  const location = useLocation();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [catalogType, setCatalogType] = useState('vehicle');
+  const [catalogType, setCatalogType] = useState(location.state?.type === 'part' ? 'part' : 'vehicle');
   const [activeCategory, setActiveCategory] = useState('Все');
   const [searchQuery, setSearchQuery] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
