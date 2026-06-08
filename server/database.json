@@ -45,6 +45,7 @@
       "image": "https://images.unsplash.com/photo-1558981403-c5f91cbba527?q=80&w=400&auto=format&fit=crop",
       "description": "Отличный выбор для начинающих райдеров и тренировок на картодроме."
     },
+
     {
       "id": 101,
       "name": "Карбюратор Nibbi PE19",
@@ -55,6 +56,43 @@
       "compatible_with": ["pitbike"]
     },
     {
+      "id": 116,
+      "name": "Карбюратор Mikuni VM26",
+      "type": "part",
+      "category": "carburetor",
+      "price": 5200,
+      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["pitbike"]
+    },
+    {
+      "id": 117,
+      "name": "Карбюратор Keihin FCR 39",
+      "type": "part",
+      "category": "carburetor",
+      "price": 28500,
+      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["enduro", "cross"]
+    },
+    {
+      "id": 118,
+      "name": "Блок управления Power Commander V",
+      "type": "part",
+      "category": "carburetor",
+      "price": 42000,
+      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport", "road"]
+    },
+    {
+      "id": 119,
+      "name": "Карбюратор Polini 24",
+      "type": "part",
+      "category": "carburetor",
+      "price": 6800,
+      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["pitbike", "cross"]
+    },
+
+    {
       "id": 102,
       "name": "Цепь DID 520 Усиленная",
       "type": "part",
@@ -64,32 +102,51 @@
       "compatible_with": ["enduro", "road", "sport"]
     },
     {
-      "id": 103,
-      "name": "Слики Pirelli Diablo Supercorsa",
+      "id": 120,
+      "name": "Цепь RK 520 XSO",
       "type": "part",
-      "category": "tires",
-      "price": 35000,
-      "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["sport"]
-    },
-    {
-      "id": 104,
-      "name": "Выхлоп Akrapovic Titanium",
-      "type": "part",
-      "category": "exhaust",
-      "price": 120000,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "category": "chain",
+      "price": 8900,
+      "image": "https://images.unsplash.com/photo-1591452107412-df4c62c3e60a?q=80&w=200&auto=format&fit=crop",
       "compatible_with": ["sport", "road"]
     },
     {
-      "id": 105,
-      "name": "Кофры алюминиевые Touratech",
+      "id": 121,
+      "name": "Цепь EK 428 Heavy Duty",
       "type": "part",
-      "category": "luggage",
-      "price": 85000,
-      "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["enduro"]
+      "category": "chain",
+      "price": 3200,
+      "image": "https://images.unsplash.com/photo-1591452107412-df4c62c3e60a?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["pitbike"]
     },
+    {
+      "id": 113,
+      "name": "Звёзды анодированные JT",
+      "type": "part",
+      "category": "sprockets",
+      "price": 6000,
+      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["pitbike", "enduro"]
+    },
+    {
+      "id": 122,
+      "name": "Комплект звёзд и цепи AFAM",
+      "type": "part",
+      "category": "sprockets",
+      "price": 11500,
+      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["pitbike", "enduro", "cross"]
+    },
+    {
+      "id": 123,
+      "name": "Звёзды Supersprox Stealth",
+      "type": "part",
+      "category": "sprockets",
+      "price": 9800,
+      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport", "road"]
+    },
+
     {
       "id": 106,
       "name": "Руль Fatbar Renthal",
@@ -100,49 +157,105 @@
       "compatible_with": ["pitbike", "enduro", "road"]
     },
     {
-      "id": 107,
-      "name": "Защита рычагов Barkbusters",
+      "id": 124,
+      "name": "Руль Pro Taper Contour",
       "type": "part",
-      "category": "protection",
-      "price": 12000,
+      "category": "handlebars",
+      "price": 7800,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["enduro", "pitbike"]
+      "compatible_with": ["pitbike", "enduro", "cross"]
     },
     {
-      "id": 108,
-      "name": "Тормозные колодки Brembo Z04",
+      "id": 125,
+      "name": "Руль Rizoma Stealth",
       "type": "part",
-      "category": "brakes",
-      "price": 15000,
-      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "category": "handlebars",
+      "price": 22000,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": ["sport", "road"]
     },
     {
-      "id": 109,
-      "name": "Ветровое стекло Puig High",
+      "id": 126,
+      "name": "Рычаги ASV F3 Clutch & Brake",
       "type": "part",
-      "category": "body",
-      "price": 18000,
+      "category": "handlebars",
+      "price": 16500,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["enduro", "road"]
+      "compatible_with": ["sport"]
     },
     {
-      "id": 110,
-      "name": "Сиденье Mustang Touring",
+      "id": 127,
+      "name": "Руль Drag Specialties Ape Hanger",
       "type": "part",
-      "category": "seat",
-      "price": 45000,
+      "category": "handlebars",
+      "price": 18500,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["cruiser"]
+    },
+
+    {
+      "id": 104,
+      "name": "Выхлоп Akrapovic Titanium",
+      "type": "part",
+      "category": "exhaust",
+      "price": 120000,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport", "road"]
+    },
+    {
+      "id": 128,
+      "name": "Глушитель FMF Powercore 4",
+      "type": "part",
+      "category": "exhaust",
+      "price": 34500,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["enduro"]
+    },
+    {
+      "id": 129,
+      "name": "Выхлоп Arrow Pro-Race",
+      "type": "part",
+      "category": "exhaust",
+      "price": 98000,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport"]
+    },
+    {
+      "id": 130,
+      "name": "Выхлоп Vance & Hines Twin Slash",
+      "type": "part",
+      "category": "exhaust",
+      "price": 72000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
       "compatible_with": ["cruiser"]
     },
     {
-      "id": 111,
-      "name": "Светодиодная фара Daymaker",
+      "id": 131,
+      "name": "Глушитель Yoshimura RS-9",
       "type": "part",
-      "category": "lighting",
-      "price": 25000,
+      "category": "exhaust",
+      "price": 87000,
       "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["cruiser", "road"]
+      "compatible_with": ["sport", "road"]
+    },
+    {
+      "id": 132,
+      "name": "Выхлоп Pro Circuit T-4",
+      "type": "part",
+      "category": "exhaust",
+      "price": 12800,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["pitbike", "cross"]
+    },
+
+    {
+      "id": 103,
+      "name": "Слики Pirelli Diablo Supercorsa",
+      "type": "part",
+      "category": "tires",
+      "price": 35000,
+      "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport"]
     },
     {
       "id": 112,
@@ -154,14 +267,246 @@
       "compatible_with": ["enduro"]
     },
     {
-      "id": 113,
-      "name": "Звезды анодированные JT",
+      "id": 133,
+      "name": "Шина Mitas C-19 Super Soft",
       "type": "part",
-      "category": "sprockets",
-      "price": 6000,
-      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
-      "compatible_with": ["pitbike", "enduro"]
+      "category": "tires",
+      "price": 19500,
+      "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["enduro", "cross"]
     },
+    {
+      "id": 134,
+      "name": "Шина Michelin Power GP",
+      "type": "part",
+      "category": "tires",
+      "price": 32000,
+      "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport"]
+    },
+    {
+      "id": 135,
+      "name": "Шина Dunlop Sportmax Roadsmart IV",
+      "type": "part",
+      "category": "tires",
+      "price": 24000,
+      "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["road"]
+    },
+    {
+      "id": 136,
+      "name": "Шина Metzeler ME888 Marathon Ultra",
+      "type": "part",
+      "category": "tires",
+      "price": 26500,
+      "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["cruiser"]
+    },
+    {
+      "id": 137,
+      "name": "Шина Kenda K761 Dual Sport",
+      "type": "part",
+      "category": "tires",
+      "price": 4800,
+      "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["pitbike"]
+    },
+    {
+      "id": 138,
+      "name": "Шина Bridgestone Battlax S22",
+      "type": "part",
+      "category": "tires",
+      "price": 29500,
+      "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport", "road"]
+    },
+
+    {
+      "id": 107,
+      "name": "Защита рычагов Barkbusters",
+      "type": "part",
+      "category": "protection",
+      "price": 12000,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["enduro", "pitbike"]
+    },
+    {
+      "id": 139,
+      "name": "Защита двигателя R&G Racing",
+      "type": "part",
+      "category": "protection",
+      "price": 18500,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport", "road"]
+    },
+    {
+      "id": 140,
+      "name": "Защита картера SW-Motech Skid Plate",
+      "type": "part",
+      "category": "protection",
+      "price": 14200,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["enduro"]
+    },
+    {
+      "id": 141,
+      "name": "Слайдеры рамы Puig No Cut",
+      "type": "part",
+      "category": "protection",
+      "price": 21000,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport"]
+    },
+
+    {
+      "id": 108,
+      "name": "Тормозные колодки Brembo Z04",
+      "type": "part",
+      "category": "brakes",
+      "price": 15000,
+      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport", "road"]
+    },
+    {
+      "id": 142,
+      "name": "Тормозные колодки EBC HH Sintered",
+      "type": "part",
+      "category": "brakes",
+      "price": 6800,
+      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["cruiser", "road"]
+    },
+    {
+      "id": 143,
+      "name": "Тормозные диски Braking STX",
+      "type": "part",
+      "category": "brakes",
+      "price": 24000,
+      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport"]
+    },
+    {
+      "id": 144,
+      "name": "Тормозной шланг Goodridge G-Line",
+      "type": "part",
+      "category": "brakes",
+      "price": 5500,
+      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport", "road", "enduro"]
+    },
+
+    {
+      "id": 105,
+      "name": "Кофры алюминиевые Touratech",
+      "type": "part",
+      "category": "luggage",
+      "price": 85000,
+      "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["enduro"]
+    },
+    {
+      "id": 145,
+      "name": "Кофры Givi Trekker Outback",
+      "type": "part",
+      "category": "luggage",
+      "price": 62000,
+      "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["enduro", "road"]
+    },
+    {
+      "id": 146,
+      "name": "Сумка на багажник Harley Premium",
+      "type": "part",
+      "category": "luggage",
+      "price": 38000,
+      "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["cruiser"]
+    },
+
+    {
+      "id": 109,
+      "name": "Ветровое стекло Puig High",
+      "type": "part",
+      "category": "body",
+      "price": 18000,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["enduro", "road"]
+    },
+    {
+      "id": 147,
+      "name": "Ветровое стекло Givi Airflow",
+      "type": "part",
+      "category": "body",
+      "price": 22000,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["road"]
+    },
+    {
+      "id": 148,
+      "name": "Защита радиатора R&G",
+      "type": "part",
+      "category": "body",
+      "price": 9500,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport"]
+    },
+
+    {
+      "id": 110,
+      "name": "Сиденье Mustang Touring",
+      "type": "part",
+      "category": "seat",
+      "price": 45000,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["cruiser"]
+    },
+    {
+      "id": 149,
+      "name": "Сиденье Sargent World Sport",
+      "type": "part",
+      "category": "seat",
+      "price": 52000,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["enduro", "road"]
+    },
+    {
+      "id": 150,
+      "name": "Сиденье Corbin Gunfighter",
+      "type": "part",
+      "category": "seat",
+      "price": 48000,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["cruiser"]
+    },
+
+    {
+      "id": 111,
+      "name": "Светодиодная фара Daymaker",
+      "type": "part",
+      "category": "lighting",
+      "price": 25000,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["cruiser", "road"]
+    },
+    {
+      "id": 151,
+      "name": "Фара LED JW Speaker Adaptive",
+      "type": "part",
+      "category": "lighting",
+      "price": 32000,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["enduro", "road"]
+    },
+    {
+      "id": 152,
+      "name": "Задний фонарь Rizoma Light Unit",
+      "type": "part",
+      "category": "lighting",
+      "price": 14500,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport", "road"]
+    },
+
     {
       "id": 114,
       "name": "Подножки заниженные SW-Motech",
@@ -172,6 +517,25 @@
       "compatible_with": ["enduro", "road"]
     },
     {
+      "id": 153,
+      "name": "Подножки Pro Footpegs Titanium",
+      "type": "part",
+      "category": "footpegs",
+      "price": 8200,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["pitbike", "enduro", "cross"]
+    },
+    {
+      "id": 154,
+      "name": "Подножки MFW Vario",
+      "type": "part",
+      "category": "footpegs",
+      "price": 19500,
+      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport", "road"]
+    },
+
+    {
       "id": 115,
       "name": "Quickshifter Dynojet",
       "type": "part",
@@ -179,6 +543,33 @@
       "price": 32000,
       "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
       "compatible_with": ["sport", "road"]
+    },
+    {
+      "id": 155,
+      "name": "Блок Rapid Bike Evo",
+      "type": "part",
+      "category": "electronics",
+      "price": 38000,
+      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport", "road"]
+    },
+    {
+      "id": 156,
+      "name": "Система TPMS Ride-On",
+      "type": "part",
+      "category": "electronics",
+      "price": 12500,
+      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["enduro", "road", "sport"]
+    },
+    {
+      "id": 157,
+      "name": "Quickshifter HM Plug & Play",
+      "type": "part",
+      "category": "electronics",
+      "price": 27500,
+      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "compatible_with": ["sport"]
     }
   ],
   "assembly_rules": [
