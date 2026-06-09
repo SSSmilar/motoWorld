@@ -7,6 +7,7 @@ import {
   fetchCompatibleTuning,
   formatPrice,
 } from '../services/configuratorService';
+import { formatPriceDeltaLabel } from '../utils/priceFormat';
 import {
   calculateBuildPrice,
   isPartCompatibleWithVehicle,
@@ -17,19 +18,8 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 
 function PartRow({ part, checked, isSelected, onToggle, badge, priceDelta }) {
-  let deltaLabel = '±0';
-  let deltaClass = 'text-gray-500';
-
-  if (isSelected) {
-    deltaLabel = '✓ выбрано';
-    deltaClass = 'text-green-400';
-  } else if (priceDelta > 0) {
-    deltaLabel = `+ ${formatPrice(priceDelta)}`;
-    deltaClass = 'text-accent';
-  } else if (priceDelta < 0) {
-    deltaLabel = `- ${formatPrice(Math.abs(priceDelta))}`;
-    deltaClass = 'text-green-400';
-  }
+  const { label: deltaLabel, className: deltaClass } = formatPriceDeltaLabel(priceDelta, isSelected);
+  const thumb = resolveProductImage(part);
 
   return (
     <label className={`flex items-stretch gap-3 p-3 border cursor-pointer transition-colors ${
@@ -41,8 +31,14 @@ function PartRow({ part, checked, isSelected, onToggle, badge, priceDelta }) {
         onChange={() => onToggle(part.id)}
         className="w-4 h-4 accent-accent shrink-0 mt-1"
       />
-      <div className="w-10 h-10 shrink-0 flex items-center justify-center bg-accent/10 border border-accent/20">
-        <Settings2 className="w-4 h-4 text-accent" />
+      <div className="w-10 h-10 shrink-0 overflow-hidden border border-white/10 bg-black/40">
+        {thumb ? (
+          <img src={thumb} alt="" className="w-full h-full object-cover" />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-accent/10">
+            <Settings2 className="w-4 h-4 text-accent" />
+          </div>
+        )}
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap mb-0.5">

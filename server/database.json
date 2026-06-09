@@ -71,13 +71,13 @@
       "type": "part",
       "category": "Карбюраторы",
       "price": 4500,
-      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "image": "carburetor_nibbi_pe19.jpg",
       "compatible_with": [
         "Питбайк"
       ],
       "brand": "Nibbi",
       "material": "Алюминий, латунь",
-      "description": "Качественная запчасть категории «carburetor» для мотоциклов: pitbike.",
+      "description": "Компактный плоскодроссельный карбюратор для питбайков. Обеспечивает стабильную подачу топливной смеси на средних и высоких оборотах, быстрый отклик газа и простую настройку для трека и тренировок.",
       "stock": 11
     },
     {
@@ -86,13 +86,13 @@
       "type": "part",
       "category": "Карбюраторы",
       "price": 5200,
-      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "image": "carburetor_mikuni_vm26.jpg",
       "compatible_with": [
         "Питбайк"
       ],
       "brand": "Nibbi",
       "material": "Алюминий, латунь",
-      "description": "Качественная запчасть категории «carburetor» для мотоциклов: pitbike.",
+      "description": "Классический карбюратор Mikuni VM26 с надёжной мембранной системой. Отличный баланс тяги и расхода топлива для лёгких мотоциклов и питбайков в смешанном режиме.",
       "stock": 0
     },
     {
@@ -101,14 +101,14 @@
       "type": "part",
       "category": "Карбюраторы",
       "price": 28500,
-      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "image": "carburetor_keihin_fcr39.jpg",
       "compatible_with": [
         "Эндуро",
         "Кросс"
       ],
       "brand": "Nibbi",
       "material": "Алюминий, латунь",
-      "description": "Качественная запчасть категории «carburetor» для мотоциклов: enduro, cross.",
+      "description": "Спортивный карбюратор Keihin FCR 39 с ускорительной pump-system. Рассчитан на агрессивную езду по пересечёнке и гоночные настройки эндуро и кросса.",
       "stock": 0
     },
     {
@@ -117,14 +117,14 @@
       "type": "part",
       "category": "Карбюраторы",
       "price": 42000,
-      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "image": "fuel_controller_powercommander.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
       ],
       "brand": "Nibbi",
       "material": "Алюминий, латунь",
-      "description": "Качественная запчасть категории «carburetor» для мотоциклов: sport, road.",
+      "description": "Электронный блок Power Commander V для точной коррекции топливных карт. Позволяет адаптировать подачу топлива под выхлоп, фильтр и климат без перепрошивки ECU.",
       "stock": 12
     },
     {
@@ -133,14 +133,14 @@
       "type": "part",
       "category": "Карбюраторы",
       "price": 6800,
-      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "image": "carburetor_polini_24.jpg",
       "compatible_with": [
         "Питбайк",
         "Кросс"
       ],
       "brand": "Nibbi",
       "material": "Алюминий, латунь",
-      "description": "Качественная запчасть категории «carburetor» для мотоциклов: pitbike, cross.",
+      "description": "Карбюратор Polini 24 с увеличенным диаметром дросселя. Даёт прирост мощности на верхах и подходит для модифицированных двигателей питбайков.",
       "stock": 4
     },
     {
@@ -149,7 +149,7 @@
       "type": "part",
       "category": "Цепи и звезды",
       "price": 7500,
-      "image": "https://images.unsplash.com/photo-1591452107412-df4c62c3e60a?q=80&w=200&auto=format&fit=crop",
+      "image": "chain_did_520.jpg",
       "compatible_with": [
         "Эндуро",
         "Дорожный",
@@ -158,7 +158,7 @@
       ],
       "brand": "DID",
       "material": "Закалённая сталь",
-      "description": "Качественная запчасть категории «chain» для мотоциклов: enduro, road, sport.",
+      "description": "Усиленная сальниковая цепь DID 520 повышенной прочности. Устойчива к растяжению и износу в тяжёлых условиях эндуро, шоссе и спортивной езды.",
       "stock": 3
     },
     {
@@ -167,14 +167,14 @@
       "type": "part",
       "category": "Цепи и звезды",
       "price": 8900,
-      "image": "https://images.unsplash.com/photo-1591452107412-df4c62c3e60a?q=80&w=200&auto=format&fit=crop",
+      "image": "chain_rk_520xso.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
       ],
       "brand": "DID",
       "material": "Закалённая сталь",
-      "description": "Качественная запчасть категории «chain» для мотоциклов: sport, road.",
+      "description": "Гоночная цепь RK 520 XSO с минимальным трением. Рассчитана на высокие обороты и агрессивное ускорение на треке и спортивных шоссе.",
       "stock": 3
     },
     {
@@ -183,13 +183,13 @@
       "type": "part",
       "category": "Цепи и звезды",
       "price": 3200,
-      "image": "https://images.unsplash.com/photo-1591452107412-df4c62c3e60a?q=80&w=200&auto=format&fit=crop",
+      "image": "chain_ek_428.jpg",
       "compatible_with": [
         "Питбайк"
       ],
       "brand": "DID",
       "material": "Закалённая сталь",
-      "description": "Качественная запчасть категории «chain» для мотоциклов: pitbike.",
+      "description": "Усиленная цепь EK 428 для лёгких мотоциклов и питбайков. Выдерживает частые перегазовки и удары на тренировочных трассах.",
       "stock": 2
     },
     {
@@ -198,14 +198,14 @@
       "type": "part",
       "category": "Цепи и звезды",
       "price": 6000,
-      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "image": "sprockets_jt_anodized.jpg",
       "compatible_with": [
         "Питбайк",
         "Эндуро"
       ],
       "brand": "JT",
       "material": "Анодированный алюминий",
-      "description": "Качественная запчасть категории «sprockets» для мотоциклов: pitbike, enduro.",
+      "description": "Анодированные звёзды JT с точной геометрией зуба. Снижают износ цепи и обеспечивают плавную передачу крутящего момента.",
       "stock": 12
     },
     {
@@ -214,7 +214,7 @@
       "type": "part",
       "category": "Цепи и звезды",
       "price": 11500,
-      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "image": "sprockets_afam_kit.jpg",
       "compatible_with": [
         "Питбайк",
         "Эндуро",
@@ -222,7 +222,7 @@
       ],
       "brand": "JT",
       "material": "Анодированный алюминий",
-      "description": "Качественная запчасть категории «sprockets» для мотоциклов: pitbike, enduro, cross.",
+      "description": "Комплект AFAM «звёзды + цепь» для полной замены трансмиссии. Согласованные компоненты продлевают ресурс и упрощают обслуживание.",
       "stock": 0
     },
     {
@@ -231,14 +231,14 @@
       "type": "part",
       "category": "Цепи и звезды",
       "price": 9800,
-      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "image": "sprockets_supersprox.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
       ],
       "brand": "JT",
       "material": "Анодированный алюминий",
-      "description": "Качественная запчасть категории «sprockets» для мотоциклов: sport, road.",
+      "description": "Звёзды Supersprox Stealth с алюминиевым венцом. Лёгкие, жёсткие, оптимальны для спортивных и дорожных мотоциклов.",
       "stock": 11
     },
     {
@@ -247,7 +247,7 @@
       "type": "part",
       "category": "Рули",
       "price": 9000,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "handlebar_renthal_fatbar.jpg",
       "compatible_with": [
         "Питбайк",
         "Эндуро",
@@ -255,7 +255,7 @@
       ],
       "brand": "Renthal",
       "material": "Хром-молибденовая сталь",
-      "description": "Качественная запчасть категории «handlebars» для мотоциклов: pitbike, enduro, road.",
+      "description": "Руль Renthal Fatbar — эталон среди эндуро и дорожных байков. Широкая зона хвата, высокая жёсткость и предсказуемое управление.",
       "stock": 12
     },
     {
@@ -264,7 +264,7 @@
       "type": "part",
       "category": "Рули",
       "price": 7800,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "handlebar_protaper.jpg",
       "compatible_with": [
         "Питбайк",
         "Эндуро",
@@ -272,7 +272,7 @@
       ],
       "brand": "Renthal",
       "material": "Хром-молибденовая сталь",
-      "description": "Качественная запчасть категории «handlebars» для мотоциклов: pitbike, enduro, cross.",
+      "description": "Руль Pro Taper Contour с эргономичным изгибом. Снижает нагрузку на запястья на бездорожье и в длительных заездах.",
       "stock": 22
     },
     {
@@ -281,14 +281,14 @@
       "type": "part",
       "category": "Рули",
       "price": 22000,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "handlebar_rizoma.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
       ],
       "brand": "Renthal",
       "material": "Хром-молибденовая сталь",
-      "description": "Качественная запчасть категории «handlebars» для мотоциклов: sport, road.",
+      "description": "Руль Rizoma Stealth из авиационного алюминия. Премиальный спортивный дизайн и точная обратная связь на высоких скоростях.",
       "stock": 8
     },
     {
@@ -297,13 +297,13 @@
       "type": "part",
       "category": "Рули",
       "price": 16500,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "levers_asv_f3.jpg",
       "compatible_with": [
         "Спорт"
       ],
       "brand": "Renthal",
       "material": "Хром-молибденовая сталь",
-      "description": "Качественная запчасть категории «handlebars» для мотоциклов: sport.",
+      "description": "Рычаги ASV F3 с системой складывания при падении. Защищают от поломок на треке и обеспечивают короткий ход сцепления и тормоза.",
       "stock": 0
     },
     {
@@ -312,13 +312,13 @@
       "type": "part",
       "category": "Рули",
       "price": 18500,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "handlebar_ape_hanger.jpg",
       "compatible_with": [
         "Круизер"
       ],
       "brand": "Renthal",
       "material": "Хром-молибденовая сталь",
-      "description": "Качественная запчасть категории «handlebars» для мотоциклов: cruiser.",
+      "description": "Ape Hanger от Drag Specialties — классический высокий руль для круизеров. Комфортная посадка и фирменный американский стиль.",
       "stock": 9
     },
     {
@@ -327,14 +327,14 @@
       "type": "part",
       "category": "Выхлоп",
       "price": 120000,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "exhaust_akrapovic_titanium.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
       ],
       "brand": "Akrapovic",
       "material": "Титан / нержавеющая сталь",
-      "description": "Качественная запчасть категории «exhaust» для мотоциклов: sport, road.",
+      "description": "Титановый выхлоп Akrapovic с глубоким спортивным звуком. Снижает массу и улучшает отклик двигателя на верхних оборотах.",
       "stock": 6
     },
     {
@@ -343,13 +343,13 @@
       "type": "part",
       "category": "Выхлоп",
       "price": 34500,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "exhaust_fmf_powercore4.jpg",
       "compatible_with": [
         "Эндуро"
       ],
       "brand": "Akrapovic",
       "material": "Титан / нержавеющая сталь",
-      "description": "Качественная запчасть категории «exhaust» для мотоциклов: enduro.",
+      "description": "Глушитель FMF Powercore 4 для эндуро. Оптимизированная камера сгорания, защита от грязи и уверенная тяга на низах.",
       "stock": 0
     },
     {
@@ -358,13 +358,13 @@
       "type": "part",
       "category": "Выхлоп",
       "price": 98000,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "exhaust_arrow_prorace.jpg",
       "compatible_with": [
         "Спорт"
       ],
       "brand": "Akrapovic",
       "material": "Титан / нержавеющая сталь",
-      "description": "Качественная запчасть категории «exhaust» для мотоциклов: sport.",
+      "description": "Выхлоп Arrow Pro-Race — гоночное решение для спортбайков. Максимальный прирост мощности и агрессивный звук трека.",
       "stock": 0
     },
     {
@@ -373,13 +373,13 @@
       "type": "part",
       "category": "Выхлоп",
       "price": 72000,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "exhaust_vance_hines.jpg",
       "compatible_with": [
         "Круизер"
       ],
       "brand": "Akrapovic",
       "material": "Титан / нержавеющая сталь",
-      "description": "Качественная запчасть категории «exhaust» для мотоциклов: cruiser.",
+      "description": "Vance & Hines Twin Slash для круизеров. Насыщенный низкочастотный звук V-Twin и стильные хромированные наконечники.",
       "stock": 0
     },
     {
@@ -388,14 +388,14 @@
       "type": "part",
       "category": "Выхлоп",
       "price": 87000,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "exhaust_yoshimura_rs9.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
       ],
       "brand": "Akrapovic",
       "material": "Титан / нержавеющая сталь",
-      "description": "Качественная запчасть категории «exhaust» для мотоциклов: sport, road.",
+      "description": "Yoshimura RS-9 — титановый спортивный глушитель с гибридной камерой. Баланс мощности, звука и температурного режима.",
       "stock": 3
     },
     {
@@ -404,14 +404,14 @@
       "type": "part",
       "category": "Выхлоп",
       "price": 12800,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "exhaust_pro_circuit_t4.jpg",
       "compatible_with": [
         "Питбайк",
         "Кросс"
       ],
       "brand": "Akrapovic",
       "material": "Титан / нержавеющая сталь",
-      "description": "Качественная запчасть категории «exhaust» для мотоциклов: pitbike, cross.",
+      "description": "Pro Circuit T-4 для лёгких мотоциклов и кросса. Лёгкий алюминиевый корпус и заметный прирост на средних оборотах.",
       "stock": 3
     },
     {
@@ -420,13 +420,13 @@
       "type": "part",
       "category": "Покрышки",
       "price": 35000,
-      "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
+      "image": "tires_pirelli_supercorsa.jpg",
       "compatible_with": [
         "Спорт"
       ],
       "brand": "Pirelli",
       "material": "Композитная резина",
-      "description": "Качественная запчасть категории «tires» для мотоциклов: sport.",
+      "description": "Слики Pirelli Diablo Supercorsa для трека и спортивного шоссе. Максимальный контакт на наклоне и короткий прогрев.",
       "stock": 8
     },
     {
@@ -435,13 +435,13 @@
       "type": "part",
       "category": "Покрышки",
       "price": 28000,
-      "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
+      "image": "tires_continental_tkc80.jpg",
       "compatible_with": [
         "Эндуро"
       ],
       "brand": "Pirelli",
       "material": "Композитная резина",
-      "description": "Качественная запчасть категории «tires» для мотоциклов: enduro.",
+      "description": "Continental TKC80 — универсальная внедорожная резина. Уверенное сцепление на грунте, камнях и мокром асфальте.",
       "stock": 9
     },
     {
@@ -450,14 +450,14 @@
       "type": "part",
       "category": "Покрышки",
       "price": 19500,
-      "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
+      "image": "tires_mitas_c19.jpg",
       "compatible_with": [
         "Эндуро",
         "Кросс"
       ],
       "brand": "Pirelli",
       "material": "Композитная резина",
-      "description": "Качественная запчасть категории «tires» для мотоциклов: enduro, cross.",
+      "description": "Mitas C-19 Super Soft для мягкого грунта и песка. Экстремально цепкая резина для эндуро и кроссовых трасс.",
       "stock": 0
     },
     {
@@ -466,13 +466,13 @@
       "type": "part",
       "category": "Покрышки",
       "price": 32000,
-      "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
+      "image": "tires_michelin_power_gp.jpg",
       "compatible_with": [
         "Спорт"
       ],
       "brand": "Pirelli",
       "material": "Композитная резина",
-      "description": "Качественная запчасть категории «tires» для мотоциклов: sport.",
+      "description": "Michelin Power GP — спортивная шина нового поколения. Стабильность на высоких скоростях и точная обратная связь.",
       "stock": 8
     },
     {
@@ -481,13 +481,13 @@
       "type": "part",
       "category": "Покрышки",
       "price": 24000,
-      "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
+      "image": "tires_dunlop_roadsmart.jpg",
       "compatible_with": [
         "Дорожный"
       ],
       "brand": "Pirelli",
       "material": "Композитная резина",
-      "description": "Качественная запчасть категории «tires» для мотоциклов: road.",
+      "description": "Dunlop Roadsmart IV для дальних поездок. Увеличенный пробег, комфорт и надёжное сцепление в дожде.",
       "stock": 3
     },
     {
@@ -496,13 +496,13 @@
       "type": "part",
       "category": "Покрышки",
       "price": 26500,
-      "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
+      "image": "tires_metzeler_me888.jpg",
       "compatible_with": [
         "Круизер"
       ],
       "brand": "Pirelli",
       "material": "Композитная резина",
-      "description": "Качественная запчасть категории «tires» для мотоциклов: cruiser.",
+      "description": "Metzeler ME888 Marathon Ultra — touring-резина для круизеров. Долгий ресурс и уверенная тяга на прямых.",
       "stock": 12
     },
     {
@@ -511,13 +511,13 @@
       "type": "part",
       "category": "Покрышки",
       "price": 4800,
-      "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
+      "image": "tires_kenda_k761.jpg",
       "compatible_with": [
         "Питбайк"
       ],
       "brand": "Pirelli",
       "material": "Композитная резина",
-      "description": "Качественная запчасть категории «tires» для мотоциклов: pitbike.",
+      "description": "Kenda K761 Dual Sport для питбайков. Универсальный протектор для смешанного покрытия и тренировок.",
       "stock": 11
     },
     {
@@ -526,14 +526,14 @@
       "type": "part",
       "category": "Покрышки",
       "price": 29500,
-      "image": "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=200&auto=format&fit=crop",
+      "image": "tires_bridgestone_s22.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
       ],
       "brand": "Pirelli",
       "material": "Композитная резина",
-      "description": "Качественная запчасть категории «tires» для мотоциклов: sport, road.",
+      "description": "Bridgestone Battlax S22 — премиальные спортивные слики. Быстрый прогрев и предсказуемое поведение на треке.",
       "stock": 12
     },
     {
@@ -542,7 +542,7 @@
       "type": "part",
       "category": "Защита",
       "price": 12000,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "protection_barkbusters.jpg",
       "compatible_with": [
         "Эндуро",
         "Питбайк",
@@ -550,7 +550,7 @@
       ],
       "brand": "Barkbusters",
       "material": "Алюминий / ABS-пластик",
-      "description": "Качественная запчасть категории «protection» для мотоциклов: enduro, pitbike.",
+      "description": "Защита рычагов Barkbusters из авиационного алюминия. Спасает рукоятки и переключатели при падениях на эндуро.",
       "stock": 8
     },
     {
@@ -559,14 +559,14 @@
       "type": "part",
       "category": "Защита",
       "price": 18500,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "protection_rg_engine.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
       ],
       "brand": "Barkbusters",
       "material": "Алюминий / ABS-пластик",
-      "description": "Качественная запчасть категории «protection» для мотоциклов: sport, road.",
+      "description": "Защита двигателя R&G Racing. Закрывает критичные зоны картера и снижает риск дорогостоящего ремонта.",
       "stock": 6
     },
     {
@@ -575,13 +575,13 @@
       "type": "part",
       "category": "Защита",
       "price": 14200,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "protection_sw_motech_skid.jpg",
       "compatible_with": [
         "Эндуро"
       ],
       "brand": "Barkbusters",
       "material": "Алюминий / ABS-пластик",
-      "description": "Качественная запчасть категории «protection» для мотоциклов: enduro.",
+      "description": "Защита картера SW-Motech из усиленного алюминия. Надёжный барьер от камней и бревен на бездорожье.",
       "stock": 3
     },
     {
@@ -590,13 +590,13 @@
       "type": "part",
       "category": "Защита",
       "price": 21000,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "protection_puig_sliders.jpg",
       "compatible_with": [
         "Спорт"
       ],
       "brand": "Barkbusters",
       "material": "Алюминий / ABS-пластик",
-      "description": "Качественная запчасть категории «protection» для мотоциклов: sport.",
+      "description": "Слайдеры рамы Puig No Cut — защита при падении на асфальте. Распределяют удар и сохраняют пластик и раму.",
       "stock": 7
     },
     {
@@ -605,14 +605,14 @@
       "type": "part",
       "category": "Тормоза",
       "price": 15000,
-      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "image": "brakes_brembo_z04.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
       ],
       "brand": "Brembo",
       "material": "Керамика / сталь",
-      "description": "Качественная запчасть категории «brakes» для мотоциклов: sport, road.",
+      "description": "Колодки Brembo Z04 Racing — гоночный состав для трека. Максимальное торможение при высоких температурах.",
       "stock": 9
     },
     {
@@ -621,14 +621,14 @@
       "type": "part",
       "category": "Тормоза",
       "price": 6800,
-      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "image": "brakes_ebc_hh.jpg",
       "compatible_with": [
         "Круизер",
         "Дорожный"
       ],
       "brand": "Brembo",
       "material": "Керамика / сталь",
-      "description": "Качественная запчасть категории «brakes» для мотоциклов: cruiser, road.",
+      "description": "EBC HH Sintered — спечённые колодки для круизеров и дорожных байков. Стабильный тормозной путь в любую погоду.",
       "stock": 4
     },
     {
@@ -637,13 +637,13 @@
       "type": "part",
       "category": "Тормоза",
       "price": 24000,
-      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "image": "brakes_braking_stx.jpg",
       "compatible_with": [
         "Спорт"
       ],
       "brand": "Brembo",
       "material": "Керамика / сталь",
-      "description": "Качественная запчасть категории «brakes» для мотоциклов: sport.",
+      "description": "Тормозные диски Braking STX с перфорацией. Улучшенное охлаждение и чёткий отклик на спортивных моделях.",
       "stock": 14
     },
     {
@@ -652,7 +652,7 @@
       "type": "part",
       "category": "Тормоза",
       "price": 5500,
-      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "image": "brakes_goodridge_hose.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный",
@@ -660,7 +660,7 @@
       ],
       "brand": "Brembo",
       "material": "Керамика / сталь",
-      "description": "Качественная запчасть категории «brakes» для мотоциклов: sport, road, enduro.",
+      "description": "Металлический шланг Goodridge G-Line. Исключает разбухание под давлением и улучшает модуль тормоза.",
       "stock": 18
     },
     {
@@ -669,13 +669,13 @@
       "type": "part",
       "category": "Багаж",
       "price": 85000,
-      "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?q=80&w=200&auto=format&fit=crop",
+      "image": "luggage_touratech_alu.jpg",
       "compatible_with": [
         "Эндуро"
       ],
       "brand": "Touratech",
       "material": "Алюминий / ABS",
-      "description": "Качественная запчасть категории «luggage» для мотоциклов: enduro.",
+      "description": "Алюминиевые кофры Touratech для дальних путешествий. Вместительные, герметичные и устойчивые к ударам.",
       "stock": 0
     },
     {
@@ -684,14 +684,14 @@
       "type": "part",
       "category": "Багаж",
       "price": 62000,
-      "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?q=80&w=200&auto=format&fit=crop",
+      "image": "luggage_givi_trekker.jpg",
       "compatible_with": [
         "Эндуро",
         "Дорожный"
       ],
       "brand": "Touratech",
       "material": "Алюминий / ABS",
-      "description": "Качественная запчасть категории «luggage» для мотоциклов: enduro, road.",
+      "description": "Givi Trekker Outback — боковые кофры повышенной проходимости. Идеальны для эндуро-туризма и длительных маршрутов.",
       "stock": 14
     },
     {
@@ -700,13 +700,13 @@
       "type": "part",
       "category": "Багаж",
       "price": 38000,
-      "image": "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?q=80&w=200&auto=format&fit=crop",
+      "image": "luggage_harley_saddlebag.jpg",
       "compatible_with": [
         "Круизер"
       ],
       "brand": "Touratech",
       "material": "Алюминий / ABS",
-      "description": "Качественная запчасть категории «luggage» для мотоциклов: cruiser.",
+      "description": "Кожаная сумка на багажник Harley Premium. Классический стиль круизера и практичный объём для поездок.",
       "stock": 14
     },
     {
@@ -715,14 +715,14 @@
       "type": "part",
       "category": "Кузов",
       "price": 18000,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "body_puig_windscreen.jpg",
       "compatible_with": [
         "Эндуро",
         "Дорожный"
       ],
       "brand": "Puig",
       "material": "Поликарбонат / ABS",
-      "description": "Качественная запчасть категории «body» для мотоциклов: enduro, road.",
+      "description": "Ветровое стекло Puig High — комфорт на трассе. Снижает поток воздуха на груди и усталость на дальних дистанциях.",
       "stock": 2
     },
     {
@@ -731,13 +731,13 @@
       "type": "part",
       "category": "Кузов",
       "price": 22000,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "body_givi_airflow.jpg",
       "compatible_with": [
         "Дорожный"
       ],
       "brand": "Puig",
       "material": "Поликарбонат / ABS",
-      "description": "Качественная запчасть категории «body» для мотоциклов: road.",
+      "description": "Givi Airflow с регулировкой высоты. Подстраивается под рост райдера и стиль езды на дорожных моделях.",
       "stock": 12
     },
     {
@@ -746,13 +746,13 @@
       "type": "part",
       "category": "Кузов",
       "price": 9500,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "body_rg_radiator_guard.jpg",
       "compatible_with": [
         "Спорт"
       ],
       "brand": "Puig",
       "material": "Поликарбонат / ABS",
-      "description": "Качественная запчасть категории «body» для мотоциклов: sport.",
+      "description": "Защита радиатора R&G предотвращает пробой от камней. Сохраняет охлаждение на треке и в городе.",
       "stock": 6
     },
     {
@@ -761,13 +761,13 @@
       "type": "part",
       "category": "Сиденья",
       "price": 45000,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "seat_mustang_touring.jpg",
       "compatible_with": [
         "Круизер"
       ],
       "brand": "Mustang",
       "material": "Кожа / гелевый наполнитель",
-      "description": "Качественная запчасть категории «seat» для мотоциклов: cruiser.",
+      "description": "Сиденье Mustang Touring с гелевым наполнителем. Максимальный комфорт на многочасовых поездках по шоссе.",
       "stock": 5
     },
     {
@@ -776,14 +776,14 @@
       "type": "part",
       "category": "Сиденья",
       "price": 52000,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "seat_sargent_worldsport.jpg",
       "compatible_with": [
         "Эндуро",
         "Дорожный"
       ],
       "brand": "Mustang",
       "material": "Кожа / гелевый наполнитель",
-      "description": "Качественная запчасть категории «seat» для мотоциклов: enduro, road.",
+      "description": "Sargent World Sport — спортивно-туристическое сиденье. Поддержка поясницы и плотная посадка для дальних маршрутов.",
       "stock": 4
     },
     {
@@ -792,13 +792,13 @@
       "type": "part",
       "category": "Сиденья",
       "price": 48000,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "seat_corbin_gunfighter.jpg",
       "compatible_with": [
         "Круизер"
       ],
       "brand": "Mustang",
       "material": "Кожа / гелевый наполнитель",
-      "description": "Качественная запчасть категории «seat» для мотоциклов: cruiser.",
+      "description": "Corbin Gunfighter с формованной базой. Улучшает контроль на круизерах и снижает нагрузку на поясницу.",
       "stock": 2
     },
     {
@@ -807,14 +807,14 @@
       "type": "part",
       "category": "Освещение",
       "price": 25000,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "lighting_daymaker_led.jpg",
       "compatible_with": [
         "Круизер",
         "Дорожный"
       ],
       "brand": "Daymaker",
       "material": "LED / поликарбонат",
-      "description": "Качественная запчасть категории «lighting» для мотоциклов: cruiser, road.",
+      "description": "LED-фара Daymaker с мощным световым потоком. Яркий белый свет и современный вид для круизеров.",
       "stock": 3
     },
     {
@@ -823,14 +823,14 @@
       "type": "part",
       "category": "Освещение",
       "price": 32000,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "lighting_jw_speaker.jpg",
       "compatible_with": [
         "Эндуро",
         "Дорожный"
       ],
       "brand": "Daymaker",
       "material": "LED / поликарбонат",
-      "description": "Качественная запчасть категории «lighting» для мотоциклов: enduro, road.",
+      "description": "JW Speaker Adaptive LED — адаптивная фара для эндуро и шоссе. Широкая зона освещения и долгий срок службы.",
       "stock": 14
     },
     {
@@ -839,14 +839,14 @@
       "type": "part",
       "category": "Освещение",
       "price": 14500,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "lighting_rizoma_tail.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
       ],
       "brand": "Daymaker",
       "material": "LED / поликарбонат",
-      "description": "Качественная запчасть категории «lighting» для мотоциклов: sport, road.",
+      "description": "Задний фонарь Rizoma Light Unit — компактный спортивный дизайн. Яркая LED-матрица и чёткая видимость сзади.",
       "stock": 5
     },
     {
@@ -855,14 +855,14 @@
       "type": "part",
       "category": "Подножки",
       "price": 14000,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "footpegs_sw_motech.jpg",
       "compatible_with": [
         "Эндуро",
         "Дорожный"
       ],
       "brand": "SW-Motech",
       "material": "Алюминий / нержавеющая сталь",
-      "description": "Качественная запчасть категории «footpegs» для мотоциклов: enduro, road.",
+      "description": "Подножки SW-Motech заниженные — комфортная посадка на дорожных и эндуро-моделях. Устойчивые к грязи и вибрации.",
       "stock": 0
     },
     {
@@ -871,7 +871,7 @@
       "type": "part",
       "category": "Подножки",
       "price": 8200,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "footpegs_pro_titanium.jpg",
       "compatible_with": [
         "Питбайк",
         "Эндуро",
@@ -879,7 +879,7 @@
       ],
       "brand": "SW-Motech",
       "material": "Алюминий / нержавеющая сталь",
-      "description": "Качественная запчасть категории «footpegs» для мотоциклов: pitbike, enduro, cross.",
+      "description": "Pro Footpegs Titanium — лёгкие подножки для эндуро и кросса. Широкая площадка и надёжное сцепление с обувью.",
       "stock": 0
     },
     {
@@ -888,14 +888,14 @@
       "type": "part",
       "category": "Подножки",
       "price": 19500,
-      "image": "https://images.unsplash.com/photo-1558981420-c532902e58b4?q=80&w=200&auto=format&fit=crop",
+      "image": "footpegs_mfw_vario.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
       ],
       "brand": "SW-Motech",
       "material": "Алюминий / нержавеющая сталь",
-      "description": "Качественная запчасть категории «footpegs» для мотоциклов: sport, road.",
+      "description": "MFW Vario с регулировкой высоты. Позволяет настроить ergonomics под рост и стиль вождения.",
       "stock": 6
     },
     {
@@ -904,14 +904,14 @@
       "type": "part",
       "category": "Электроника",
       "price": 32000,
-      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "image": "electronics_dynojet_quickshifter.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
       ],
       "brand": "Dynojet",
       "material": "Электроника, пластик",
-      "description": "Качественная запчасть категории «electronics» для мотоциклов: sport, road.",
+      "description": "Quickshifter Dynojet для upshift без сцепления. Плавные переключения на треке и агрессивной езде.",
       "stock": 0
     },
     {
@@ -920,14 +920,14 @@
       "type": "part",
       "category": "Электроника",
       "price": 38000,
-      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "image": "electronics_rapid_bike.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
       ],
       "brand": "Dynojet",
       "material": "Электроника, пластик",
-      "description": "Качественная запчасть категории «electronics» для мотоциклов: sport, road.",
+      "description": "Rapid Bike Evo — модуль управления двигателем. Тонкая настройка тяги, quickshifter и диагностика в одном блоке.",
       "stock": 5
     },
     {
@@ -936,7 +936,7 @@
       "type": "part",
       "category": "Электроника",
       "price": 12500,
-      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "image": "electronics_tpms_rideon.jpg",
       "compatible_with": [
         "Эндуро",
         "Дорожный",
@@ -944,7 +944,7 @@
       ],
       "brand": "Dynojet",
       "material": "Электроника, пластик",
-      "description": "Качественная запчасть категории «electronics» для мотоциклов: enduro, road, sport.",
+      "description": "TPMS Ride-On контролирует давление в шинах в реальном времени. Предупреждает о проколе и перегреве на длинных маршрутах.",
       "stock": 18
     },
     {
@@ -953,13 +953,13 @@
       "type": "part",
       "category": "Электроника",
       "price": 27500,
-      "image": "https://images.unsplash.com/photo-1625039129420-562693892534?q=80&w=200&auto=format&fit=crop",
+      "image": "electronics_hm_quickshifter.jpg",
       "compatible_with": [
         "Спорт"
       ],
       "brand": "Dynojet",
       "material": "Электроника, пластик",
-      "description": "Качественная запчасть категории «electronics» для мотоциклов: sport.",
+      "description": "HM Plug & Play Quickshifter — компактное решение для спортбайков. Быстрая установка и точные переключения.",
       "stock": 5
     },
     {

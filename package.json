@@ -8,7 +8,8 @@
     "dev:client": "vite",
     "dev:server": "node server/server.js",
     "build": "vite build",
-    "download-images": "node scripts/download_images.js",
+    "download-media": "node scripts/download_all_media.js",
+    "download-images": "node scripts/download_all_media.js",
     "preview": "vite preview",
     "start": "node server/server.js"
   },

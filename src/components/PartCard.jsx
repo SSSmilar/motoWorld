@@ -4,6 +4,8 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
+import { resolveProductImage } from '../utils/productUtils';
+
 const PartCard = ({ product, isHighlighted }) => {
   const { addToCart, getCartQuantity } = useCart();
   const { user } = useAuth();
@@ -23,6 +25,8 @@ const PartCard = ({ product, isHighlighted }) => {
     setTimeout(() => setIsAdded(false), 2000);
   };
 
+  const thumb = resolveProductImage(product);
+
   return (
     <div
       className={`border border-white/10 bg-black/30 hover:border-accent/40 hover:bg-black/50 transition-all duration-300 p-5 h-full ${
@@ -30,8 +34,14 @@ const PartCard = ({ product, isHighlighted }) => {
       }`}
     >
       <div className="flex gap-4">
-        <div className="w-14 h-14 shrink-0 flex items-center justify-center bg-accent/10 border border-accent/20">
-          <Wrench className="w-6 h-6 text-accent" />
+        <div className="w-14 h-14 shrink-0 overflow-hidden border border-white/10 bg-black/40">
+          {thumb ? (
+            <img src={thumb} alt="" className="w-full h-full object-cover" loading="lazy" />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-accent/10">
+              <Wrench className="w-6 h-6 text-accent" />
+            </div>
+          )}
         </div>
 
         <div className="flex-1 min-w-0">
