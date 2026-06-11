@@ -11,8 +11,11 @@ export function formatPricePlain(rub) {
 export function formatPriceDeltaLabel(delta, isSelected) {
   const value = Math.round(Number(delta) || 0);
 
-  if (isSelected || value === 0) {
+  if (isSelected) {
     return { label: 'Включено', className: 'text-gray-500' };
+  }
+  if (value === 0) {
+    return { label: '0 руб.', className: 'text-gray-500' };
   }
   if (value > 0) {
     return { label: `+ ${formatPricePlain(value)}`, className: 'text-accent' };
