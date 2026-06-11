@@ -120,7 +120,8 @@
       "image": "fuel_controller_powercommander.jpg",
       "compatible_with": [
         "Спорт",
-        "Дорожный"
+        "Дорожный",
+        "Круизер"
       ],
       "brand": "Nibbi",
       "material": "Алюминий, латунь",
@@ -608,7 +609,9 @@
       "image": "brakes_brembo_z04.jpg",
       "compatible_with": [
         "Спорт",
-        "Дорожный"
+        "Дорожный",
+        "Питбайк",
+        "Кросс"
       ],
       "brand": "Brembo",
       "material": "Керамика / сталь",
@@ -1018,91 +1021,39 @@
   "assembly_rules": [
     {
       "vehicle_id": 1,
-      "default_parts": [
-        103,
-        104,
-        108,
-        115
-      ]
+      "default_parts": [118, 138, 108, 102]
     },
     {
       "vehicle_id": 2,
-      "default_parts": [
-        110,
-        111,
-        102
-      ]
+      "default_parts": [118, 136, 142, 102]
     },
     {
       "vehicle_id": 3,
-      "default_parts": [
-        102,
-        105,
-        106,
-        107,
-        112,
-        109,
-        114
-      ]
+      "default_parts": [117, 133, 144, 113]
     },
     {
       "vehicle_id": 4,
-      "default_parts": [
-        102,
-        104,
-        106,
-        108,
-        109,
-        111,
-        114,
-        115
-      ]
+      "default_parts": [118, 135, 142, 102]
     },
     {
       "vehicle_id": 5,
-      "default_parts": [
-        101,
-        106,
-        107,
-        113
-      ]
+      "default_parts": [101, 137, 108, 121]
     },
     {
       "vehicle_id": 6,
-      "default_parts": [
-        132,
-        119,
-        153,
-        107
-      ]
+      "default_parts": [119, 133, 108, 122]
     },
     {
       "vehicle_id": 7,
-      "default_parts": [
-        134,
-        131,
-        143,
-        157
-      ]
+      "default_parts": [118, 138, 143, 102]
     },
     {
       "vehicle_id": 8,
-      "default_parts": [
-        110,
-        130,
-        136,
-        111
-      ]
+      "default_parts": [118, 136, 142, 102]
     },
     {
       "vehicle_id": 9,
-      "default_parts": [
-        112,
-        128,
-        106,
-        107,
-        140
-      ]
+      "default_parts": [117, 133, 144, 113]
     }
   ],
   "orders": []

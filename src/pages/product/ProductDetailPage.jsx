@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, Loader2 } from 'lucide-react';
 import { getProductById } from '../../services/productService';
-import { formatPrice } from '../../services/configuratorService';
+import { formatPrice, fetchVehicleCatalogPrice } from '../../services/configuratorService';
 import { normalizeProduct } from '../../utils/productUtils';
 import VehicleImage from '../../components/VehicleImage';
 
@@ -11,6 +11,7 @@ const ProductDetailPage = () => {
   const navigate = useNavigate();
 
   const [product, setProduct] = useState(null);
+  const [catalogPrice, setCatalogPrice] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -25,6 +26,9 @@ const ProductDetailPage = () => {
           return;
         }
         setProduct(normalized);
+        return fetchVehicleCatalogPrice(normalized)
+          .then(setCatalogPrice)
+          .catch(() => setCatalogPrice(normalized.price));
       })
       .catch((err) => setError(err.message || 'Товар не найден'))
       .finally(() => setLoading(false));
@@ -80,7 +84,7 @@ const ProductDetailPage = () => {
             </div>
 
             <div className="text-4xl font-black text-accent italic mb-8">
-              {formatPrice(product.price)}
+              {formatPrice(catalogPrice ?? product.price)}
             </div>
 
             <Link

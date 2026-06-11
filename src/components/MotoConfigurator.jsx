@@ -198,7 +198,14 @@ const MotoConfigurator = () => {
 
   const priceBreakdown = useMemo(() => {
     if (!selectedVehicle) {
-      return { partsTotal: 0, stockTotal: 0, partsDelta: 0, total: 0, resolvedParts: [] };
+      return {
+        partsTotal: 0,
+        stockTotal: 0,
+        partsDelta: 0,
+        catalogPrice: 0,
+        total: 0,
+        resolvedParts: [],
+      };
     }
     return calculateBuildPrice(selectedVehicle, selectedPartIds, allParts, stockPartIds);
   }, [selectedVehicle, selectedPartIds, allParts, stockPartIds]);
@@ -277,7 +284,9 @@ const MotoConfigurator = () => {
                     <span className="text-[10px] uppercase tracking-wider px-2 py-1 bg-white/5 text-gray-400">
                       {selectedVehicle.category}
                     </span>
-                    <span className="text-accent font-black">{formatPrice(selectedVehicle.price)}</span>
+                    <span className="text-accent font-black">
+                      {formatPrice(priceBreakdown.catalogPrice || selectedVehicle.price)}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -343,7 +352,9 @@ const MotoConfigurator = () => {
             <div className="text-xs text-gray-500 mb-4 space-y-1">
               <div className="flex justify-between">
                 <span>Базовая сборка (со стоком)</span>
-                <span>{selectedVehicle ? formatPrice(selectedVehicle.price) : '—'}</span>
+                <span>
+                  {selectedVehicle ? formatPrice(priceBreakdown.catalogPrice || selectedVehicle.price) : '—'}
+                </span>
               </div>
               {priceBreakdown.partsDelta !== 0 && (
                 <div className="flex justify-between">

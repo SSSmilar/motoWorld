@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Search, Wrench } from 'lucide-react';
 import ProductCard from '../../components/ProductCard';
 import { loadProducts } from '../../services/productService';
+import { fetchVehicleCatalogPrices } from '../../services/configuratorService';
 import { normalizeProduct, getCategoriesForType } from '../../utils/productUtils';
 
 const SkeletonCard = () => (
@@ -22,6 +23,7 @@ const PartSkeleton = () => (
 const CatalogPage = () => {
   const location = useLocation();
   const [products, setProducts] = useState([]);
+  const [catalogPrices, setCatalogPrices] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [catalogType, setCatalogType] = useState(location.state?.type === 'part' ? 'part' : 'vehicle');
@@ -32,7 +34,15 @@ const CatalogPage = () => {
 
   useEffect(() => {
     loadProducts()
-      .then((data) => setProducts(data.map(normalizeProduct)))
+      .then(async (data) => {
+        const normalized = data.map(normalizeProduct);
+        setProducts(normalized);
+        const vehicles = normalized.filter((p) => p.type === 'vehicle');
+        if (vehicles.length > 0) {
+          const prices = await fetchVehicleCatalogPrices(vehicles);
+          setCatalogPrices(prices);
+        }
+      })
       .catch((err) => setError(err.message || 'Не удалось загрузить каталог'))
       .finally(() => setLoading(false));
   }, []);
@@ -163,7 +173,9 @@ const CatalogPage = () => {
                       <div>
                         <h4 className="font-bold uppercase text-sm">{p.title}</h4>
                         <p className="text-[10px] text-gray-500">{p.category}</p>
-                        <p className="text-accent font-black text-xs mt-1">{p.price.toLocaleString()} ₽</p>
+                        <p className="text-accent font-black text-xs mt-1">
+                          {(catalogPrices[p.id] ?? p.price).toLocaleString()} ₽
+                        </p>
                       </div>
                     </div>
                   ))
@@ -204,7 +216,13 @@ const CatalogPage = () => {
         ) : (
           <div className={`grid ${isPartsView ? 'grid-cols-1 md:grid-cols-2 gap-4' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8'}`}>
             {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard
+                key={product.id}
+                product={{
+                  ...product,
+                  catalogPrice: product.type === 'vehicle' ? catalogPrices[product.id] : undefined,
+                }}
+              />
             ))}
           </div>
         )}

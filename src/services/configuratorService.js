@@ -27,6 +27,27 @@ export async function fetchStockParts(vehicleId) {
   return request(`/api/vehicles/${vehicleId}/parts`);
 }
 
+/** Полная цена мотоцикла в базовой комплектации (рама + 4 стоковых детали) */
+export async function fetchVehicleCatalogPrice(vehicle) {
+  const stockParts = await fetchStockParts(vehicle.id);
+  return vehicle.price + stockParts.reduce((sum, p) => sum + p.price, 0);
+}
+
+/** Карта catalogPrice для списка мотоциклов */
+export async function fetchVehicleCatalogPrices(vehicles) {
+  const entries = await Promise.all(
+    vehicles.map(async (v) => {
+      try {
+        const catalogPrice = await fetchVehicleCatalogPrice(v);
+        return [v.id, catalogPrice];
+      } catch {
+        return [v.id, v.price];
+      }
+    })
+  );
+  return Object.fromEntries(entries);
+}
+
 export async function fetchCompatibleTuning(vehicleId) {
   return request(`/api/vehicles/${vehicleId}/compatible-parts`);
 }

@@ -109,26 +109,45 @@ export function computePartPriceDelta(part, activeByCategory) {
   return part.price - current.price;
 }
 
+/** Полная стоимость мотоцикла в базовой комплектации: рама + 4 стоковых детали */
+export function calculateVehicleCatalogPrice(vehicle, stockParts = []) {
+  const stockTotal = sumPartsPrice(stockParts);
+  return {
+    framePrice: vehicle?.price ?? 0,
+    stockTotal,
+    catalogPrice: (vehicle?.price ?? 0) + stockTotal,
+  };
+}
+
 /**
- * Расчёт цены сборки: цена мотоцикла в каталоге уже включает сток,
- * к итогу добавляется только разница относительно стоковой комплектации.
+ * Расчёт цены сборки: vehicle.price — рама, к ней суммируются выбранные запчасти.
+ * Стартовая цена (все стоки) = catalogPrice; тюнинг меняет сумму деталей.
  */
 export function calculateBuildPrice(vehicle, selectedPartIds, allParts, stockPartIds = []) {
   if (!vehicle) {
-    return { partsTotal: 0, stockTotal: 0, partsDelta: 0, total: 0, resolvedParts: [] };
+    return {
+      partsTotal: 0,
+      stockTotal: 0,
+      partsDelta: 0,
+      catalogPrice: 0,
+      total: 0,
+      resolvedParts: [],
+    };
   }
 
   const resolvedParts = resolvePartsByCategory(allParts, selectedPartIds, stockPartIds);
   const partsTotal = sumPartsPrice(resolvedParts);
   const stockTotal = calculateStockPartsTotal(allParts, stockPartIds);
   const partsDelta = partsTotal - stockTotal;
+  const catalogPrice = vehicle.price + stockTotal;
 
   return {
     resolvedParts,
     partsTotal,
     stockTotal,
     partsDelta,
-    total: vehicle.price + partsDelta,
+    catalogPrice,
+    total: vehicle.price + partsTotal,
   };
 }
 

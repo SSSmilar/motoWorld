@@ -34,7 +34,7 @@ const VehicleCard = ({ product, isHighlighted }) => (
       </h3>
       <p className="text-gray-400 text-sm mb-6 flex-grow line-clamp-2">{product.description}</p>
       <div className="text-2xl font-black text-white italic mt-auto">
-        {product.price.toLocaleString()} ₽
+        {(product.catalogPrice ?? product.price).toLocaleString()} ₽
       </div>
     </div>
   </Link>
