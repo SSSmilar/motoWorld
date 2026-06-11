@@ -18,7 +18,8 @@ const VehicleCard = ({ product, isHighlighted }) => (
       isHighlighted ? 'ring-2 ring-accent shadow-[0_0_20px_rgba(255,62,0,0.3)]' : ''
     }`}
   >
-    <VehicleImage src={product.imageUrl} alt={product.title} />
+    <div className="relative">
+      <VehicleImage src={product.imageUrl} alt={product.title} />
       <div className="absolute top-4 left-4 bg-accent text-white text-[10px] font-bold px-2 py-1 uppercase tracking-tighter">
         {product.category}
       </div>
