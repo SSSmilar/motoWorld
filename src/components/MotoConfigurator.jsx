@@ -16,6 +16,7 @@ import {
 } from '../utils/productUtils';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import VehicleImage from './VehicleImage';
 
 function PartRow({ part, checked, isSelected, onToggle, badge, priceDelta }) {
   const { label: deltaLabel, className: deltaClass } = formatPriceDeltaLabel(priceDelta, isSelected);
@@ -245,7 +246,11 @@ const MotoConfigurator = () => {
 
             {selectedVehicle && (
               <div className="overflow-hidden border border-white/10">
-                <img src={selectedVehicle.image} alt={selectedVehicle.name} className="w-full h-48 object-cover" />
+                <VehicleImage
+                  src={selectedVehicle.imageUrl ?? selectedVehicle.image}
+                  alt={selectedVehicle.name}
+                  hover={false}
+                />
                 <div className="p-4 bg-black/30">
                   <h5 className="text-xl font-black uppercase italic mb-2">{selectedVehicle.name}</h5>
                   <p className="text-gray-400 text-sm mb-3">{selectedVehicle.description}</p>

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import PartCard from './PartCard';
+import VehicleImage from './VehicleImage';
 
 const ProductCard = ({ product, isHighlighted }) => {
   if (product.type === 'part') {
@@ -17,12 +18,7 @@ const VehicleCard = ({ product, isHighlighted }) => (
       isHighlighted ? 'ring-2 ring-accent shadow-[0_0_20px_rgba(255,62,0,0.3)]' : ''
     }`}
   >
-    <div className="relative overflow-hidden aspect-[16/9]">
-      <img
-        src={product.imageUrl}
-        alt={product.title}
-        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-      />
+    <VehicleImage src={product.imageUrl} alt={product.title} />
       <div className="absolute top-4 left-4 bg-accent text-white text-[10px] font-bold px-2 py-1 uppercase tracking-tighter">
         {product.category}
       </div>

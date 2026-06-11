@@ -4,6 +4,7 @@ import { ArrowLeft, Loader2 } from 'lucide-react';
 import { getProductById } from '../../services/productService';
 import { formatPrice } from '../../services/configuratorService';
 import { normalizeProduct } from '../../utils/productUtils';
+import VehicleImage from '../../components/VehicleImage';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -59,12 +60,8 @@ const ProductDetailPage = () => {
         </Link>
 
         <div className="glass-card grid lg:grid-cols-2 gap-0 overflow-hidden">
-          <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[480px]">
-            <img
-              src={product.imageUrl}
-              alt={product.name}
-              className="w-full h-full object-cover"
-            />
+          <div className="relative">
+            <VehicleImage src={product.imageUrl} alt={product.name} hover={false} />
             <div className="absolute top-4 left-4 bg-accent text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider">
               {product.category}
             </div>
