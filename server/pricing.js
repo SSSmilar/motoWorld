@@ -41,12 +41,17 @@ export function calculateCustomBuildPrice(vehicleId, selectedPartIds) {
   const stockIds = rule?.default_parts ?? [];
   const resolvedParts = resolvePartsByCategory(selectedPartIds, stockIds);
   const partsTotal = resolvedParts.reduce((sum, p) => sum + p.price, 0);
+  const stockTotal = stockIds.reduce((sum, id) => {
+    const part = findProductById(id);
+    return sum + (part?.price ?? 0);
+  }, 0);
+  const partsDelta = partsTotal - stockTotal;
 
   return {
     vehicle,
     resolvedParts,
     resolvedPartIds: resolvedParts.map((p) => p.id),
-    total: vehicle.price + partsTotal,
+    total: vehicle.price + partsDelta,
   };
 }
 

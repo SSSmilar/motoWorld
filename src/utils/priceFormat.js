@@ -5,20 +5,20 @@ export function formatPricePlain(rub) {
 }
 
 /**
- * Подпись разницы цены относительно текущего выбора в категории.
- * Строго один знак: +, −, или «Включено» / «0 руб.».
+ * Подпись разницы цены относительно текущего активного выбора в категории.
+ * «0 рублей» — только у выбранной детали; у остальных строго + или −.
  */
 export function formatPriceDeltaLabel(delta, isSelected) {
   const value = Math.round(Number(delta) || 0);
 
   if (isSelected) {
-    return { label: 'Включено', className: 'text-gray-500' };
-  }
-  if (value === 0) {
-    return { label: '0 руб.', className: 'text-gray-500' };
+    return { label: '0 рублей', className: 'text-gray-500' };
   }
   if (value > 0) {
     return { label: `+ ${formatPricePlain(value)}`, className: 'text-accent' };
   }
-  return { label: `- ${formatPricePlain(value)}`, className: 'text-green-400' };
+  if (value < 0) {
+    return { label: `- ${formatPricePlain(value)}`, className: 'text-green-400' };
+  }
+  return { label: `+ ${formatPricePlain(0)}`, className: 'text-gray-400' };
 }

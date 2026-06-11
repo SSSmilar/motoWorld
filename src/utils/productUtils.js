@@ -73,17 +73,50 @@ export function resolvePartsByCategory(allParts, selectedPartIds, stockPartIds =
   return Object.values(byCategory);
 }
 
-/** Расчёт цены кастомной сборки на клиенте */
+function sumPartsPrice(parts) {
+  return parts.reduce((sum, p) => sum + p.price, 0);
+}
+
+/** Сумма стоковых запчастей по ID */
+export function calculateStockPartsTotal(allParts, stockPartIds = []) {
+  const stockSet = new Set(stockPartIds);
+  return sumPartsPrice(allParts.filter((p) => stockSet.has(p.id)));
+}
+
+/** Активный компонент в каждой категории (с учётом приоритета тюнинга) */
+export function getActivePartsByCategory(allParts, selectedPartIds, stockPartIds = []) {
+  const resolved = resolvePartsByCategory(allParts, selectedPartIds, stockPartIds);
+  return Object.fromEntries(resolved.map((part) => [part.category, part]));
+}
+
+/** Разница цены детали относительно текущего активного выбора в категории */
+export function computePartPriceDelta(part, activeByCategory) {
+  const current = activeByCategory[part.category];
+  if (!current) return part.price;
+  if (current.id === part.id) return 0;
+  return part.price - current.price;
+}
+
+/**
+ * Расчёт цены сборки: цена мотоцикла в каталоге уже включает сток,
+ * к итогу добавляется только разница относительно стоковой комплектации.
+ */
 export function calculateBuildPrice(vehicle, selectedPartIds, allParts, stockPartIds = []) {
-  if (!vehicle) return { partsTotal: 0, total: 0, resolvedParts: [] };
+  if (!vehicle) {
+    return { partsTotal: 0, stockTotal: 0, partsDelta: 0, total: 0, resolvedParts: [] };
+  }
 
   const resolvedParts = resolvePartsByCategory(allParts, selectedPartIds, stockPartIds);
-  const partsTotal = resolvedParts.reduce((sum, p) => sum + p.price, 0);
+  const partsTotal = sumPartsPrice(resolvedParts);
+  const stockTotal = calculateStockPartsTotal(allParts, stockPartIds);
+  const partsDelta = partsTotal - stockTotal;
 
   return {
     resolvedParts,
     partsTotal,
-    total: vehicle.price + partsTotal,
+    stockTotal,
+    partsDelta,
+    total: vehicle.price + partsDelta,
   };
 }
 

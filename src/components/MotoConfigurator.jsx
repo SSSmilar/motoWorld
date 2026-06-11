@@ -10,6 +10,8 @@ import {
 import { formatPriceDeltaLabel } from '../utils/priceFormat';
 import {
   calculateBuildPrice,
+  computePartPriceDelta,
+  getActivePartsByCategory,
   isPartCompatibleWithVehicle,
   normalizeProduct,
   resolveProductImage,
@@ -169,29 +171,16 @@ const MotoConfigurator = () => {
     return calculateBuildPrice(selectedVehicle, selectedPartIds, allParts, stockPartIds);
   }, [selectedVehicle, selectedPartIds, allParts, stockPartIds]);
 
-  /** Текущий выбранный узел в каждой категории */
-  const selectedByCategory = useMemo(() => {
-    const map = {};
-    for (const partId of selectedPartIds) {
-      const part = allParts.find((p) => p.id === partId);
-      if (part) map[part.category] = part;
-    }
-    return map;
-  }, [selectedPartIds, allParts]);
-
-  const getPartPriceDelta = (part) => {
-    const current = selectedByCategory[part.category];
-    if (!current) return 0;
-    return part.price - current.price;
-  };
-
-  const isPartSelectedInCategory = (part) =>
-    selectedByCategory[part.category]?.id === part.id;
-
-  const stockTotal = useMemo(
-    () => stockParts.reduce((s, p) => s + p.price, 0),
-    [stockParts]
+  /** Активный компонент в каждой категории (из стейта, с приоритетом тюнинга) */
+  const activeByCategory = useMemo(
+    () => getActivePartsByCategory(allParts, selectedPartIds, stockPartIds),
+    [allParts, selectedPartIds, stockPartIds]
   );
+
+  const getPartPriceDelta = (part) => computePartPriceDelta(part, activeByCategory);
+
+  const isPartActiveInCategory = (part) =>
+    activeByCategory[part.category]?.id === part.id;
 
   const handleAddToCart = () => {
     if (!user) {
@@ -285,7 +274,7 @@ const MotoConfigurator = () => {
                         key={part.id}
                         part={part}
                         checked={selectedPartIds.includes(part.id)}
-                        isSelected={isPartSelectedInCategory(part)}
+                        isSelected={isPartActiveInCategory(part)}
                         onToggle={handlePartToggle}
                         badge="Сток"
                         priceDelta={getPartPriceDelta(part)}
@@ -306,7 +295,7 @@ const MotoConfigurator = () => {
                           key={part.id}
                           part={part}
                           checked={selectedPartIds.includes(part.id)}
-                          isSelected={isPartSelectedInCategory(part)}
+                          isSelected={isPartActiveInCategory(part)}
                           onToggle={handlePartToggle}
                           badge="Тюнинг"
                           priceDelta={getPartPriceDelta(part)}
@@ -325,17 +314,18 @@ const MotoConfigurator = () => {
 
             <div className="text-xs text-gray-500 mb-4 space-y-1">
               <div className="flex justify-between">
-                <span>Мотоцикл</span>
+                <span>Базовая сборка (со стоком)</span>
                 <span>{selectedVehicle ? formatPrice(selectedVehicle.price) : '—'}</span>
               </div>
-              <div className="flex justify-between">
-                <span>Стоковые запчасти</span>
-                <span>{formatPrice(stockTotal)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Выбрано ({priceBreakdown.resolvedParts.length})</span>
-                <span>{formatPrice(priceBreakdown.partsTotal)}</span>
-              </div>
+              {priceBreakdown.partsDelta !== 0 && (
+                <div className="flex justify-between">
+                  <span>Изменения от стока</span>
+                  <span className={priceBreakdown.partsDelta > 0 ? 'text-accent' : 'text-green-400'}>
+                    {priceBreakdown.partsDelta > 0 ? '+' : '−'}
+                    {formatPrice(Math.abs(priceBreakdown.partsDelta))}
+                  </span>
+                </div>
+              )}
             </div>
 
             {validationError && (
