@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { ShoppingCart, Check, Wrench } from 'lucide-react';
+import { ShoppingCart, Check } from 'lucide-react';
+import PartCategoryIcon from './PartCategoryIcon';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-
-import { resolveProductImage } from '../utils/productUtils';
 
 const PartCard = ({ product, isHighlighted }) => {
   const { addToCart, getCartQuantity } = useCart();
@@ -25,8 +24,6 @@ const PartCard = ({ product, isHighlighted }) => {
     setTimeout(() => setIsAdded(false), 2000);
   };
 
-  const thumb = resolveProductImage(product);
-
   return (
     <div
       className={`border border-white/10 bg-black/30 hover:border-accent/40 hover:bg-black/50 transition-all duration-300 p-5 h-full ${
@@ -34,15 +31,7 @@ const PartCard = ({ product, isHighlighted }) => {
       }`}
     >
       <div className="flex gap-4">
-        <div className="w-14 h-14 shrink-0 overflow-hidden border border-white/10 bg-black/40">
-          {thumb ? (
-            <img src={thumb} alt="" className="w-full h-full object-cover" loading="lazy" />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-accent/10">
-              <Wrench className="w-6 h-6 text-accent" />
-            </div>
-          )}
-        </div>
+        <PartCategoryIcon category={product.category} size="md" />
 
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2 mb-1">

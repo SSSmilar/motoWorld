@@ -71,7 +71,6 @@
       "type": "part",
       "category": "Карбюраторы",
       "price": 4500,
-      "image": "carburetor_nibbi_pe19.jpg",
       "compatible_with": [
         "Питбайк"
       ],
@@ -86,7 +85,6 @@
       "type": "part",
       "category": "Карбюраторы",
       "price": 5200,
-      "image": "carburetor_mikuni_vm26.jpg",
       "compatible_with": [
         "Питбайк"
       ],
@@ -101,7 +99,6 @@
       "type": "part",
       "category": "Карбюраторы",
       "price": 28500,
-      "image": "carburetor_keihin_fcr39.jpg",
       "compatible_with": [
         "Эндуро",
         "Кросс"
@@ -117,7 +114,6 @@
       "type": "part",
       "category": "Карбюраторы",
       "price": 42000,
-      "image": "fuel_controller_powercommander.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный",
@@ -134,7 +130,6 @@
       "type": "part",
       "category": "Карбюраторы",
       "price": 6800,
-      "image": "carburetor_polini_24.jpg",
       "compatible_with": [
         "Питбайк",
         "Кросс"
@@ -150,7 +145,6 @@
       "type": "part",
       "category": "Цепи и звезды",
       "price": 7500,
-      "image": "chain_did_520.jpg",
       "compatible_with": [
         "Эндуро",
         "Дорожный",
@@ -168,7 +162,6 @@
       "type": "part",
       "category": "Цепи и звезды",
       "price": 8900,
-      "image": "chain_rk_520xso.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
@@ -184,7 +177,6 @@
       "type": "part",
       "category": "Цепи и звезды",
       "price": 3200,
-      "image": "chain_ek_428.jpg",
       "compatible_with": [
         "Питбайк"
       ],
@@ -199,7 +191,6 @@
       "type": "part",
       "category": "Цепи и звезды",
       "price": 6000,
-      "image": "sprockets_jt_anodized.jpg",
       "compatible_with": [
         "Питбайк",
         "Эндуро"
@@ -215,7 +206,6 @@
       "type": "part",
       "category": "Цепи и звезды",
       "price": 11500,
-      "image": "sprockets_afam_kit.jpg",
       "compatible_with": [
         "Питбайк",
         "Эндуро",
@@ -232,7 +222,6 @@
       "type": "part",
       "category": "Цепи и звезды",
       "price": 9800,
-      "image": "sprockets_supersprox.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
@@ -248,7 +237,6 @@
       "type": "part",
       "category": "Рули",
       "price": 9000,
-      "image": "handlebar_renthal_fatbar.jpg",
       "compatible_with": [
         "Питбайк",
         "Эндуро",
@@ -265,7 +253,6 @@
       "type": "part",
       "category": "Рули",
       "price": 7800,
-      "image": "handlebar_protaper.jpg",
       "compatible_with": [
         "Питбайк",
         "Эндуро",
@@ -282,7 +269,6 @@
       "type": "part",
       "category": "Рули",
       "price": 22000,
-      "image": "handlebar_rizoma.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
@@ -298,7 +284,6 @@
       "type": "part",
       "category": "Рули",
       "price": 16500,
-      "image": "levers_asv_f3.jpg",
       "compatible_with": [
         "Спорт"
       ],
@@ -313,7 +298,6 @@
       "type": "part",
       "category": "Рули",
       "price": 18500,
-      "image": "handlebar_ape_hanger.jpg",
       "compatible_with": [
         "Круизер"
       ],
@@ -328,7 +312,6 @@
       "type": "part",
       "category": "Выхлоп",
       "price": 120000,
-      "image": "exhaust_akrapovic_titanium.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
@@ -344,7 +327,6 @@
       "type": "part",
       "category": "Выхлоп",
       "price": 34500,
-      "image": "exhaust_fmf_powercore4.jpg",
       "compatible_with": [
         "Эндуро"
       ],
@@ -359,7 +341,6 @@
       "type": "part",
       "category": "Выхлоп",
       "price": 98000,
-      "image": "exhaust_arrow_prorace.jpg",
       "compatible_with": [
         "Спорт"
       ],
@@ -374,7 +355,6 @@
       "type": "part",
       "category": "Выхлоп",
       "price": 72000,
-      "image": "exhaust_vance_hines.jpg",
       "compatible_with": [
         "Круизер"
       ],
@@ -389,7 +369,6 @@
       "type": "part",
       "category": "Выхлоп",
       "price": 87000,
-      "image": "exhaust_yoshimura_rs9.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
@@ -405,7 +384,6 @@
       "type": "part",
       "category": "Выхлоп",
       "price": 12800,
-      "image": "exhaust_pro_circuit_t4.jpg",
       "compatible_with": [
         "Питбайк",
         "Кросс"
@@ -421,7 +399,6 @@
       "type": "part",
       "category": "Покрышки",
       "price": 35000,
-      "image": "tires_pirelli_supercorsa.jpg",
       "compatible_with": [
         "Спорт"
       ],
@@ -436,7 +413,6 @@
       "type": "part",
       "category": "Покрышки",
       "price": 28000,
-      "image": "tires_continental_tkc80.jpg",
       "compatible_with": [
         "Эндуро"
       ],
@@ -451,7 +427,6 @@
       "type": "part",
       "category": "Покрышки",
       "price": 19500,
-      "image": "tires_mitas_c19.jpg",
       "compatible_with": [
         "Эндуро",
         "Кросс"
@@ -467,7 +442,6 @@
       "type": "part",
       "category": "Покрышки",
       "price": 32000,
-      "image": "tires_michelin_power_gp.jpg",
       "compatible_with": [
         "Спорт"
       ],
@@ -482,7 +456,6 @@
       "type": "part",
       "category": "Покрышки",
       "price": 24000,
-      "image": "tires_dunlop_roadsmart.jpg",
       "compatible_with": [
         "Дорожный"
       ],
@@ -497,7 +470,6 @@
       "type": "part",
       "category": "Покрышки",
       "price": 26500,
-      "image": "tires_metzeler_me888.jpg",
       "compatible_with": [
         "Круизер"
       ],
@@ -512,7 +484,6 @@
       "type": "part",
       "category": "Покрышки",
       "price": 4800,
-      "image": "tires_kenda_k761.jpg",
       "compatible_with": [
         "Питбайк"
       ],
@@ -527,7 +498,6 @@
       "type": "part",
       "category": "Покрышки",
       "price": 29500,
-      "image": "tires_bridgestone_s22.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
@@ -543,7 +513,6 @@
       "type": "part",
       "category": "Защита",
       "price": 12000,
-      "image": "protection_barkbusters.jpg",
       "compatible_with": [
         "Эндуро",
         "Питбайк",
@@ -560,7 +529,6 @@
       "type": "part",
       "category": "Защита",
       "price": 18500,
-      "image": "protection_rg_engine.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
@@ -576,7 +544,6 @@
       "type": "part",
       "category": "Защита",
       "price": 14200,
-      "image": "protection_sw_motech_skid.jpg",
       "compatible_with": [
         "Эндуро"
       ],
@@ -591,7 +558,6 @@
       "type": "part",
       "category": "Защита",
       "price": 21000,
-      "image": "protection_puig_sliders.jpg",
       "compatible_with": [
         "Спорт"
       ],
@@ -606,7 +572,6 @@
       "type": "part",
       "category": "Тормоза",
       "price": 15000,
-      "image": "brakes_brembo_z04.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный",
@@ -624,7 +589,6 @@
       "type": "part",
       "category": "Тормоза",
       "price": 6800,
-      "image": "brakes_ebc_hh.jpg",
       "compatible_with": [
         "Круизер",
         "Дорожный"
@@ -640,7 +604,6 @@
       "type": "part",
       "category": "Тормоза",
       "price": 24000,
-      "image": "brakes_braking_stx.jpg",
       "compatible_with": [
         "Спорт"
       ],
@@ -655,7 +618,6 @@
       "type": "part",
       "category": "Тормоза",
       "price": 5500,
-      "image": "brakes_goodridge_hose.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный",
@@ -672,7 +634,6 @@
       "type": "part",
       "category": "Багаж",
       "price": 85000,
-      "image": "luggage_touratech_alu.jpg",
       "compatible_with": [
         "Эндуро"
       ],
@@ -687,7 +648,6 @@
       "type": "part",
       "category": "Багаж",
       "price": 62000,
-      "image": "luggage_givi_trekker.jpg",
       "compatible_with": [
         "Эндуро",
         "Дорожный"
@@ -703,7 +663,6 @@
       "type": "part",
       "category": "Багаж",
       "price": 38000,
-      "image": "luggage_harley_saddlebag.jpg",
       "compatible_with": [
         "Круизер"
       ],
@@ -718,7 +677,6 @@
       "type": "part",
       "category": "Кузов",
       "price": 18000,
-      "image": "body_puig_windscreen.jpg",
       "compatible_with": [
         "Эндуро",
         "Дорожный"
@@ -734,7 +692,6 @@
       "type": "part",
       "category": "Кузов",
       "price": 22000,
-      "image": "body_givi_airflow.jpg",
       "compatible_with": [
         "Дорожный"
       ],
@@ -749,7 +706,6 @@
       "type": "part",
       "category": "Кузов",
       "price": 9500,
-      "image": "body_rg_radiator_guard.jpg",
       "compatible_with": [
         "Спорт"
       ],
@@ -764,7 +720,6 @@
       "type": "part",
       "category": "Сиденья",
       "price": 45000,
-      "image": "seat_mustang_touring.jpg",
       "compatible_with": [
         "Круизер"
       ],
@@ -779,7 +734,6 @@
       "type": "part",
       "category": "Сиденья",
       "price": 52000,
-      "image": "seat_sargent_worldsport.jpg",
       "compatible_with": [
         "Эндуро",
         "Дорожный"
@@ -795,7 +749,6 @@
       "type": "part",
       "category": "Сиденья",
       "price": 48000,
-      "image": "seat_corbin_gunfighter.jpg",
       "compatible_with": [
         "Круизер"
       ],
@@ -810,7 +763,6 @@
       "type": "part",
       "category": "Освещение",
       "price": 25000,
-      "image": "lighting_daymaker_led.jpg",
       "compatible_with": [
         "Круизер",
         "Дорожный"
@@ -826,7 +778,6 @@
       "type": "part",
       "category": "Освещение",
       "price": 32000,
-      "image": "lighting_jw_speaker.jpg",
       "compatible_with": [
         "Эндуро",
         "Дорожный"
@@ -842,7 +793,6 @@
       "type": "part",
       "category": "Освещение",
       "price": 14500,
-      "image": "lighting_rizoma_tail.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
@@ -858,7 +808,6 @@
       "type": "part",
       "category": "Подножки",
       "price": 14000,
-      "image": "footpegs_sw_motech.jpg",
       "compatible_with": [
         "Эндуро",
         "Дорожный"
@@ -874,7 +823,6 @@
       "type": "part",
       "category": "Подножки",
       "price": 8200,
-      "image": "footpegs_pro_titanium.jpg",
       "compatible_with": [
         "Питбайк",
         "Эндуро",
@@ -891,7 +839,6 @@
       "type": "part",
       "category": "Подножки",
       "price": 19500,
-      "image": "footpegs_mfw_vario.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
@@ -907,7 +854,6 @@
       "type": "part",
       "category": "Электроника",
       "price": 32000,
-      "image": "electronics_dynojet_quickshifter.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
@@ -923,7 +869,6 @@
       "type": "part",
       "category": "Электроника",
       "price": 38000,
-      "image": "electronics_rapid_bike.jpg",
       "compatible_with": [
         "Спорт",
         "Дорожный"
@@ -939,7 +884,6 @@
       "type": "part",
       "category": "Электроника",
       "price": 12500,
-      "image": "electronics_tpms_rideon.jpg",
       "compatible_with": [
         "Эндуро",
         "Дорожный",
@@ -956,7 +900,6 @@
       "type": "part",
       "category": "Электроника",
       "price": 27500,
-      "image": "electronics_hm_quickshifter.jpg",
       "compatible_with": [
         "Спорт"
       ],
@@ -1021,39 +964,84 @@
   "assembly_rules": [
     {
       "vehicle_id": 1,
-      "default_parts": [118, 138, 108, 102]
+      "default_parts": [
+        118,
+        138,
+        108,
+        102
+      ]
     },
     {
       "vehicle_id": 2,
-      "default_parts": [118, 136, 142, 102]
+      "default_parts": [
+        118,
+        136,
+        142,
+        102
+      ]
     },
     {
       "vehicle_id": 3,
-      "default_parts": [117, 133, 144, 113]
+      "default_parts": [
+        117,
+        133,
+        144,
+        113
+      ]
     },
     {
       "vehicle_id": 4,
-      "default_parts": [118, 135, 142, 102]
+      "default_parts": [
+        118,
+        135,
+        142,
+        102
+      ]
     },
     {
       "vehicle_id": 5,
-      "default_parts": [101, 137, 108, 121]
+      "default_parts": [
+        101,
+        137,
+        108,
+        121
+      ]
     },
     {
       "vehicle_id": 6,
-      "default_parts": [119, 133, 108, 122]
+      "default_parts": [
+        119,
+        133,
+        108,
+        122
+      ]
     },
     {
       "vehicle_id": 7,
-      "default_parts": [118, 138, 143, 102]
+      "default_parts": [
+        118,
+        138,
+        143,
+        102
+      ]
     },
     {
       "vehicle_id": 8,
-      "default_parts": [118, 136, 142, 102]
+      "default_parts": [
+        118,
+        136,
+        142,
+        102
+      ]
     },
     {
       "vehicle_id": 9,
-      "default_parts": [117, 133, 144, 113]
+      "default_parts": [
+        117,
+        133,
+        144,
+        113
+      ]
     }
   ],
   "orders": []

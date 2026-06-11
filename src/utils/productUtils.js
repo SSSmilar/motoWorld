@@ -9,14 +9,15 @@ export function resolveProductImage(p) {
 /** Нормализация товара из API к единому формату фронтенда */
 export function normalizeProduct(p) {
   if (!p) return null;
-  const imageUrl = resolveProductImage(p);
+  const isVehicle = p.type === 'vehicle';
+  const imageUrl = isVehicle ? resolveProductImage(p) : null;
   return {
     ...p,
     title: p.name ?? p.title,
     name: p.name ?? p.title,
     imageUrl,
     image: imageUrl,
-    stock: p.stock ?? (p.type === 'vehicle' ? 3 : 15),
+    stock: p.stock ?? (isVehicle ? 3 : 15),
   };
 }
 

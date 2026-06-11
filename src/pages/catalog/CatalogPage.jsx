@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Search, Wrench } from 'lucide-react';
+import { Search } from 'lucide-react';
 import ProductCard from '../../components/ProductCard';
+import PartCategoryIcon from '../../components/PartCategoryIcon';
 import { loadProducts } from '../../services/productService';
 import { fetchVehicleCatalogPrices } from '../../services/configuratorService';
 import { normalizeProduct, getCategoriesForType } from '../../utils/productUtils';
@@ -164,9 +165,7 @@ const CatalogPage = () => {
                       className="flex items-center gap-4 p-4 hover:bg-white/5 cursor-pointer border-b border-white/5"
                     >
                       {isPartsView ? (
-                        <div className="w-10 h-10 flex items-center justify-center bg-accent/10 border border-accent/20 shrink-0">
-                          <Wrench size={16} className="text-accent" />
-                        </div>
+                        <PartCategoryIcon category={p.category} size="sm" />
                       ) : (
                         <img src={p.imageUrl} alt={p.title} className="w-16 h-10 object-cover shrink-0" />
                       )}

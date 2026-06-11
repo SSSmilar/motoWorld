@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { CheckCircle, Wrench, Sparkles, Loader2, ShoppingCart, Settings2 } from 'lucide-react';
+import { CheckCircle, Wrench, Sparkles, Loader2, ShoppingCart } from 'lucide-react';
+import PartCategoryIcon from './PartCategoryIcon';
 import {
   fetchProducts,
   fetchStockParts,
@@ -23,7 +24,6 @@ import VehicleImage from './VehicleImage';
 
 function PartRow({ part, isSelected, onSelect, badge, priceDelta }) {
   const { label: deltaLabel, className: deltaClass } = formatPriceDeltaLabel(priceDelta, isSelected);
-  const thumb = resolveProductImage(part);
 
   return (
     <label
@@ -37,15 +37,7 @@ function PartRow({ part, isSelected, onSelect, badge, priceDelta }) {
         onChange={() => onSelect(part.id)}
         className="w-4 h-4 accent-accent shrink-0 mt-1 rounded-sm"
       />
-      <div className="w-10 h-10 shrink-0 overflow-hidden border border-white/10 bg-black/40">
-        {thumb ? (
-          <img src={thumb} alt="" className="w-full h-full object-cover" />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-accent/10">
-            <Settings2 className="w-4 h-4 text-accent" />
-          </div>
-        )}
-      </div>
+      <PartCategoryIcon category={part.category} size="sm" />
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap mb-0.5">
           <span className="text-sm font-medium">{part.name}</span>
