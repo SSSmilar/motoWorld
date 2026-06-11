@@ -30,6 +30,18 @@ export const VEHICLE_CATEGORIES = [
   'Кросс',
 ];
 
+/** Основные категории — без них мотоцикл не может быть собран */
+export const ESSENTIAL_PART_CATEGORIES = [
+  'Карбюраторы',
+  'Покрышки',
+  'Тормоза',
+  'Цепи и звезды',
+];
+
+export function isEssentialPartCategory(category) {
+  return ESSENTIAL_PART_CATEGORIES.includes(category);
+}
+
 /** Категории запчастей (для фильтров каталога) */
 export const PART_CATEGORIES = [
   'Карбюраторы',

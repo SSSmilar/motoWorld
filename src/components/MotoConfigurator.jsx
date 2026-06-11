@@ -12,6 +12,7 @@ import {
   calculateBuildPrice,
   computePartPriceDelta,
   getActivePartsByCategory,
+  isEssentialPartCategory,
   isPartCompatibleWithVehicle,
   normalizeProduct,
   resolveProductImage,
@@ -20,19 +21,32 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import VehicleImage from './VehicleImage';
 
-function PartRow({ part, checked, isSelected, onToggle, badge, priceDelta }) {
+function PartRow({
+  part,
+  checked,
+  isSelected,
+  onSelect,
+  badge,
+  priceDelta,
+  inputType = 'checkbox',
+  radioGroupName,
+}) {
   const { label: deltaLabel, className: deltaClass } = formatPriceDeltaLabel(priceDelta, isSelected);
   const thumb = resolveProductImage(part);
+  const isRadio = inputType === 'radio';
 
   return (
-    <label className={`flex items-stretch gap-3 p-3 border cursor-pointer transition-colors ${
-      isSelected ? 'border-accent/50 bg-accent/5' : 'border-white/10 bg-black/30 hover:border-accent/30'
-    }`}>
+    <label
+      className={`flex items-stretch gap-3 p-3 border cursor-pointer transition-colors ${
+        isSelected ? 'border-accent/50 bg-accent/5' : 'border-white/10 bg-black/30 hover:border-accent/30'
+      }`}
+    >
       <input
-        type="checkbox"
-        checked={checked}
-        onChange={() => onToggle(part.id)}
-        className="w-4 h-4 accent-accent shrink-0 mt-1"
+        type={inputType}
+        name={radioGroupName}
+        checked={isRadio ? isSelected : checked}
+        onChange={() => onSelect(part.id)}
+        className={`${isRadio ? 'rounded-full' : ''} w-4 h-4 accent-accent shrink-0 mt-1`}
       />
       <div className="w-10 h-10 shrink-0 overflow-hidden border border-white/10 bg-black/40">
         {thumb ? (
@@ -81,6 +95,11 @@ const MotoConfigurator = () => {
   const [loading, setLoading] = useState(true);
   const [loadingParts, setLoadingParts] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
+
+  const stockByCategory = useMemo(
+    () => Object.fromEntries(stockParts.map((p) => [p.category, p])),
+    [stockParts]
+  );
 
   const loadVehicleParts = useCallback(async (vehicle) => {
     if (!vehicle) return;
@@ -138,40 +157,63 @@ const MotoConfigurator = () => {
     loadVehicleParts(vehicle);
   };
 
-  const handlePartToggle = (partId) => {
+  const replaceCategorySelection = (prev, part) => {
+    const sameCategoryIds = allParts
+      .filter((p) => p.category === part.category && p.id !== part.id)
+      .map((p) => p.id);
+    return [...prev.filter((id) => !sameCategoryIds.includes(id)), part.id];
+  };
+
+  const revertEssentialCategoryToStock = (prev, category) => {
+    const stockPart = stockByCategory[category];
+    if (!stockPart) return prev;
+
+    const sameCategoryIds = allParts
+      .filter((p) => p.category === category)
+      .map((p) => p.id);
+    return [...prev.filter((id) => !sameCategoryIds.includes(id)), stockPart.id];
+  };
+
+  const handlePartSelect = (partId) => {
     const part = allParts.find((p) => p.id === partId);
     if (!part || !selectedVehicle) return;
 
-    const isAdding = !selectedPartIds.includes(partId);
-
-    if (isAdding && !isPartCompatibleWithVehicle(part, selectedVehicle)) {
+    if (!isPartCompatibleWithVehicle(part, selectedVehicle)) {
       setValidationError(
         `Запчасть «${part.name}» не совместима с типом «${selectedVehicle.category}»`
       );
       return;
     }
 
-    setSelectedPartIds((prev) => {
-      let next = isAdding ? [...prev, partId] : prev.filter((id) => id !== partId);
+    const essential = isEssentialPartCategory(part.category);
 
-      if (isAdding) {
-        const sameCategoryIds = allParts
-          .filter((p) => p.category === part.category && p.id !== partId)
-          .map((p) => p.id);
-        next = next.filter((id) => !sameCategoryIds.includes(id));
+    setSelectedPartIds((prev) => {
+      const active = getActivePartsByCategory(allParts, prev, stockPartIds);
+      const isCurrentlySelected = active[part.category]?.id === part.id;
+
+      if (essential) {
+        if (isCurrentlySelected) {
+          if (stockPartIds.includes(partId)) return prev;
+          return revertEssentialCategoryToStock(prev, part.category);
+        }
+        return replaceCategorySelection(prev, part);
       }
 
-      return next;
+      const isAdding = !prev.includes(partId);
+      if (isAdding) return replaceCategorySelection(prev, part);
+
+      return prev.filter((id) => id !== partId);
     });
     setValidationError('');
   };
 
   const priceBreakdown = useMemo(() => {
-    if (!selectedVehicle) return { partsTotal: 0, total: 0, resolvedParts: [] };
+    if (!selectedVehicle) {
+      return { partsTotal: 0, stockTotal: 0, partsDelta: 0, total: 0, resolvedParts: [] };
+    }
     return calculateBuildPrice(selectedVehicle, selectedPartIds, allParts, stockPartIds);
   }, [selectedVehicle, selectedPartIds, allParts, stockPartIds]);
 
-  /** Активный компонент в каждой категории (из стейта, с приоритетом тюнинга) */
   const activeByCategory = useMemo(
     () => getActivePartsByCategory(allParts, selectedPartIds, stockPartIds),
     [allParts, selectedPartIds, stockPartIds]
@@ -179,8 +221,20 @@ const MotoConfigurator = () => {
 
   const getPartPriceDelta = (part) => computePartPriceDelta(part, activeByCategory);
 
-  const isPartActiveInCategory = (part) =>
-    activeByCategory[part.category]?.id === part.id;
+  const isPartActiveInCategory = (part) => activeByCategory[part.category]?.id === part.id;
+
+  const getPartInputProps = (part) => {
+    if (isEssentialPartCategory(part.category)) {
+      return {
+        inputType: 'radio',
+        radioGroupName: `essential-${part.category}`,
+      };
+    }
+    return {
+      inputType: 'checkbox',
+      radioGroupName: undefined,
+    };
+  };
 
   const handleAddToCart = () => {
     if (!user) {
@@ -275,9 +329,10 @@ const MotoConfigurator = () => {
                         part={part}
                         checked={selectedPartIds.includes(part.id)}
                         isSelected={isPartActiveInCategory(part)}
-                        onToggle={handlePartToggle}
+                        onSelect={handlePartSelect}
                         badge="Сток"
                         priceDelta={getPartPriceDelta(part)}
+                        {...getPartInputProps(part)}
                       />
                     ))}
                   </div>
@@ -296,9 +351,10 @@ const MotoConfigurator = () => {
                           part={part}
                           checked={selectedPartIds.includes(part.id)}
                           isSelected={isPartActiveInCategory(part)}
-                          onToggle={handlePartToggle}
+                          onSelect={handlePartSelect}
                           badge="Тюнинг"
                           priceDelta={getPartPriceDelta(part)}
+                          {...getPartInputProps(part)}
                         />
                       ))}
                     </div>
