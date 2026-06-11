@@ -21,19 +21,9 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import VehicleImage from './VehicleImage';
 
-function PartRow({
-  part,
-  checked,
-  isSelected,
-  onSelect,
-  badge,
-  priceDelta,
-  inputType = 'checkbox',
-  radioGroupName,
-}) {
+function PartRow({ part, isSelected, onSelect, badge, priceDelta }) {
   const { label: deltaLabel, className: deltaClass } = formatPriceDeltaLabel(priceDelta, isSelected);
   const thumb = resolveProductImage(part);
-  const isRadio = inputType === 'radio';
 
   return (
     <label
@@ -42,11 +32,10 @@ function PartRow({
       }`}
     >
       <input
-        type={inputType}
-        name={radioGroupName}
-        checked={isRadio ? isSelected : checked}
+        type="checkbox"
+        checked={isSelected}
         onChange={() => onSelect(part.id)}
-        className={`${isRadio ? 'rounded-full' : ''} w-4 h-4 accent-accent shrink-0 mt-1`}
+        className="w-4 h-4 accent-accent shrink-0 mt-1 rounded-sm"
       />
       <div className="w-10 h-10 shrink-0 overflow-hidden border border-white/10 bg-black/40">
         {thumb ? (
@@ -223,19 +212,6 @@ const MotoConfigurator = () => {
 
   const isPartActiveInCategory = (part) => activeByCategory[part.category]?.id === part.id;
 
-  const getPartInputProps = (part) => {
-    if (isEssentialPartCategory(part.category)) {
-      return {
-        inputType: 'radio',
-        radioGroupName: `essential-${part.category}`,
-      };
-    }
-    return {
-      inputType: 'checkbox',
-      radioGroupName: undefined,
-    };
-  };
-
   const handleAddToCart = () => {
     if (!user) {
       navigate('/login');
@@ -327,12 +303,10 @@ const MotoConfigurator = () => {
                       <PartRow
                         key={part.id}
                         part={part}
-                        checked={selectedPartIds.includes(part.id)}
                         isSelected={isPartActiveInCategory(part)}
                         onSelect={handlePartSelect}
                         badge="Сток"
                         priceDelta={getPartPriceDelta(part)}
-                        {...getPartInputProps(part)}
                       />
                     ))}
                   </div>
@@ -349,12 +323,10 @@ const MotoConfigurator = () => {
                         <PartRow
                           key={part.id}
                           part={part}
-                          checked={selectedPartIds.includes(part.id)}
                           isSelected={isPartActiveInCategory(part)}
                           onSelect={handlePartSelect}
                           badge="Тюнинг"
                           priceDelta={getPartPriceDelta(part)}
-                          {...getPartInputProps(part)}
                         />
                       ))}
                     </div>
