@@ -63,36 +63,45 @@ const ProductDetailPage = () => {
           <ArrowLeft size={16} /> Назад в каталог
         </Link>
 
-        <div className="glass-card grid lg:grid-cols-2 gap-0 overflow-hidden">
-          <div className="relative">
-            <VehicleImage src={product.imageUrl} alt={product.name} hover={false} />
-            <div className="absolute top-4 left-4 bg-accent text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider">
-              {product.category}
+        <div className="glass-card overflow-hidden">
+          <div className="p-6 md:p-8 lg:p-12">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+              <div className="relative w-full">
+                <VehicleImage
+                  src={product.imageUrl}
+                  alt={product.name}
+                  hover={false}
+                  frameClassName="w-full"
+                />
+                <div className="absolute top-4 left-4 bg-accent text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider">
+                  {product.category}
+                </div>
+              </div>
+
+              <div className="flex flex-col">
+                <p className="text-accent font-black uppercase tracking-[0.3em] text-xs mb-2">Мотоцикл</p>
+                <h1 className="text-3xl md:text-4xl font-black uppercase italic mb-4">{product.name}</h1>
+                <p className="text-gray-400 leading-relaxed mb-8">{product.description}</p>
+
+                <div className="grid grid-cols-2 gap-4 mb-8 border-y border-white/10 py-6">
+                  <Spec label="Двигатель" value={product.engine} />
+                  <Spec label="Вес" value={product.weight} />
+                  <Spec label="Коробка" value={product.transmission} />
+                  <Spec label="Категория" value={product.category} />
+                </div>
+
+                <div className="text-4xl font-black text-accent italic mb-8">
+                  {formatPrice(catalogPrice ?? product.price)}
+                </div>
+
+                <Link
+                  to={`/configurator?vehicle=${product.id}`}
+                  className="btn-primary w-full text-center mt-auto"
+                >
+                  <span className="block skew-x-[12deg]">Перейти в конфигуратор</span>
+                </Link>
+              </div>
             </div>
-          </div>
-
-          <div className="p-8 lg:p-12 flex flex-col">
-            <p className="text-accent font-black uppercase tracking-[0.3em] text-xs mb-2">Мотоцикл</p>
-            <h1 className="text-3xl md:text-4xl font-black uppercase italic mb-4">{product.name}</h1>
-            <p className="text-gray-400 leading-relaxed mb-8">{product.description}</p>
-
-            <div className="grid grid-cols-2 gap-4 mb-8 border-y border-white/10 py-6">
-              <Spec label="Двигатель" value={product.engine} />
-              <Spec label="Вес" value={product.weight} />
-              <Spec label="Коробка" value={product.transmission} />
-              <Spec label="Категория" value={product.category} />
-            </div>
-
-            <div className="text-4xl font-black text-accent italic mb-8">
-              {formatPrice(catalogPrice ?? product.price)}
-            </div>
-
-            <Link
-              to={`/configurator?vehicle=${product.id}`}
-              className="btn-primary text-center mt-auto"
-            >
-              <span className="block skew-x-[12deg]">Перейти в конфигуратор</span>
-            </Link>
           </div>
         </div>
       </div>

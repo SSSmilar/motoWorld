@@ -12,7 +12,7 @@ const LoginForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setError('');
-        const res = login(email, password);
+        const res = login(email.trim(), password);
         if (!res.ok) {
             setError(res.error || 'Ошибка входа');
             return;

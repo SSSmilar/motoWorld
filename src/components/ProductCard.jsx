@@ -14,12 +14,12 @@ const ProductCard = ({ product, isHighlighted }) => {
 const VehicleCard = ({ product, isHighlighted }) => (
   <Link
     to={`/product/${product.id}`}
-    className={`glass-card group flex flex-col h-full transition-all duration-500 ${
+    className={`glass-card group flex flex-col h-full p-6 gap-4 transition-all duration-500 ${
       isHighlighted ? 'ring-2 ring-accent shadow-[0_0_20px_rgba(255,62,0,0.3)]' : ''
     }`}
   >
-    <div className="relative">
-      <VehicleImage src={product.imageUrl} alt={product.title} />
+    <div className="relative w-full">
+      <VehicleImage src={product.imageUrl} alt={product.title} frameClassName="w-full" />
       <div className="absolute top-4 left-4 bg-accent text-white text-[10px] font-bold px-2 py-1 uppercase tracking-tighter">
         {product.category}
       </div>
@@ -28,7 +28,7 @@ const VehicleCard = ({ product, isHighlighted }) => (
       </div>
     </div>
 
-    <div className="p-6 flex flex-col flex-grow">
+    <div className="flex flex-col flex-grow">
       <h3 className="text-xl font-bold uppercase tracking-tight group-hover:text-accent transition-colors mb-2">
         {product.title}
       </h3>

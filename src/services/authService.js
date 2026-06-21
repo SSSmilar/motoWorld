@@ -10,9 +10,32 @@ import { v4 as uuidv4 } from 'uuid';
 
 const USERS_KEY = 'users';
 const SESSIONS_KEY = 'sessions';
+const LEGACY_USERS_KEY = 'mw_users';
+const LEGACY_SESSIONS_KEY = 'mw_session';
+
+const normalizeEmail = (email) => String(email ?? '').trim().toLowerCase();
+
+/** Миграция данных из старых ключей localStorage */
+const migrate_legacy_storage = () => {
+    try {
+        if (!localStorage.getItem(USERS_KEY)) {
+            const legacyUsers = localStorage.getItem(LEGACY_USERS_KEY);
+            if (legacyUsers) {
+                localStorage.setItem(USERS_KEY, legacyUsers);
+            }
+        }
+        if (!localStorage.getItem(SESSIONS_KEY)) {
+            const legacySessions = localStorage.getItem(LEGACY_SESSIONS_KEY);
+            if (legacySessions) {
+                localStorage.setItem(SESSIONS_KEY, legacySessions);
+            }
+        }
+    } catch { /* ignore */ }
+};
 
 const get_users = () => {
     try {
+        migrate_legacy_storage();
         const users = localStorage.getItem(USERS_KEY);
         return users ? JSON.parse(users) : [];
     } catch {
@@ -49,38 +72,43 @@ const DEFAULT_ADMIN = {
 
 /** Инициализация: гарантирует тестового админа admin@test.com в localStorage */
 export const init_admin = () => {
+    migrate_legacy_storage();
     const users = get_users();
-    const idx = users.findIndex((user) => user.email === DEFAULT_ADMIN.email);
+    const adminEmail = normalizeEmail(DEFAULT_ADMIN.email);
+    const idx = users.findIndex((user) => normalizeEmail(user.email) === adminEmail);
 
     if (idx >= 0) {
         const admin = users[idx];
-        if (admin.password !== DEFAULT_ADMIN.password || admin.role !== DEFAULT_ADMIN.role) {
-            users[idx] = { ...admin, password: DEFAULT_ADMIN.password, role: DEFAULT_ADMIN.role };
-            save_users(users);
-        }
+        users[idx] = {
+            ...admin,
+            email: DEFAULT_ADMIN.email,
+            password: DEFAULT_ADMIN.password,
+            role: DEFAULT_ADMIN.role,
+        };
+        save_users(users);
         return;
     }
 
-    const shouldSeed =
-        users.length === 0 || !users.some((user) => user.role === 'admin');
-
-    if (shouldSeed) {
-        users.push({ id: uuidv4(), ...DEFAULT_ADMIN });
-        save_users(users);
-    }
+    users.push({ id: uuidv4(), ...DEFAULT_ADMIN });
+    save_users(users);
 };
+
+const find_user_by_email = (users, email) =>
+    users.find((user) => normalizeEmail(user.email) === normalizeEmail(email));
 
 /** Регистрация нового пользователя (роль всегда user) */
 export const register = (email, password) => {
+    init_admin();
     const users = get_users();
-    const user_exists = users.some(user => user.email === email);
+    const normalizedEmail = normalizeEmail(email);
+    const user_exists = users.some((user) => normalizeEmail(user.email) === normalizedEmail);
     if (user_exists) {
         throw new Error('Пользователь с таким email уже существует');
     }
     const new_user = {
         id: uuidv4(),
-        email,
-        password, // In a real app, hash passwords!
+        email: normalizedEmail,
+        password,
         role: 'user',
     };
     users.push(new_user);
@@ -90,9 +118,10 @@ export const register = (email, password) => {
 
 /** Вход по email и паролю */
 export const login = (email, password) => {
+    init_admin();
     const users = get_users();
-    const user = users.find(user => user.email === email && user.password === password);
-    if (!user) {
+    const user = find_user_by_email(users, email);
+    if (!user || user.password !== password) {
         throw new Error('Неверный email или пароль');
     }
     const sessions = get_sessions();
