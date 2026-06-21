@@ -41,18 +41,31 @@ const save_sessions = (sessions) => {
     } catch { /* storage full or unavailable */ }
 };
 
-/** Инициализация: добавляет тестового админа, если его ещё нет */
+const DEFAULT_ADMIN = {
+    email: 'admin@test.com',
+    password: 'adminpassword', // plaintext — как у остальных пользователей в mock-api
+    role: 'admin',
+};
+
+/** Инициализация: гарантирует тестового админа admin@test.com в localStorage */
 export const init_admin = () => {
     const users = get_users();
-    const admin_exists = users.some(user => user.email === 'admin@test.com');
-    if (!admin_exists) {
-        const admin = {
-            id: uuidv4(),
-            email: 'admin@test.com',
-            password: 'admin123', // In a real app, hash passwords!
-            role: 'admin',
-        };
-        users.push(admin);
+    const idx = users.findIndex((user) => user.email === DEFAULT_ADMIN.email);
+
+    if (idx >= 0) {
+        const admin = users[idx];
+        if (admin.password !== DEFAULT_ADMIN.password || admin.role !== DEFAULT_ADMIN.role) {
+            users[idx] = { ...admin, password: DEFAULT_ADMIN.password, role: DEFAULT_ADMIN.role };
+            save_users(users);
+        }
+        return;
+    }
+
+    const shouldSeed =
+        users.length === 0 || !users.some((user) => user.role === 'admin');
+
+    if (shouldSeed) {
+        users.push({ id: uuidv4(), ...DEFAULT_ADMIN });
         save_users(users);
     }
 };
