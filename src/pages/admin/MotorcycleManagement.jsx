@@ -8,7 +8,7 @@ import {
   deleteMotorcycle,
   initAdminStorage,
 } from '../../services/adminStorageService';
-import { VEHICLE_CATEGORIES, PART_CATEGORIES } from '../../utils/productUtils';
+import { VEHICLE_CATEGORIES, ESSENTIAL_PART_CATEGORIES } from '../../utils/productUtils';
 import { formatPrice } from '../../services/configuratorService';
 import {
   INPUT_CLS,
@@ -52,39 +52,32 @@ const MotorcycleManagement = () => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const partsByCategory = useMemo(() => {
-    const groups = {};
-    for (const part of parts) {
-      const category = part.category || 'Прочее';
-      if (!groups[category]) groups[category] = [];
-      groups[category].push(part);
-    }
-
-    const orderedCategories = [
-      ...PART_CATEGORIES.filter((cat) => groups[cat]?.length),
-      ...Object.keys(groups).filter((cat) => !PART_CATEGORIES.includes(cat)),
-    ];
-
-    return orderedCategories.map((category) => ({
-      category,
-      items: groups[category],
-    }));
-  }, [parts]);
-
   const partCategoryById = useMemo(
-    () => Object.fromEntries(parts.map((part) => [part.id, part.category || 'Прочее'])),
+    () => Object.fromEntries(parts.map((part) => [part.id, part.category || ''])),
     [parts]
   );
 
-  const selectStockPart = (partId, category) => {
+  const essentialPartsByCategory = useMemo(
+    () =>
+      ESSENTIAL_PART_CATEGORIES.map((category) => ({
+        category,
+        items: parts.filter((part) => part.category === category),
+      })),
+    [parts]
+  );
+
+  const getSelectedPartIdForCategory = (category) =>
+    form.stockPartIds.find((id) => partCategoryById[id] === category) ?? '';
+
+  const handleStockPartSelect = (category, value) => {
     setForm((prev) => {
       const withoutCategory = prev.stockPartIds.filter(
         (id) => partCategoryById[id] !== category
       );
-      if (prev.stockPartIds.includes(partId)) {
+      if (!value) {
         return { ...prev, stockPartIds: withoutCategory };
       }
-      return { ...prev, stockPartIds: [...withoutCategory, partId] };
+      return { ...prev, stockPartIds: [...withoutCategory, Number(value)] };
     });
   };
 
@@ -98,7 +91,9 @@ const MotorcycleManagement = () => {
       volume: form.volume,
       power: form.power,
       year: form.year,
-      stockPartIds: form.stockPartIds,
+      stockPartIds: form.stockPartIds.filter((id) =>
+        ESSENTIAL_PART_CATEGORIES.includes(partCategoryById[id])
+      ),
       image: form.image,
       stock: form.stock,
     };
@@ -195,40 +190,31 @@ const MotorcycleManagement = () => {
           <div className="md:col-span-2">
             <label className={LABEL_CLS}>Стоковые запчасти</label>
             <p className="text-gray-500 text-xs mb-3">
-              Можно выбрать не более одной запчасти из каждой категории.
+              Выберите по одной запчасти из каждой основной категории или оставьте «Не выбрано».
             </p>
-            {parts.length === 0 ? (
-              <p className="text-gray-500 text-sm">Сначала добавьте запчасти в разделе «Запчасти».</p>
-            ) : (
-              <div className="space-y-4 mt-1">
-                {partsByCategory.map(({ category, items }) => (
-                  <div key={category} className="border border-white/10 rounded-xl p-4 bg-black/20">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">
-                      {category}
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {items.map((part) => {
-                        const selected = form.stockPartIds.includes(part.id);
-                        return (
-                          <button
-                            key={part.id}
-                            type="button"
-                            onClick={() => selectStockPart(part.id, category)}
-                            className={`px-3 py-1.5 rounded-lg text-sm border transition ${
-                              selected
-                                ? 'bg-accent/20 border-accent text-accent'
-                                : 'bg-white/5 border-white/10 hover:bg-white/10'
-                            }`}
-                          >
-                            {part.name}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-1">
+              {essentialPartsByCategory.map(({ category, items }) => (
+                <div key={category}>
+                  <label className={LABEL_CLS}>{category}</label>
+                  <select
+                    value={String(getSelectedPartIdForCategory(category) || '')}
+                    onChange={(e) => handleStockPartSelect(category, e.target.value)}
+                    className={INPUT_CLS}
+                    disabled={items.length === 0}
+                  >
+                    <option value="" className="bg-gray-900">Не выбрано</option>
+                    {items.map((part) => (
+                      <option key={part.id} value={part.id} className="bg-gray-900">
+                        {part.name}
+                      </option>
+                    ))}
+                  </select>
+                  {items.length === 0 && (
+                    <p className="text-gray-500 text-xs mt-1">Нет запчастей в этой категории</p>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
           <div className="md:col-span-2 flex gap-3">
             <button type="submit" className={BTN_PRIMARY}>

@@ -22,10 +22,6 @@ const ProfilePage = () => {
                     <span className="text-gray-400 text-sm">Email</span>
                     <p className="text-lg">{user.email}</p>
                 </div>
-                <div>
-                    <span className="text-gray-400 text-sm">Роль</span>
-                    <p className="text-lg capitalize">{user.role}</p>
-                </div>
                 <div className="flex flex-wrap gap-4 mt-4">
                     <Link to="/orders" className="bg-white/10 hover:bg-white/20 transition rounded-lg px-6 py-2 font-semibold">
                         История заказов
