@@ -4,7 +4,7 @@ import { Search } from 'lucide-react';
 import ProductCard from '../../components/ProductCard';
 import PartCategoryIcon from '../../components/PartCategoryIcon';
 import { loadProducts } from '../../services/productService';
-import { fetchVehicleCatalogPrices } from '../../services/configuratorService';
+import { calculateMotorcycleCatalogPrice, getMotorcycles } from '../../services/adminStorageService';
 import { normalizeProduct, getCategoriesForType } from '../../utils/productUtils';
 
 const SkeletonCard = () => (
@@ -35,14 +35,14 @@ const CatalogPage = () => {
 
   useEffect(() => {
     loadProducts()
-      .then(async (data) => {
+      .then((data) => {
         const normalized = data.map(normalizeProduct);
         setProducts(normalized);
-        const vehicles = normalized.filter((p) => p.type === 'vehicle');
-        if (vehicles.length > 0) {
-          const prices = await fetchVehicleCatalogPrices(vehicles);
-          setCatalogPrices(prices);
-        }
+        const motorcycles = getMotorcycles();
+        const prices = Object.fromEntries(
+          motorcycles.map((m) => [m.id, calculateMotorcycleCatalogPrice(m)])
+        );
+        setCatalogPrices(prices);
       })
       .catch((err) => setError(err.message || 'Не удалось загрузить каталог'))
       .finally(() => setLoading(false));

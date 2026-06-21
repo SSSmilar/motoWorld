@@ -1,10 +1,21 @@
-import { fetchProducts, fetchProductById } from './configuratorService';
+import { fetchProductById } from './configuratorService';
 import { normalizeProduct } from '../utils/productUtils';
+import {
+  buildCatalogProducts,
+  getMotorcycles,
+  motorcycleToVehicleProduct,
+} from './adminStorageService';
 
 let cache = null;
 
-export async function loadProducts() {
-  const data = await fetchProducts();
+export function invalidateProductCache() {
+  cache = null;
+}
+
+export async function loadProducts(force = false) {
+  if (cache && !force) return cache;
+
+  const data = await buildCatalogProducts();
   cache = data.map(normalizeProduct);
   return cache;
 }
@@ -19,20 +30,30 @@ export async function getProducts() {
 }
 
 export async function getProductById(id) {
-  const numericId = Number(id);
   const cached = cache?.find((p) => p.id == id);
   if (cached) return cached;
 
-  const product = await fetchProductById(id);
-  const normalized = normalizeProduct(product);
-
-  if (cache) {
-    const idx = cache.findIndex((p) => p.id == id);
-    if (idx >= 0) cache[idx] = normalized;
-    else cache.push(normalized);
+  const motorcycle = getMotorcycles().find((m) => m.id == id);
+  if (motorcycle) {
+    const normalized = normalizeProduct(motorcycleToVehicleProduct(motorcycle));
+    if (cache) cache.push(normalized);
+    return normalized;
   }
 
-  return normalized;
+  try {
+    const product = await fetchProductById(id);
+    const normalized = normalizeProduct(product);
+
+    if (cache) {
+      const idx = cache.findIndex((p) => p.id == id);
+      if (idx >= 0) cache[idx] = normalized;
+      else cache.push(normalized);
+    }
+
+    return normalized;
+  } catch {
+    return null;
+  }
 }
 
 export function getVehicles(products = cache ?? []) {

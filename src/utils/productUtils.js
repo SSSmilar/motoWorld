@@ -1,8 +1,8 @@
-/** Преобразует локальное имя файла в URL для public/images */
+/** Преобразует локальное имя файла, URL или Base64 в URL для отображения */
 export function resolveProductImage(p) {
   const src = p?.image ?? p?.imageUrl;
   if (!src) return null;
-  if (src.startsWith('http') || src.startsWith('/')) return src;
+  if (src.startsWith('data:') || src.startsWith('http') || src.startsWith('/')) return src;
   return `/images/${src}`;
 }
 

@@ -3,6 +3,11 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, Loader2, Wrench } from 'lucide-react';
 import { getProductById } from '../../services/productService';
 import { formatPrice, fetchVehicleCatalogPrice, fetchStockParts } from '../../services/configuratorService';
+import {
+  calculateMotorcycleCatalogPrice,
+  getMotorcycleStockParts,
+  getMotorcycles,
+} from '../../services/adminStorageService';
 import { normalizeProduct } from '../../utils/productUtils';
 import VehicleImage from '../../components/VehicleImage';
 import PartCategoryIcon from '../../components/PartCategoryIcon';
@@ -28,6 +33,14 @@ const ProductDetailPage = () => {
           return;
         }
         setProduct(normalized);
+
+        const motorcycle = getMotorcycles().find((m) => m.id == normalized.id);
+        if (motorcycle) {
+          setCatalogPrice(calculateMotorcycleCatalogPrice(motorcycle));
+          setStockParts(getMotorcycleStockParts(motorcycle));
+          return;
+        }
+
         return Promise.all([
           fetchVehicleCatalogPrice(normalized)
             .then(setCatalogPrice)

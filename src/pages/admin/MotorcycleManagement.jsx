@@ -10,6 +10,7 @@ import {
 } from '../../services/adminStorageService';
 import { VEHICLE_CATEGORIES, ESSENTIAL_PART_CATEGORIES } from '../../utils/productUtils';
 import { formatPrice } from '../../services/configuratorService';
+import { invalidateProductCache } from '../../services/productService';
 import {
   INPUT_CLS,
   LABEL_CLS,
@@ -31,12 +32,15 @@ const emptyForm = {
   stock: 3,
 };
 
+const MAX_IMAGE_SIZE = 2 * 1024 * 1024;
+
 const MotorcycleManagement = () => {
   const [motorcycles, setMotorcycles] = useState([]);
   const [parts, setParts] = useState([]);
   const [form, setForm] = useState(emptyForm);
   const [editingId, setEditingId] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [formError, setFormError] = useState('');
 
   const reload = () => {
     setMotorcycles(getMotorcycles());
@@ -70,19 +74,74 @@ const MotorcycleManagement = () => {
     form.stockPartIds.find((id) => partCategoryById[id] === category) ?? '';
 
   const handleStockPartSelect = (category, value) => {
+    if (!value) return;
     setForm((prev) => {
       const withoutCategory = prev.stockPartIds.filter(
         (id) => partCategoryById[id] !== category
       );
-      if (!value) {
-        return { ...prev, stockPartIds: withoutCategory };
-      }
       return { ...prev, stockPartIds: [...withoutCategory, Number(value)] };
     });
+    setFormError('');
+  };
+
+  const validateForm = () => {
+    if (!form.image?.trim()) {
+      return 'Добавьте изображение мотоцикла: загрузите файл или укажите URL';
+    }
+
+    for (const category of ESSENTIAL_PART_CATEGORIES) {
+      const items = parts.filter((part) => part.category === category);
+      if (items.length === 0) {
+        return `Нет доступных запчастей в категории «${category}». Добавьте их в разделе «Запчасти».`;
+      }
+      if (!getSelectedPartIdForCategory(category)) {
+        return `Пожалуйста, выберите стоковую деталь для категории «${category}»`;
+      }
+    }
+
+    return null;
+  };
+
+  const canSubmit = useMemo(() => {
+    if (!form.image?.trim()) return false;
+    return ESSENTIAL_PART_CATEGORIES.every((category) => {
+      const items = parts.filter((part) => part.category === category);
+      if (items.length === 0) return false;
+      return form.stockPartIds.some((id) => partCategoryById[id] === category);
+    });
+  }, [form.image, form.stockPartIds, parts, partCategoryById]);
+
+  const handleImageFile = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      setFormError('Выберите файл изображения (JPEG, PNG, WebP и т.д.)');
+      return;
+    }
+
+    if (file.size > MAX_IMAGE_SIZE) {
+      setFormError('Размер изображения не должен превышать 2 МБ');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setForm((prev) => ({ ...prev, image: reader.result }));
+      setFormError('');
+    };
+    reader.onerror = () => setFormError('Не удалось прочитать файл изображения');
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const error = validateForm();
+    if (error) {
+      setFormError(error);
+      return;
+    }
+
     const payload = {
       name: form.name,
       description: form.description,
@@ -104,9 +163,11 @@ const MotorcycleManagement = () => {
       addMotorcycle(payload);
     }
 
+    invalidateProductCache();
     setForm(emptyForm);
     setEditingId(null);
     setShowForm(false);
+    setFormError('');
     reload();
   };
 
@@ -130,14 +191,19 @@ const MotorcycleManagement = () => {
   const handleDelete = (id) => {
     if (!window.confirm('Удалить мотоцикл?')) return;
     deleteMotorcycle(id);
+    invalidateProductCache();
     reload();
   };
 
   const openCreateForm = () => {
     setForm(emptyForm);
     setEditingId(null);
+    setFormError('');
     setShowForm(true);
   };
+
+  const imagePreview = form.image?.trim() ? form.image : null;
+  const imageUrlValue = form.image?.startsWith('data:') ? '' : form.image;
 
   return (
     <div>
@@ -188,21 +254,61 @@ const MotorcycleManagement = () => {
             <textarea name="description" value={form.description} onChange={handleChange} rows={3} className={INPUT_CLS} />
           </div>
           <div className="md:col-span-2">
-            <label className={LABEL_CLS}>Стоковые запчасти</label>
+            <label className={LABEL_CLS}>Изображение</label>
+            <div className="space-y-3">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageFile}
+                className="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-accent file:text-white file:font-semibold hover:file:bg-accent/90"
+              />
+              <input
+                name="image"
+                value={imageUrlValue}
+                onChange={(e) => {
+                  handleChange(e);
+                  setFormError('');
+                }}
+                placeholder="Или вставьте URL: https://... или имя файла из /images/"
+                className={INPUT_CLS}
+              />
+              {imagePreview && (
+                <div className="relative w-full max-w-sm">
+                  <img
+                    src={imagePreview}
+                    alt="Предпросмотр"
+                    className="w-full aspect-[4/3] object-cover rounded-lg border border-white/10"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setForm((prev) => ({ ...prev, image: '' }))}
+                    className="absolute top-2 right-2 px-2 py-1 text-xs bg-black/70 rounded hover:bg-red-600 transition"
+                  >
+                    Удалить
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="md:col-span-2">
+            <label className={LABEL_CLS}>Стоковые запчасти *</label>
             <p className="text-gray-500 text-xs mb-3">
-              Выберите по одной запчасти из каждой основной категории или оставьте «Не выбрано».
+              Обязательно выберите по одной запчасти из каждой основной категории.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-1">
               {essentialPartsByCategory.map(({ category, items }) => (
                 <div key={category}>
-                  <label className={LABEL_CLS}>{category}</label>
+                  <label className={LABEL_CLS}>{category} *</label>
                   <select
                     value={String(getSelectedPartIdForCategory(category) || '')}
                     onChange={(e) => handleStockPartSelect(category, e.target.value)}
                     className={INPUT_CLS}
                     disabled={items.length === 0}
+                    required
                   >
-                    <option value="" className="bg-gray-900">Не выбрано</option>
+                    <option value="" disabled className="bg-gray-900">
+                      Выберите запчасть
+                    </option>
                     {items.map((part) => (
                       <option key={part.id} value={part.id} className="bg-gray-900">
                         {part.name}
@@ -210,14 +316,21 @@ const MotorcycleManagement = () => {
                     ))}
                   </select>
                   {items.length === 0 && (
-                    <p className="text-gray-500 text-xs mt-1">Нет запчастей в этой категории</p>
+                    <p className="text-red-400 text-xs mt-1">
+                      Нет запчастей в этой категории — добавьте в разделе «Запчасти»
+                    </p>
                   )}
                 </div>
               ))}
             </div>
           </div>
+          {formError && (
+            <div className="md:col-span-2 p-3 border border-red-500/50 bg-red-500/10 text-red-400 text-sm">
+              {formError}
+            </div>
+          )}
           <div className="md:col-span-2 flex gap-3">
-            <button type="submit" className={BTN_PRIMARY}>
+            <button type="submit" className={`${BTN_PRIMARY} disabled:opacity-40 disabled:cursor-not-allowed`} disabled={!canSubmit}>
               {editingId ? 'Сохранить' : 'Добавить'}
             </button>
             <button

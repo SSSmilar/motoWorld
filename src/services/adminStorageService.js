@@ -200,6 +200,84 @@ export function deleteMotorcycle(id) {
   return updated;
 }
 
+/** Преобразование мотоцикла из localStorage в формат товара каталога */
+export function motorcycleToVehicleProduct(motorcycle) {
+  const specs = motorcycle.specs ?? {};
+  const engine = [specs.volume, specs.power].filter(Boolean).join(' / ') || undefined;
+
+  return {
+    id: motorcycle.id,
+    type: 'vehicle',
+    name: motorcycle.name,
+    category: motorcycle.category,
+    price: motorcycle.price ?? 0,
+    description: motorcycle.description ?? '',
+    image: motorcycle.image ?? '',
+    engine,
+    stock: motorcycle.stock ?? 3,
+    stockPartIds: motorcycle.stockPartIds ?? [],
+  };
+}
+
+/** Полная цена мотоцикла: рама + выбранные стоковые запчасти */
+export function calculateMotorcycleCatalogPrice(motorcycle, parts = getParts()) {
+  const stockIds = new Set(motorcycle.stockPartIds ?? []);
+  const stockTotal = parts
+    .filter((part) => stockIds.has(part.id))
+    .reduce((sum, part) => sum + (part.price ?? 0), 0);
+
+  return (motorcycle.price ?? 0) + stockTotal;
+}
+
+/** Стоковые запчасти мотоцикла из localStorage */
+export function getMotorcycleStockParts(motorcycle, parts = getParts()) {
+  const stockIds = new Set(motorcycle.stockPartIds ?? []);
+  return parts.filter((part) => stockIds.has(part.id));
+}
+
+/** Преобразование запчасти из localStorage в формат каталога */
+export function adminPartToProduct(part) {
+  return {
+    id: part.id,
+    type: 'part',
+    name: part.name,
+    category: part.category,
+    price: part.price ?? 0,
+    description: part.description ?? '',
+    compatible_with: part.compatible_with ?? [],
+    brand: part.brand ?? '',
+    material: part.material ?? '',
+    stock: part.stock ?? 15,
+  };
+}
+
+function mergeProductsById(primary, secondary) {
+  const map = new Map(primary.map((item) => [item.id, item]));
+  for (const item of secondary) {
+    map.set(item.id, { ...map.get(item.id), ...item });
+  }
+  return Array.from(map.values());
+}
+
+/** Сборка полного списка товаров: мотоциклы и запчасти из localStorage + API */
+export async function buildCatalogProducts() {
+  await initAdminStorage();
+
+  let apiProducts = [];
+  try {
+    apiProducts = await fetchProducts();
+  } catch {
+    apiProducts = [];
+  }
+
+  const vehicles = getMotorcycles().map(motorcycleToVehicleProduct);
+  const localParts = getParts().map(adminPartToProduct);
+  const apiParts = apiProducts.filter((product) => product.type === 'part');
+  const parts = mergeProductsById(apiParts, localParts);
+
+  return [...vehicles, ...parts];
+}
+
 // ——— Запчасти ———
 
 export function getParts() {
