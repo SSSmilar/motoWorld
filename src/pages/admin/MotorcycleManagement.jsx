@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Pencil, Trash2, Plus } from 'lucide-react';
 import {
   getMotorcycles,
@@ -8,7 +8,7 @@ import {
   deleteMotorcycle,
   initAdminStorage,
 } from '../../services/adminStorageService';
-import { VEHICLE_CATEGORIES } from '../../utils/productUtils';
+import { VEHICLE_CATEGORIES, PART_CATEGORIES } from '../../utils/productUtils';
 import { formatPrice } from '../../services/configuratorService';
 import {
   INPUT_CLS,
@@ -52,12 +52,39 @@ const MotorcycleManagement = () => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const toggleStockPart = (partId) => {
+  const partsByCategory = useMemo(() => {
+    const groups = {};
+    for (const part of parts) {
+      const category = part.category || 'Прочее';
+      if (!groups[category]) groups[category] = [];
+      groups[category].push(part);
+    }
+
+    const orderedCategories = [
+      ...PART_CATEGORIES.filter((cat) => groups[cat]?.length),
+      ...Object.keys(groups).filter((cat) => !PART_CATEGORIES.includes(cat)),
+    ];
+
+    return orderedCategories.map((category) => ({
+      category,
+      items: groups[category],
+    }));
+  }, [parts]);
+
+  const partCategoryById = useMemo(
+    () => Object.fromEntries(parts.map((part) => [part.id, part.category || 'Прочее'])),
+    [parts]
+  );
+
+  const selectStockPart = (partId, category) => {
     setForm((prev) => {
-      const ids = prev.stockPartIds.includes(partId)
-        ? prev.stockPartIds.filter((id) => id !== partId)
-        : [...prev.stockPartIds, partId];
-      return { ...prev, stockPartIds: ids };
+      const withoutCategory = prev.stockPartIds.filter(
+        (id) => partCategoryById[id] !== category
+      );
+      if (prev.stockPartIds.includes(partId)) {
+        return { ...prev, stockPartIds: withoutCategory };
+      }
+      return { ...prev, stockPartIds: [...withoutCategory, partId] };
     });
   };
 
@@ -167,31 +194,39 @@ const MotorcycleManagement = () => {
           </div>
           <div className="md:col-span-2">
             <label className={LABEL_CLS}>Стоковые запчасти</label>
+            <p className="text-gray-500 text-xs mb-3">
+              Можно выбрать не более одной запчасти из каждой категории.
+            </p>
             {parts.length === 0 ? (
               <p className="text-gray-500 text-sm">Сначала добавьте запчасти в разделе «Запчасти».</p>
             ) : (
-              <div className="flex flex-wrap gap-2 mt-1">
-                {parts.map((part) => {
-                  const selected = form.stockPartIds.includes(part.id);
-                  return (
-                    <label
-                      key={part.id}
-                      className={`cursor-pointer px-3 py-1.5 rounded-lg text-sm border transition ${
-                        selected
-                          ? 'bg-accent/20 border-accent text-accent'
-                          : 'bg-white/5 border-white/10 hover:bg-white/10'
-                      }`}
-                    >
-                      <input
-                        type="checkbox"
-                        className="sr-only"
-                        checked={selected}
-                        onChange={() => toggleStockPart(part.id)}
-                      />
-                      {part.name}
-                    </label>
-                  );
-                })}
+              <div className="space-y-4 mt-1">
+                {partsByCategory.map(({ category, items }) => (
+                  <div key={category} className="border border-white/10 rounded-xl p-4 bg-black/20">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">
+                      {category}
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {items.map((part) => {
+                        const selected = form.stockPartIds.includes(part.id);
+                        return (
+                          <button
+                            key={part.id}
+                            type="button"
+                            onClick={() => selectStockPart(part.id, category)}
+                            className={`px-3 py-1.5 rounded-lg text-sm border transition ${
+                              selected
+                                ? 'bg-accent/20 border-accent text-accent'
+                                : 'bg-white/5 border-white/10 hover:bg-white/10'
+                            }`}
+                          >
+                            {part.name}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
               </div>
             )}
           </div>
