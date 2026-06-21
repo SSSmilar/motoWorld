@@ -14,9 +14,11 @@ import RegistrationForm from './pages/auth/RegistrationForm';
 import ProfilePage from './pages/profile/ProfilePage';
 import OrdersPage from './pages/profile/OrdersPage';
 import CartPage from './pages/cart/CartPage';
+import AdminRoute from './components/AdminRoute';
 import AdminDashboard from './pages/admin/AdminDashboard';
-import ProductManagement from './pages/admin/ProductManagement';
 import OrderManagement from './pages/admin/OrderManagement';
+import MotorcycleManagement from './pages/admin/MotorcycleManagement';
+import PartManagement from './pages/admin/PartManagement';
 import ForbiddenPage from './pages/ForbiddenPage';
 import ConfiguratorPage from './pages/configurator/ConfiguratorPage';
 import ProductDetailPage from './pages/product/ProductDetailPage';
@@ -50,11 +52,12 @@ const App = () => {
           </Route>
 
           {/* Admin Routes */}
-          <Route element={<ProtectedRoute allowed_roles={['admin']} />}>
+          <Route element={<AdminRoute />}>
             <Route path="/admin" element={<AdminDashboard />}>
-              <Route index element={<ProductManagement />} />
-              <Route path="products" element={<ProductManagement />} />
+              <Route index element={<OrderManagement />} />
               <Route path="orders" element={<OrderManagement />} />
+              <Route path="motorcycles" element={<MotorcycleManagement />} />
+              <Route path="parts" element={<PartManagement />} />
             </Route>
           </Route>
         </Routes>

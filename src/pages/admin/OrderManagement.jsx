@@ -1,47 +1,103 @@
 import React, { useState, useEffect } from 'react';
-import { get_all_orders } from '../../services/orderService';
+import { Trash2 } from 'lucide-react';
+import {
+  getOrders,
+  updateOrderStatus,
+  deleteOrder,
+  ORDER_STATUSES,
+  initAdminStorage,
+} from '../../services/adminStorageService';
 import { formatPrice } from '../../services/configuratorService';
+import { CARD_CLS, BTN_DANGER } from './adminStyles';
 
 const OrderManagement = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const reload = () => setOrders(getOrders());
+
   useEffect(() => {
-    get_all_orders()
-      .then(setOrders)
-      .catch(console.error)
-      .finally(() => setLoading(false));
+    initAdminStorage().finally(() => {
+      reload();
+      setLoading(false);
+    });
   }, []);
 
+  const handleStatusChange = (orderId, status) => {
+    updateOrderStatus(orderId, status);
+    reload();
+  };
+
+  const handleDelete = (orderId) => {
+    if (!window.confirm('Удалить заказ?')) return;
+    deleteOrder(orderId);
+    reload();
+  };
+
   if (loading) {
-    return <div className="p-6 text-gray-400">Загрузка заказов...</div>;
+    return <div className="text-gray-400">Загрузка заказов...</div>;
   }
 
   return (
-    <div className="p-6">
+    <div>
       <h2 className="text-2xl font-black uppercase mb-6">Управление заказами</h2>
+
       {orders.length === 0 ? (
         <p className="text-gray-400">Заказов пока нет.</p>
       ) : (
-        <ul className="space-y-4">
-          {orders.map((order) => (
-            <li key={order.id} className="border border-white/10 p-4 rounded-lg">
-              <div className="flex justify-between mb-2">
-                <span className="font-bold">{order.id}</span>
-                <span className="text-accent">{formatPrice(order.total_price)}</span>
-              </div>
-              <p className="text-sm text-gray-400">{order.customer_name} · {order.phone}</p>
-              <p className="text-xs text-gray-500 mt-1">{order.created_at?.slice(0, 10)} · {order.status}</p>
-              <ul className="mt-2 text-xs text-gray-500">
-                {(order.items ?? []).map((item, i) => (
-                  <li key={i}>
-                    {item.type === 'custom_build' ? item.vehicle_name : item.name} × {item.quantity}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
+        <div className={`${CARD_CLS} overflow-x-auto`}>
+          <table className="w-full text-left text-sm">
+            <thead className="border-b border-white/10 text-gray-400">
+              <tr>
+                <th className="py-3 pr-4">ID</th>
+                <th className="py-3 pr-4">Клиент</th>
+                <th className="py-3 pr-4">Телефон</th>
+                <th className="py-3 pr-4">Дата</th>
+                <th className="py-3 pr-4">Сумма</th>
+                <th className="py-3 pr-4">Статус</th>
+                <th className="py-3">Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <tr key={order.id} className="border-b border-white/5 hover:bg-white/5">
+                  <td className="py-3 pr-4 font-mono text-xs">{order.id}</td>
+                  <td className="py-3 pr-4">{order.customer_name}</td>
+                  <td className="py-3 pr-4 text-gray-400">{order.phone}</td>
+                  <td className="py-3 pr-4 text-gray-400">
+                    {order.created_at?.slice(0, 10) ?? '—'}
+                  </td>
+                  <td className="py-3 pr-4 text-accent font-semibold">
+                    {formatPrice(order.total_price)}
+                  </td>
+                  <td className="py-3 pr-4">
+                    <select
+                      value={order.status ?? 'Новый'}
+                      onChange={(e) => handleStatusChange(order.id, e.target.value)}
+                      className="bg-white/10 border border-white/20 rounded-lg px-3 py-1.5 text-sm outline-none focus:border-accent"
+                    >
+                      {ORDER_STATUSES.map((s) => (
+                        <option key={s} value={s} className="bg-gray-900">
+                          {s}
+                        </option>
+                      ))}
+                    </select>
+                  </td>
+                  <td className="py-3">
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(order.id)}
+                      className="p-2 hover:text-red-400 transition"
+                      title="Удалить"
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

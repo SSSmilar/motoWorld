@@ -2,6 +2,7 @@ import { ShoppingCart, Bike, User, LogIn } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { isAdmin } from '../utils/authUtils';
 
 const Header = () => {
   const { cartCount, openCart } = useCart();
@@ -36,8 +37,8 @@ const Header = () => {
           <Link to="/configurator" className="hover:text-accent transition-colors">Конфигуратор</Link>
           <Link to="/about" className="hover:text-accent transition-colors">О нас</Link>
           <Link to="/contacts" className="hover:text-accent transition-colors">Контакты</Link>
-          {user?.role === 'admin' && (
-            <Link to="/admin" className="hover:text-accent transition-colors">Админ</Link>
+          {isAdmin(user) && (
+            <Link to="/admin" className="hover:text-accent transition-colors">Админ-панель</Link>
           )}
         </nav>
 

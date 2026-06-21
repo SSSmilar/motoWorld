@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { isAdmin } from '../../utils/authUtils';
 import { useNavigate, Link } from 'react-router-dom';
 
 const ProfilePage = () => {
@@ -25,10 +26,15 @@ const ProfilePage = () => {
                     <span className="text-gray-400 text-sm">Роль</span>
                     <p className="text-lg capitalize">{user.role}</p>
                 </div>
-                <div className="flex gap-4 mt-4">
+                <div className="flex flex-wrap gap-4 mt-4">
                     <Link to="/orders" className="bg-white/10 hover:bg-white/20 transition rounded-lg px-6 py-2 font-semibold">
                         История заказов
                     </Link>
+                    {isAdmin(user) && (
+                        <Link to="/admin" className="bg-accent/20 hover:bg-accent/30 border border-accent/40 transition rounded-lg px-6 py-2 font-semibold text-accent">
+                            Админ-панель
+                        </Link>
+                    )}
                     <button onClick={handleLogout} className="bg-red-600 hover:bg-red-700 transition rounded-lg px-6 py-2 font-semibold">
                         Выйти
                     </button>
